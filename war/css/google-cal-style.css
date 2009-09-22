@@ -1,0 +1,346 @@
+/* Calendar panel, that holds the appointment */
+.google-cal {
+	position: relative;
+	height: 523px;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 100%;
+	overflow: hidden;
+	border: 1px solid #C3D9FF;
+}
+
+.google-cal .major-time-interval {
+	display: block;
+	height: 24px;
+	_height: 25px;
+	background: #FFFFCC;
+	border-top: 1px solid #DDDDDD;
+	width: 100%;
+}
+
+.google-cal .minor-time-interval {
+	display: block;
+	height: 24px;
+	_height: 25px;
+	background: #FFFFCC;
+	border-top: 1px dotted #DDDDDD;
+	width: 100%;
+}
+
+.google-cal .working-hours {
+	background: #FFF;
+}
+
+.google-cal .hour-label {
+	width: 50px;
+	color: #446688;
+	font-family: arial;
+	font-size: 12px;
+	display: block;
+	position:relative;
+        border-top:1px solid #DDDDDD;
+        background:#E8EEF7;
+}
+
+   
+.google-cal .hour-label .hour-layout {
+	position:absolute;top:5%;right:5px;line-height:1; text-align:right;width:100%;
+}
+
+.google-cal .hour-text {
+	display:inline; 
+	font-family:arial; font-size:11px;text-transform:lowercase;font-size:11px;color:#446688;
+}
+
+.google-cal .ampm-text {
+	display:inline;color:#446688;
+	font-family:arial; font-size:11px;text-transform:lowercase;font-weight:normal;
+}
+
+
+
+.google-cal .gwt-appointment-panel {
+	position: relative;
+	height: 1200px;
+}
+
+.google-cal .gwt-appointment-cell {
+	width: 99%;
+}
+
+.google-cal .scroll-area {
+	height: 500px;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+.google-cal .day-separator {
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0%;
+	border-left: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+	width: 3px;
+}
+
+.google-cal .time-strip {
+	/*padding-top: 43px;*/
+	white-space: nowrap;
+	width: 50px;
+}
+
+/* Calendar header */
+.google-cal .gwt-calendar-header {
+	background: #C3D9FF;
+	width: 100%;
+	border-bottom: 1px solid #A2BBDD;
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+	color:#112ABB;
+}
+
+/*.gwt-calendar-header table { width:100%;table-layout:fixed; border-collapse:collapse; }
+*/
+.google-cal .gwt-calendar-header .year-cell {
+	width: 50px;
+	font-family: arial;
+	font-size: 12px;
+	text-align: center;
+	font-weight: normal;
+	background:#C3D9FF;
+}
+
+.google-cal .gwt-calendar-header .day-cell-container {
+	height: 20px;
+	position: relative;
+	overflow: hidden;
+	background:#C3D9FF ;
+}
+
+.google-cal .gwt-calendar-header .day-cell {
+	border-left: 1px solid #C3D9FF;
+	position: absolute;
+	top: 0px;
+	height: 100%;
+	text-align: center;
+	font-family: arial;
+	font-size: 12px;
+	padding-top: 2px;
+	font-weight: normal;
+	background:#C3D9FF;
+}
+
+.google-cal .gwt-calendar-header .day-cell-today {
+	border-left: 1px solid #C3D9FF;
+	position: absolute;
+	background: #88AACC;
+	top: 0px;
+	height: 100%;
+	text-align: center;
+	font-family: arial;
+	font-size: 12px;
+	padding-top: 2px;
+	font-weight: bold;
+	color:#FFFFFF;
+}
+
+.google-cal .gwt-calendar-header .splitter {
+	height: 1px;
+	_height: 1px;
+	border-top: 0px solid #C3D9FF;
+	background: #C3D9FF;
+	border-bottom: 0px solid #C3D9FF;
+}
+
+
+
+
+
+
+
+
+/* Appointment panels, that get rendered to the screen as Div's (Primary Style) */
+.google-cal .gwt-appointment {
+	position: absolute;
+	font-size: 11px;
+	font-family: arial;
+	border: 1px solid #000;
+	overflow: hidden;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=66);
+	opacity: .66;
+	background-color: rgb(140, 191, 64);
+
+}
+
+.google-cal .gwt-appointment .header {
+	white-space: nowrap;
+	overflow: hidden;
+	color: #FFF;
+	padding: 1px;
+	padding-left: 8px;
+}
+
+.google-cal .gwt-appointment .body {
+	padding-left: 8px;
+	padding-top: 1px;
+	white-space: wrap;
+}
+
+.google-cal .gwt-appointment .footer {
+	border-bottom: 3px double #FFF;
+	position: absolute;
+	bottom: 2px;
+	left: 48%;
+	height: 4px;
+	width: 8px;
+}
+
+.google-cal .gwt-appointment .icons {
+	white-space: nowrap;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	background: transparent;
+	width: 55px;
+	height: 12px;
+	color: #FFF;
+}
+
+.google-cal .gwt-appointment .timeline {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	background: #FFF;
+	border-right: 1px solid #000;
+	width: 5px;
+	display:none;
+}
+
+.google-cal .gwt-appointment .timeline-fill {
+	/*background: blue url(gwt_cal_demo/line-pattern-template-inverse.gif);*/
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+}
+
+/* Appointment panel style when selected (Secondary Style) */
+.google-cal .gwt-appointment-selected {
+	-webkit-box-shadow: 3px 3px 5px #B7B7B7;
+		filter: alpha(opacity = 100);
+	opacity: 1;
+}
+
+/* Appointment panel styles by color theme (Secondary styles) */
+	/* Green */
+.google-cal .gwt-appointment-green {
+	border: 1px solid rgb(82, 136, 0);
+	background-color: rgb(140, 191, 64);
+	color: #FFF;
+	
+}
+.google-cal .gwt-appointment-green .header {
+	background: #528800;
+	color: #FFF;
+	font-weight:normal;
+}
+
+.google-cal .gwt-appointment-selected.gwt-appointment-green .header {
+	background: #528800;
+	color: #FFF;
+	font-weight:normal;
+}
+
+.google-cal .gwt-appointment-selected.gwt-appointment-green .footer {
+	border-bottom: 3px double white;
+}
+
+.google-cal .gwt-appointment-green .timeline-fill {
+	background-color: rgb(140, 191, 64);
+}
+
+
+/* Blue */
+.google-cal .gwt-appointment-blue {
+	border: 1px solid rgb(41, 82, 163);
+	background: #668CD9;
+	color: #FFF;
+	
+}
+.google-cal .gwt-appointment-blue .header {
+	background: #2952A3;
+	color: #FFF;
+}
+
+.google-cal .gwt-appointment-selected.gwt-appointment-blue .header {
+	background: #2952A3;
+	color: #FFF;
+}
+
+.google-cal .gwt-appointment-selected.gwt-appointment-blue .footer {
+	border-bottom: 3px double white;
+}
+
+
+/* An html element can have 1 or many styles, separated by spaces. */
+	/* example: class="gwt-appointment gwt-appointment-green" has properties of both styles, the second takes precedence */
+	
+
+	
+	
+	
+.leftPanel {padding-top:20px; }
+.leftPanel .gwt-DecoratorPanel .topRight { background: transparent url(../user/gwt/standard/images/vborder.png) repeat-y scroll 0 0; }
+.leftPanel .gwt-DecoratorPanel .bottomRight { background: transparent url(../user/gwt/standard/images/vborder.png) repeat-y scroll 0 0; }
+
+
+.daysTabBar .gwt-DecoratedTabBar .tabTopLeft {
+  background: url(../img/dayviewcorner.png) no-repeat 0px -55px;
+  -background:#E8EEF7;
+}
+.daysTabBar .gwt-DecoratedTabBar .tabTopRight {
+  background: url(../img/dayviewcorner.png) no-repeat -6px -55px;
+  -background:#E8EEF7;
+}
+.daysTabBar .gwt-DecoratedTabBar .tabMiddleCenter { background: #E8EEF7; }
+.daysTabBar .gwt-DecoratedTabBar .tabMiddleLeft { background: #E8EEF7; }
+.daysTabBar .gwt-DecoratedTabBar .tabMiddleRight { background: #E8EEF7; }
+.daysTabBar .gwt-DecoratedTabBar .tabTopCenter { background: #E8EEF7; }
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopLeft {
+  background: url(../img/dayviewcorner.png) no-repeat 0px -61px;
+  -background:#D0E4F6;
+}
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopRight {
+  background: url(../img/dayviewcorner.png) no-repeat -6px -61px;
+  -background:#D0E4F6;
+}
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter { background: #D0E4F6; }
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleLeft { background: #D0E4F6; }
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleRight { background: #D0E4F6; }
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabTopCenter { background: #D0E4F6; }
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarRest-wrapper { width:50px; }
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarFirst-wrapper {width:100%; }
+.daysTabBar .gwt-DecoratedTabBar .tabMiddleCenter {
+  color:#112ABB;
+  font-size:12px;
+  font-weight: normal;
+}
+.daysTabBar .gwt-DecoratedTabBar .gwt-TabBarItem-selected .tabMiddleCenter {
+  color:#000;
+  font-weight: bold;
+}
+
+
+.dialog-close {
+	POSITION: absolute; 
+	MARGIN: 0px 0px 0px 0px; 
+	WIDTH: 15px; 
+	HEIGHT: 15px; 
+	BACKGROUND: url(../img/combined.gif) 0px -50px no-repeat; 
+	CURSOR: pointer; 
+	left:374;
+	top:10;
+}

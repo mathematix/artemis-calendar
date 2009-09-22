@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequirementFramework_WeatherForecast xmlns="http://www.w3.org/2001/XMLSchema/RequirementFramework_WeatherForecast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema/RequirementFramework_WeatherForecast
+schema/RequirementFramework_WeatherForecast.xsd">
+	<ServiceRank isMoreSelect="false">
+		<RankValue>A</RankValue>
+		<RankValue>B</RankValue>
+		<RankValue>C</RankValue>
+	</ServiceRank>
+	<NoStandardsRequirementItems>
+	</NoStandardsRequirementItems>
+	<UserCustomStandardsItems>
+	    <ExecutionTime metric="ms" isRange="true">
+	        <MinValue>0</MinValue>
+	        <MaxValue>unbounded</MaxValue>
+	    </ExecutionTime>
+	    <LatencyTime metric="ms" isRange="true">
+	        <MinValue>0</MinValue>
+	        <MaxValue>unbounded</MaxValue>
+	    </LatencyTime>
+		<ResponseTime metric="ms" isRange="true">
+			<MinValue>0</MinValue>
+			<MaxValue>unbounded</MaxValue>
+		</ResponseTime>
+		<Throughput isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>unbounded</MaxValue>
+		</Throughput>
+		<Scalability isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Scalability>
+		<Availability isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Availability>
+		<Accuracy isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Accuracy>
+		<ForecastAccuracy isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</ForecastAccuracy>
+	</UserCustomStandardsItems>
+</RequirementFramework_WeatherForecast>

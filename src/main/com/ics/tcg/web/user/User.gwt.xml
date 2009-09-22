@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.7.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.7.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to='user'>
+
+  <inherits name='com.google.gwt.user.User'/>
+  
+  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/>    -->
+  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>        -->
+
+  <!-- Other module inherits                                         -->
+	<inherits name='de.techbits.gwt.widgets.Widgets'/>
+	<inherits name='com.bradrydzewski.gwt.calendar.Calendar' />
+	<inherits name='org.gwtlib.GWTLib'/>
+    <inherits name='com.bradrydzewski.gwt.calendar.theme.google.Google' /> 
+	<inherits name='com.ics.tcg.web.workflow.GwtDiagramsExample' />
+	<inherits name='com.ics.tcg.web.reg.Reg' />
+	
+   <!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/>-->
+
+  <!-- Specify the app entry point class.                            -->
+  <entry-point class='com.ics.tcg.web.user.client.User_Main'/>
+</module>

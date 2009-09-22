@@ -1,0 +1,38 @@
+	.starrating-active-unmarked {
+		background:url('star_active.gif') no-repeat;
+	}
+	.starrating-active-marked {
+		background:url('star_active_marked.gif') no-repeat;		
+	}
+	.starrating-inactive-unmarked {
+		background:url('star_grey.gif') no-repeat;
+	}
+	.starrating-inactive-marked {
+		background:url('star_grey_marked.gif') no-repeat;	
+	}
+	.starrating {
+		height:13px;
+		padding:0px;
+		margin:0px;
+		white-space:nowrap;
+		vertcial-align:top;
+	}
+	.starrating span {
+		width:13px;
+		height:13px;
+		vertical-align:top;
+		padding-left:13px; /* prevent firefox from shrinking to 0px */
+	}
+	.starrating-label {
+		font-size:12px;
+		display:inline;		
+		vertical-align:top;
+		margin-left:3px;
+		margin-right:3px;
+		padding:0px;
+	}			
+	.starrating-indicator {
+		width:16px;
+		height:16px;
+		display:inline;
+	}	

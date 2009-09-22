@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+  
+  <!-- Servlets -->
+  
+    <!-- remote friend -->
+    <servlet>
+    <servlet-name>friend</servlet-name>
+    <servlet-class>com.ics.tcg.web.user.server.Friend_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>friend</servlet-name>
+    <url-pattern>/user/friend</url-pattern>
+    </servlet-mapping>
+    
+     <!-- remote calendar -->
+    <servlet>
+    <servlet-name>calendar</servlet-name>
+    <servlet-class>com.ics.tcg.web.user.server.Calendar_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>calendar</servlet-name>
+    <url-pattern>/user/calendar</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- remote Mail -->
+    <servlet>
+    <servlet-name>mail</servlet-name>
+    <servlet-class>com.ics.tcg.web.user.server.Mail_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>mail</servlet-name>
+    <url-pattern>/user/mail</url-pattern>
+    </servlet-mapping>
+    
+    <!-- remote Login -->
+    <servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>com.ics.tcg.web.user.server.Login_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/user/login</url-pattern>
+    </servlet-mapping>
+    
+    <!-- remote Service -->
+    <servlet>
+    <servlet-name>service</servlet-name>
+    <servlet-class>com.ics.tcg.web.user.server.Service_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>service</servlet-name>
+    <url-pattern>/user/service</url-pattern>
+    </servlet-mapping>
+    
+    <!-- remote User -->
+    <servlet>
+    <servlet-name>user</servlet-name>
+    <servlet-class>com.ics.tcg.web.user.server.User_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>user</servlet-name>
+    <url-pattern>/user/user</url-pattern>
+    </servlet-mapping>
+    
+    
+    <!-- remote ServerStatus -->
+    <servlet>
+    <servlet-name>serverstatus</servlet-name>
+    <servlet-class>com.ics.tcg.web.workflow.server.ServerStatus_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>serverstatus</servlet-name>
+    <url-pattern>/user/serverstatus</url-pattern>
+    </servlet-mapping>
+
+    <!-- remote Reg -->
+    <servlet>
+    <servlet-name>reg</servlet-name>
+    <servlet-class>com.ics.tcg.web.reg.server.Reg_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>reg</servlet-name>
+    <url-pattern>/user/reg</url-pattern>
+    </servlet-mapping>
+    
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>User.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

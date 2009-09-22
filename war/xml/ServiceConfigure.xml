@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceConfigure>
+   <ServiceInfo>
+      <Name>BookAirTicketService</Name>
+      <ClassPath>com.ics.tcg.web.workflow.server.service.javadescription.bookairticketservice.BookAirTicketService</ClassPath>
+   </ServiceInfo>
+   <ServiceInfo>
+      <Name>BookBusTicketService</Name>
+      <ClassPath>com.ics.tcg.web.workflow.server.service.javadescription.bookbusticketservice.BookBusTicketService</ClassPath>
+   </ServiceInfo>
+   <ServiceInfo>
+      <Name>BookTrainTicketService</Name>
+      <ClassPath>com.ics.tcg.web.workflow.server.service.javadescription.booktrainticketservice.BookTrainTicketService</ClassPath>
+   </ServiceInfo>
+   <ServiceInfo>
+      <Name>BookRoomService</Name>
+      <ClassPath>com.ics.tcg.web.workflow.server.service.javadescription.bookroomservice.BookRoomService</ClassPath>
+   </ServiceInfo>
+   <ServiceInfo>
+      <Name>EmailService</Name>
+      <ClassPath>com.ics.tcg.web.workflow.server.service.javadescription.emailservice.EmailService</ClassPath>
+   </ServiceInfo>
+   <ServiceInfo>
+      <Name>SMS</Name>
+      <ClassPath>com.ics.tcg.web.workflow.server.service.javadescription.sms.SMS</ClassPath>
+   </ServiceInfo>
+   <ServiceInfo>
+      <Name>WeatherForecastService</Name>
+      <ClassPath>com.ics.tcg.web.workflow.server.service.javadescription.weatherforecastservice.WeatherForecastService</ClassPath>
+   </ServiceInfo>
+</ServiceConfigure>

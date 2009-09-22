@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+  <persistence-unit name="database">
+    <jta-data-source>java:/ProjectDS</jta-data-source>
+    <properties>
+     <property name="hibernate.hbm2ddl.auto" value="none"/>
+     <!-- 调整JDBC抓取数量的大小: Statement.setFetchSize() -->
+     <property name="hibernate.jdbc.fetch_size" value="18"/>
+     <!-- 调整JDBC批量更新数量 -->
+     <property name="hibernate.jdbc.batch_size" value="10"/>
+     <!-- 显示最终执行的SQL -->
+     <property name="hibernate.show_sql" value="true"/>
+     <!-- 格式化显示的SQL -->
+     <property name="hibernate.format_sql" value="true"/>
+    </properties>
+  </persistence-unit>
+</persistence>

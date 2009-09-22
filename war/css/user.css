@@ -1,0 +1,385 @@
+body, table td, select {
+  font-family: Arial,sans-serif;
+  font-size: small;
+}
+
+.g-DisclosurePanel {
+}
+.g-DisclosurePanel-open {
+}
+.g-DisclosurePanel-closed {
+}
+.g-DisclosurePanel .header,
+.g-DisclosurePanel .header a,
+.g-DisclosurePanel .header td {
+  text-decoration: none;  /* Remove underline from header */
+  color: black; 
+  cursor: pointer;
+  cursor: hand;
+  font-size: 9pt;
+  background-color: #C3D9FF;
+  border-left: 2px solid #C3D9FF;
+  border-right: 2px solid #C3D9FF;
+  height: 18px;
+  width: 165px;
+}
+
+.g-DisclosurePanel .content {
+  border-left: 2px solid #C3D9FF;
+  border-right: 2px solid #C3D9FF;
+  border-bottom: 2px solid #C3D9FF;
+  width: 165px;
+}
+
+.PickPanel {
+  margin-left: 20px;
+ }
+ 
+
+ .confirm {
+   padding:0px;
+   border:0px;
+   margin:0px;
+ }
+ 
+ .InfoLabel{
+ 	width:150px;
+ 	font-size: 10pt;
+ 	font-family:Arial, sans-serif;
+ 	font-weight: bold;
+ 	
+ }
+ 
+ .SetFont{
+  	font-size: 10pt;
+ 	font-family:Arial, sans-serif;
+ }
+
+
+.g-TabBar {
+  background:#C3D9FF;
+}
+
+.g-TabBar .gwt-TabBarFirst {
+  width: 0px;  /* first tab distance from the left */
+  
+}
+.g-TabBar .gwt-TabBarRest {
+}
+.g-TabBar .gwt-TabBarItem {
+  margin-left: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top:3px;
+  padding-bottom:4px;
+  cursor: pointer;
+  cursor: hand;
+  color: #0000cd;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+  font-weight: none;
+  text-align: center;
+  text-decoration:underline;
+  background: #C3D9FF;
+}
+.g-TabBar .gwt-TabBarItem-selected {
+  color: black;
+  cursor: default;
+  background: #e8eef7;
+  text-decoration:none;
+} 
+.g-TabBar .gwt-TabBarItem-disabled {
+  cursor: default;
+  color: #999999;
+}
+.g-TabPanel {
+background:#e8eef7;
+}
+.g-TabPanelBottom {
+  border-color: #92c1f0;
+  border-style: solid;
+  border-width: 0px 0px 0px;
+  overflow: hidden;
+  padding: 0px;
+}
+
+
+.g-StackPanel {
+  border-bottom: 1px solid #bbbbbb;
+}
+.g-StackPanel .gwt-StackPanelItem {
+  cursor: pointer;
+  cursor: hand;
+  font-weight: bold;
+  font-size: 10pt;
+  padding: 1px;
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: #C3D9FF;
+}
+.g-StackPanel .gwt-StackPanelContent {
+  border: 1px solid #bbbbbb;
+  border-bottom: 0px;
+  background: white;
+  padding: 2px 2px 2px 2px;
+}
+
+.label-highlight{
+	background-color: #FFA07A;
+}
+
+.gwt-DecoratedTabBar .gwt-TabBarItem {
+  border-collapse: collapse;
+  margin-left: 6px;
+}
+
+
+/* DatePicker */
+
+.g-DatePicker {
+	font-family:Verdana,Arial,sans-serif;
+  border: 0px solid #A2BBDD;
+  cursor: default;
+}
+.g-DatePicker td,
+.datePickerMonthSelector td:focus {
+  outline: none
+}
+.datePickerDays {
+  width: 100%;
+  background: white;
+}
+.datePickerDay,
+.datePickerWeekdayLabel,
+.datePickerWeekendLabel {
+  font-family:Verdana,Arial,sans-serif;
+  font-size: 8pt;
+  text-align: center;
+  padding: 2px;
+  outline: none;
+}
+.datePickerWeekdayLabel,
+.datePickerWeekendLabel {
+  background: #C3D9FF;
+  padding: 2px 4px 2px;
+  cursor: default;
+}
+.datePickerDay {
+  padding: 2px 4px 2px 5px;
+  cursor: hand;
+  cursor: pointer;
+}
+.datePickerDayIsToday {
+  border: 1px solid black;
+  padding: 1px 4px 1px;
+}
+.datePickerDayIsWeekend {
+  background: #EEEEEE;
+}
+.datePickerDayIsFiller {
+  color: #888888;
+}
+.datePickerDayIsValue {
+  background: #aaccee;
+}
+.datePickerDayIsDisabled {
+  color: #AAAAAA;
+  font-style: italic;
+}
+.datePickerDayIsHighlighted {
+  background: #F0E68C;
+}
+.datePickerDayIsValueAndHighlighted {
+  background: #bbddd9;
+}
+.datePickerMonthSelector {
+  background: #C3D9FF;
+  width: 100%;
+}
+td.datePickerMonth {
+  text-align: center;
+  vertical-align: center;
+  white-space: nowrap;
+  font-size: 9pt;
+  font-weight: bold;
+  color: blue;
+}
+.datePickerPreviousButton,
+.datePickerNextButton {
+  font-size: 9pt;
+  color: blue;
+  cursor: hand;
+  cursor: pointer;
+  padding: 0px 4px;
+}
+.datePickerNextButton {
+  font-size: 8pt;
+  color: blue;
+  cursor: hand;
+  cursor: pointer;
+  padding: 0px 4px;
+}
+
+/* DecoratorPanel */
+
+.g-DecoratorPanel {
+}
+.g-DecoratorPanel .topCenter,
+.g-DecoratorPanel .bottomCenter {
+  background: #C3D9FF;
+}
+.g-DecoratorPanel .middleLeft,
+.g-DecoratorPanel .middleRight {
+  background: #C3D9FF;
+}
+.g-DecoratorPanel .topLeftInner,
+.g-DecoratorPanel .topRightInner,
+.g-DecoratorPanel .bottomLeftInner,
+.g-DecoratorPanel .bottomRightInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+.g-DecoratorPanel .topLeft {
+  background: url(../img/corner.png) no-repeat 0px 0px;
+  -background: url(../img/corner_ie6.png) no-repeat 0px 0px;
+}
+.g-DecoratorPanel .topRight {
+  background: url(../img/corner.png) no-repeat -5px 0px;
+  -background: url(../img/corner_ie6.png) no-repeat -5px 0px;
+}
+.g-DecoratorPanel .bottomLeft {
+  background: url(../img/corner.png) no-repeat 0px -5px;
+  -background: url(../img/corner_ie6.png) no-repeat 0px -5px;
+}
+.g-DecoratorPanel .bottomRight {
+  background: url(../img/corner.png) no-repeat -5px -5px;
+  -background: url(../img/corner_ie6.png) no-repeat -5px -5px;
+}
+* html .g-DecoratorPanel .topLeftInner,
+* html .g-DecoratorPanel .topRightInner,
+* html .g-DecoratorPanel .bottomLeftInner,
+* html .g-DecoratorPanel .bottomRightInner {
+  width: 5px;
+  height: 5px;
+  overflow: hidden;
+}
+
+
+
+
+/* dialogbox */
+
+.g-DialogBox .Caption {
+  background: #e3e8f3;
+  padding: 0px 0px 3px 0px;
+  cursor: default;
+  border-bottom: 1px solid #bbbbbb;
+  border-top: 5px solid #d0e4f6;
+}
+.g-DialogBox .dialogMiddleCenter {
+  background: white;
+}
+
+
+/* list tab*/
+
+.l-TabBar {
+	background-color: #EEEEEE;
+}
+
+.l-TabBar .gwt-TabBarFirst {
+  width: 0px;  /* first tab distance from the left */
+}
+.l-TabBar .gwt-TabBarRest {
+}
+.l-TabBar .gwt-TabBarItem {
+  margin-left: 0px;
+  margin-right: 1px;
+  margin-top:0;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top:2px;
+  padding-bottom:1px;
+  cursor: pointer;
+  cursor: hand;
+  color: black;
+  font-family: sans-serif;
+  font-size: 8pt;
+  font-weight: none;
+  text-align: center;
+  background-color: #DDDDDD;
+}
+.l-TabBar .gwt-TabBarItem-selected {
+  color: black;
+  cursor: default;
+  background-color: #B0AA9B;
+  text-decoration:none;
+} 
+.l-TabBar .gwt-TabBarItem-disabled {
+  cursor: default;
+  color: #999999;
+}
+.l-TabPanel {
+}
+.l-TabPanelBottom {
+	border: 1px solid #B0AA9B;
+}
+
+
+/*service label*/
+.BookAirTicketService-Label{
+	background-color: #3161CE;
+	cursor: hand;
+	font-size: 10pt;
+	color: white;
+	padding: 2px;
+}
+
+.BookBusTicketService-Label {
+	background-color: #109618;
+	cursor: hand;
+	font-size: 10pt;
+	color: white;
+	padding: 2px;
+}
+
+.BookTrainTicketService-Label {
+	background-color: #63AE00;
+	cursor: hand;
+	font-size: 10pt;
+	color: white;
+	padding: 2px;
+}
+
+.EmailService-Label {
+	background-color: #D6AE00;
+	cursor: hand;
+	font-size: 10pt;
+	color: white;
+	padding: 2px;
+}
+
+.BookRoomService-Label {
+	background-color: #9C419C;
+	cursor: hand;
+	font-size: 10pt;
+	color: white;
+	padding: 2px;
+}
+
+.SMS-Label {
+	background-color: #8C8E52;
+	cursor: hand;
+	font-size: 10pt;
+	color: white;
+	padding: 2px;
+}
+
+.WeatherForecastService-Label {
+	background-color: #31619C;
+	cursor: hand;
+	font-size: 10pt;
+	color: white;
+	padding: 2px;
+}

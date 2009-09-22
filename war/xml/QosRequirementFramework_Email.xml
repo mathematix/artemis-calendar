@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequirementFramework_Email xmlns="http://www.w3.org/2001/XMLSchema/RequirementFramework_Email" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema/RequirementFramework_Email
+schema/RequirementFramework_Email.xsd">
+	<ServiceRank isMoreSelect="false">
+		<RankValue>A</RankValue>
+		<RankValue>B</RankValue>
+		<RankValue>C</RankValue>
+	</ServiceRank>
+	<NoStandardsRequirementItems>
+		<Security isMoreSelect="false">
+			<IsEncryptTransfer>false</IsEncryptTransfer>
+			<IsEncryptTransfer>true</IsEncryptTransfer>
+		</Security>
+	</NoStandardsRequirementItems>
+	<UserCustomStandardsItems>
+			<ExecutionTime metric="ms" isRange="true">
+	        <MinValue>0</MinValue>
+	        <MaxValue>unbounded</MaxValue>
+	    </ExecutionTime>
+	    <LatencyTime metric="ms" isRange="true">
+	        <MinValue>0</MinValue>
+	        <MaxValue>unbounded</MaxValue>
+	    </LatencyTime>
+		<ResponseTime metric="ms" isRange="true">
+			<MinValue>0</MinValue>
+			<MaxValue>unbounded</MaxValue>
+		</ResponseTime>
+		<Throughput isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>unbounded</MaxValue>
+		</Throughput>
+		<Scalability isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Scalability>
+		<Availability isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Availability>
+		<Accuracy isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Accuracy>
+		<SendSuccedRate isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</SendSuccedRate>
+	</UserCustomStandardsItems>
+</RequirementFramework_Email>

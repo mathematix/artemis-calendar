@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RequirementFramework_BookAirTicket>
+	<ServiceRank isMoreSelect="false">
+		<RankValue>A</RankValue>
+		<RankValue>B</RankValue>
+		<RankValue>C</RankValue>
+	</ServiceRank>
+	<NoStandardsRequirementItems>
+		<DaysOfAheadingBooking metric="days">10</DaysOfAheadingBooking>
+		<Discount isMoreSelect="false">
+		    <IsDiscount>true</IsDiscount>
+		    <IsDiscount>false</IsDiscount>
+		</Discount>
+		<PaymentManner isMoreSelect="true">
+			<Manner>cash</Manner>
+			<Manner>credit card</Manner>
+			<Manner>savings card</Manner>
+			<Manner>online payment</Manner>
+		</PaymentManner>
+		<Security isMoreSelect="false">
+			<IsEncryptTransfer>false</IsEncryptTransfer>
+			<IsEncryptTransfer>true</IsEncryptTransfer>
+		</Security>
+	</NoStandardsRequirementItems>
+	<UserCustomStandardsItems>
+		<ExecutionTime metric="ms" isRange="true">
+	        <MinValue>0</MinValue>
+	        <MaxValue>unbounded</MaxValue>
+	    </ExecutionTime>
+	    <LatencyTime metric="ms" isRange="true">
+	        <MinValue>0</MinValue>
+	        <MaxValue>unbounded</MaxValue>
+	    </LatencyTime>
+		<ResponseTime metric="ms" isRange="true">
+			<MinValue>0</MinValue>
+			<MaxValue>unbounded</MaxValue>
+		</ResponseTime>
+		<Throughput isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>unbounded</MaxValue>
+		</Throughput>
+		<Scalability isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Scalability>
+		<Availability isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Availability>
+		<Accuracy isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</Accuracy>
+		<SuccedRate isRange="true">
+		    <MinValue>0</MinValue>
+		    <MaxValue>1</MaxValue>
+		</SuccedRate>
+	</UserCustomStandardsItems>
+</RequirementFramework_BookAirTicket>

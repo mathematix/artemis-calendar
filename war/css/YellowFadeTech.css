@@ -1,0 +1,109 @@
+/** Add css rules here for your application. */
+
+
+/** Example rules used by the template application (remove for your app) */
+.pc-template-btn {
+  display: block;
+  font-size: 16pt
+}
+
+#pc-template-img {
+  margin-top: 20px;
+}
+
+.location-label {
+   padding: 2px 2px 2px 2px;
+}
+
+.table01 {
+	border-width: 1px 1px 1px 1px;
+	border-spacing: 0px;
+	border-style: outset outset outset outset;
+	border-color: blue blue blue blue;
+	border-collapse: collapse;
+	background-color: white;
+}
+.table01 th {
+	border-width: 1px 1px 1px 1px;
+	padding: 2px 2px 2px 2px;
+	border-style: inset inset inset inset;
+	border-color: blue blue blue blue;
+	/*background-color: white;*/
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+.table01 td {
+	border-width: 1px 1px 1px 1px;
+	padding: 2px 2px 2px 2px;
+	border-style: inset inset inset inset;
+	border-color: blue blue blue blue;
+	/*background-color: white;*/
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+
+.yft-transparent {
+   background-color: transparent;
+}
+
+.yft-00 {
+   background-color: #FDFF00;
+}
+.yft-01 {
+   background-color: #FDFF0F;
+}
+.yft-02 {
+   background-color: #FDFF1F;
+}
+.yft-03 {
+   background-color: #FDFF2F;
+}
+.yft-04 {
+   background-color: #FDFF3F;
+}
+.yft-05 {
+   background-color: #FDFF4F;
+}
+.yft-06 {
+   background-color: #FEFF5F;
+}
+.yft-07 {
+   background-color: #FEFF6F;
+}
+.yft-08 {
+   background-color: #FEFF7F;
+}
+.yft-09 {
+   background-color: #FEFF8F;
+}
+.yft-10 {
+   background-color: #FEFF9F;
+}
+.yft-11 {
+   background-color: #FEFFAF;
+}
+.yft-12 {
+   background-color: #FEFFBF;
+}
+.yft-13 {
+   background-color: #FFFFCF;
+}
+.yft-14 {
+   background-color: #FFFFDF;
+}
+.yft-15 {
+   background-color: #FFFFEF;
+}
+.yft-16 {
+   background-color: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+

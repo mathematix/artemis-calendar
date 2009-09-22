@@ -1,0 +1,390 @@
+/*
+ * Copyright 2008 Sander Berents
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+/*************************************
+ Table and PagingTable
+ *************************************/
+.gwtlib-PagingTable {
+  width:100%;
+  height:100%;
+}
+
+.gwtlib-Table {
+  font-family:Verdana;
+  font-size:9pt;
+  width:100%;
+  height:100%;
+  border-collapse:collapse;
+}
+
+.scroll-cell {
+  /*border:1px solid #ffcc00;*/
+  border-collapse:collapse;
+  width:100%;
+  height:100%;
+}
+
+.paging-cell {
+}
+
+.gwtlib-Table-empty {
+  vertical-align:top;
+  font-style:italic;
+}
+
+.gwtlib-Table-error {
+  vertical-align:top;
+  font-weight:bold;
+  color:red;
+}
+
+.gwtlib-Header-Row {
+  height:2em;
+}
+
+.gwtlib-Header {
+  font-size:9pt;
+  color:#666666;
+  font-weight:bold;
+  vertical-align:middle;
+  background-color:#c3d9ff;
+}
+
+.gwtlib-Header-sortable {
+  color:black;
+  cursor:pointer;
+}
+
+.gwtlib-Row {
+	height:2em;
+	cursor: pointer;
+    cursor: hand;
+    background-color:#EFEFEF;
+}
+
+.gwtlib-Row-even {
+}
+
+.gwtlib-Row-odd {
+  background-color:#f2f5f9;
+}
+
+.gwtlib-Row-empty {
+}
+
+.gwtlib-Row-selected {
+  font-size:9pt;
+  background-color:#ffffaa
+}
+
+.gwtlib-Column-selected {
+  font-size:9pt;
+  background-color:#ffffaa
+}
+
+.gwtlib-Column-ascending {
+  background-image:url("img/up.gif");
+  background-position:center right;
+  background-repeat:no-repeat;
+}
+
+.gwtlib-Column-descending {
+  background-image:url("img/down.gif");
+  background-position:center right;
+  background-repeat:no-repeat;
+}
+
+.gwtlib-Cell {
+  font-size:9pt;
+}
+
+.gwtlib-Cell-selected {
+  font-size:9pt;
+  background-color:#ffff00
+}
+
+/*************************************
+ PagingBar
+ *************************************/
+.gwtlib-PagingBar {
+  position:relative;
+  top:-1px;
+  font-family:Verdana;
+  font-size:9pt;
+  width:100%;
+  /*border:1px solid #ffcc00;*/
+  border:1px solid #92c1f0;
+}
+
+.gwtlib-PagingBar-position {
+  margin:0px 4px 0px 4px;
+  white-space:nowrap;
+  font-size:9pt;
+}
+
+.gwtlib-PagingBar-browser {
+  margin:0px 2em 0px 2em;
+  text-align:left;
+  white-space:nowrap;
+  font-size:9pt;
+}
+
+.gwtlib-PagingBar-browser-first {
+  background-image:url("img/first_e.gif");
+  background-position:center center;
+  background-repeat:no-repeat;
+  width:18px;
+  height:16px;
+  cursor:pointer;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-first-up-disabled {
+  background-image:url("img/first_d.gif");
+  cursor:default;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-prev {
+  background-image:url("img/prev_e.gif");
+  background-position:center center;
+  background-repeat:no-repeat;
+  width:18px;
+  height:16px;
+  cursor:pointer;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-prev-up-disabled {
+  background-image:url("img/prev_d.gif");
+  cursor:default;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-next {
+  background-image:url("img/next_e.gif");
+  background-position:center center;
+  background-repeat:no-repeat;
+  width:18px;
+  height:16px;
+  cursor:pointer;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-next-up-disabled {
+  background-image:url("img/next_d.gif");
+  cursor:default;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-last {
+  background-image:url("img/last_e.gif");
+  background-position:center center;
+  background-repeat:no-repeat;
+  width:18px;
+  height:16px;
+  cursor:pointer;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-last-up-disabled {
+  background-image:url("img/last_d.gif");
+  cursor:default;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-page {
+  font-size:9pt;
+  vertical-align:top;
+  padding:0px 2px 0px 2px;
+  display:inline;
+  font-weight:bold;
+  cursor:default;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-browser-page-enabled {
+  color:blue;
+  font-weight:normal;
+  cursor:pointer;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-goto {
+  font-size:9pt;
+  margin:0px 1em 0px 1em;
+  padding:0px 2px 0px 2px;
+  display:inline;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-goto .gwt-HTML {
+  white-space:nowrap;
+    font-size:9pt;
+  
+}
+  
+.gwtlib-PagingBar-gotoButton {
+  background-image:url("img/go_e.gif");
+  background-position:center center;
+  background-repeat:no-repeat;
+  width:26px;
+  height:17px;
+  cursor:pointer;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-gotoButton-up-disabled {
+  background-image:url("img/go_d.gif");
+  cursor:default;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-pagesize {
+  font-size:9pt;
+  margin:0px 4px 0px 1em;
+  padding:0px 2px 0px 2px;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-pagesize .gwt-HTML {
+  white-space:nowrap;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-pagesize .gwt-ListBox {
+  font-size:9pt;
+}
+
+.gwtlib-PagingBar-loading {
+  background-image:url("img/loading.gif");
+  background-position:center center;
+  background-repeat:no-repeat;
+  width:16px;
+  height:16px;
+    font-size:9pt;
+  
+}
+
+.gwtlib-PagingBar-loading-up-disabled {
+  background-image:none;
+  width:16px;
+  height:16px;
+    font-size:9pt;
+  
+}
+
+/*************************************
+ StyleListBox
+ *************************************/
+.gwtlib-StyleListBox-even {
+}
+
+.gwtlib-StyleListBox-odd {
+  background-color:#f2f5f9;
+}
+
+/*************************************
+ MenuBar
+ *************************************/
+.gwt-MenuBar {
+  font-family:Verdana;
+  font-size:9pt;
+  background-color:#e5ecf9;
+  border:1px solid #BBBBBB;
+  cursor:default;
+}
+
+.gwt-MenuBar .gwt-MenuItem {
+  font-family:Verdana;
+  font-size:9pt;
+  cursor:default;
+}
+
+.gwt-MenuBar .gwt-MenuItem-selected {
+  background:#c3d9ff;
+}
+
+.gwt-MenuBar .gwt-MenuItemDisabled {
+  font-family:Verdana;
+  font-size:9pt;
+  cursor:default;
+  color:#c3d9ff;
+}
+
+.gwt-MenuBar .gwt-MenuItemSeparator {
+  height:5px; 
+}
+
+.gwt-MenuBar .gwt-MenuItemSeparator .menuSeparatorInner { 
+  border-bottom:1px solid #BBBBBB;
+} 
+ 
+/*************************************
+ Standard stuff for samples
+ *************************************/
+.gwt-TabBar {
+}
+
+.gwt-TabBar .gwt-TabBarFirst {
+  width:5px;
+}
+
+.gwt-TabBar .gwt-TabBarRest {
+}
+
+.gwt-TabBar .gwt-TabBarItem {
+  margin-left:6px;
+  padding:3px 6px 3px 6px;
+  cursor:pointer;
+  cursor:hand;
+  color:black;
+  font-weight:bold;
+  text-align:center;
+  background:#d0e4f6;
+}
+
+.gwt-TabBar .gwt-TabBarItem-selected {
+  cursor:default;
+  background:#92c1f0;
+}
+
+.gwt-TabPanel {
+}
+
+.gwt-TabPanelBottom {
+  border-color:#92c1f0;
+  border-style:solid;
+  border-width:3px 2px 2px;
+  overflow:hidden;
+  padding:6px;
+}
+ 
