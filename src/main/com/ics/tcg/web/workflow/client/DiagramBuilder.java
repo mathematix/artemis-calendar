@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.hql.ast.tree.Case2Node;
+
 import pl.balon.gwt.diagrams.client.connection.Connection;
 import pl.balon.gwt.diagrams.client.connector.Connector;
 
@@ -26,6 +28,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.CellPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.KeyboardListenerCollection;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
@@ -552,38 +555,45 @@ public class DiagramBuilder extends AbstractConnections {
 			//allocate different color to different service
 			AbsolutePanel innerPanel = l.getPanel1();
 			if(proxy.getText().equals("BookAirTicketService")){
-				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#3161CE");
-				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#3161CE");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+				DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #3161CE");
 //				innerPanel.addStyleName("ServiceNode-BookAirTicketService");
 			}
 			else if(proxy.getText().equals("BookBusTicketService")){
-				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#109618");
-				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#109618");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+				DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #109618");
 //				innerPanel.addStyleName("ServiceNode-BookBusTicketService");
 			}
 			else if(proxy.getText().equals("BookTrainTicketService")){
-				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#63AE00");
-				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#63AE00");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+				DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #63AE00");
 //				innerPanel.addStyleName("ServiceNode-BookTrainTicketService");
 			}
 			else if(proxy.getText().equals("BookRoomService")){
-				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#9C419C");
-				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#9C419C");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+				DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #9C419C");
 //				innerPanel.addStyleName("ServiceNode-BookRoomService");
 			}
 			else if(proxy.getText().equals("EmailService")){
-				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#D6AE00");
-				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#D6AE00");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+				DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #D6AE00");
 //				innerPanel.addStyleName("ServiceNode-EmailService");
 			}
 			else if(proxy.getText().equals("SMS")){
-				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#8C8E52");
-				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#8C8E52");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+				DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #8C8E52");
 //				innerPanel.addStyleName("ServiceNode-SMS");
 			}
 			else{
-				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#31619C");
-				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#31619C");
+//				DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+				DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #31619C");
 //				innerPanel.addStyleName("ServiceNode-WeatherForecastServcie");
 			}
 			
@@ -1195,6 +1205,9 @@ public class DiagramBuilder extends AbstractConnections {
 					workFlow.getHasNodes().add(service);
 					Client_Node workFlowNode = service;
 					workflowMap.put(workflowtasknode, workFlowNode);
+					
+					//for test, assume the state of node is running
+//					service.setNodestate(2);
 				}
 			}
 		}
@@ -1664,7 +1677,7 @@ public class DiagramBuilder extends AbstractConnections {
 	public void display_workflow(Client_Workflow client_Workflow) {
 		if(client_Workflow!=null){
 			if(!client_Workflow.isLock()){
-				display_workflow_while_locked(client_Workflow);
+				display_workflow_while_unlock(client_Workflow);
 				System.out.println("workflow unlocked");
 			}
 			else{
@@ -1946,38 +1959,45 @@ public class DiagramBuilder extends AbstractConnections {
 
 					AbsolutePanel innerPanel = service.getPanel1();
 					if(service.getText().equals("BookAirTicketService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#3161CE");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#3161CE");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #3161CE");
 //						innerPanel.addStyleName("ServiceNode-BookAirTicketService");
 					}
 					else if(service.getText().equals("BookBusTicketService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#109618");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#109618");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #109618");
 //						innerPanel.addStyleName("ServiceNode-BookBusTicketService");
 					}
 					else if(service.getText().equals("BookTrainTicketService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#63AE00");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#63AE00");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #63AE00");
 //						innerPanel.addStyleName("ServiceNode-BookTrainTicketService");
 					}
 					else if(service.getText().equals("BookRoomService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#9C419C");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#9C419C");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #9C419C");
 //						innerPanel.addStyleName("ServiceNode-BookRoomService");
 					}
 					else if(service.getText().equals("EmailService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#D6AE00");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#D6AE00");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #D6AE00");
 //						innerPanel.addStyleName("ServiceNode-EmailService");
 					}
 					else if(service.getText().equals("SMS")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#8C8E52");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#8C8E52");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #8C8E52");
 //						innerPanel.addStyleName("ServiceNode-SMS");
 					}
 					else{
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#31619C");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#31619C");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #31619C");
 //						innerPanel.addStyleName("ServiceNode-WeatherForecastServcie");
 					}
 					
@@ -2173,11 +2193,11 @@ public class DiagramBuilder extends AbstractConnections {
 	public void display_workflow_while_locked(Client_Workflow client_Workflow){
 	
 		/* cancel the draggable function of leftpanel*/
-//		coverWorkflowControlPanel = new AbsolutePanel();
-//		coverWorkflowControlPanel.setSize("180", "300");
-//		DOM.setStyleAttribute(coverWorkflowControlPanel.getElement(), "backgroundColor", "white");
-//		DOM.setStyleAttribute(coverWorkflowControlPanel.getElement(), "filter", "Alpha(opacity=20)");
-//		leftAbsolutePanel.add(coverWorkflowControlPanel, 0, 0);
+		coverWorkflowControlPanel = new AbsolutePanel();
+		coverWorkflowControlPanel.setSize("180", "300");
+		DOM.setStyleAttribute(coverWorkflowControlPanel.getElement(), "backgroundColor", "white");
+		DOM.setStyleAttribute(coverWorkflowControlPanel.getElement(), "filter", "Alpha(opacity=20)");
+		leftAbsolutePanel.add(coverWorkflowControlPanel, 0, 0);
 
 		
 		panel.clear(); // 清空主面板上显示的控件
@@ -2231,6 +2251,24 @@ public class DiagramBuilder extends AbstractConnections {
 					MyPanel out = loop.getPanel3();
 					MyPanel fault = loop.getPanel4();
 					loop.sinkEvents(Event.ONCLICK);
+					
+					AbsolutePanel innerPanel = loop.getPanel1();
+					Image nodeStateImage;
+					int nodeState = client_Loop.getNodestate();
+					if(nodeState==1){
+						nodeStateImage = new Image("img/runnig.PNG");
+						innerPanel.add(nodeStateImage,55,75);
+					}
+					else if(nodeState==2){
+						nodeStateImage = new Image("img/success.PNG");
+						innerPanel.add(nodeStateImage,55,75);
+					}
+					else if(nodeState==3){
+						nodeStateImage = new Image("img/failed.PNG");
+						innerPanel.add(nodeStateImage,55,75);
+					}
+					
+					
 
 					loop.setPixel_x(client_Loop.getX());
 					loop.setPixel_y(client_Loop.getY());
@@ -2288,6 +2326,22 @@ public class DiagramBuilder extends AbstractConnections {
 					CustomUIObjectConnector.wrap(fault);
 
 					choice.sinkEvents(Event.ONCLICK);
+					
+					AbsolutePanel innerPanel = choice.getPanel1();
+					Image nodeStateImage;
+					int nodeState = client_Choice.getNodestate();
+					if(nodeState==1){
+						nodeStateImage = new Image("img/runnig.PNG");
+						innerPanel.add(nodeStateImage,45,55);
+					}
+					else if(nodeState==2){
+						nodeStateImage = new Image("img/success.PNG");
+						innerPanel.add(nodeStateImage,45,55);
+					}
+					else if(nodeState==3){
+						nodeStateImage = new Image("img/failed.PNG");
+						innerPanel.add(nodeStateImage,45,55);
+					}
 
 					choice.setPixel_x(client_Choice.getX());
 					choice.setPixel_y(client_Choice.getY());
@@ -2445,38 +2499,45 @@ public class DiagramBuilder extends AbstractConnections {
 
 					AbsolutePanel innerPanel = service.getPanel1();
 					if(service.getText().equals("BookAirTicketService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#3161CE");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#3161CE");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #3161CE");
 //						innerPanel.addStyleName("ServiceNode-BookAirTicketService");
 					}
 					else if(service.getText().equals("BookBusTicketService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#109618");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#109618");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #109618");
 //						innerPanel.addStyleName("ServiceNode-BookBusTicketService");
 					}
 					else if(service.getText().equals("BookTrainTicketService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#63AE00");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#63AE00");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #63AE00");
 //						innerPanel.addStyleName("ServiceNode-BookTrainTicketService");
 					}
 					else if(service.getText().equals("BookRoomService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#9C419C");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#9C419C");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #9C419C");
 //						innerPanel.addStyleName("ServiceNode-BookRoomService");
 					}
 					else if(service.getText().equals("EmailService")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#D6AE00");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#D6AE00");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #D6AE00");
 //						innerPanel.addStyleName("ServiceNode-EmailService");
 					}
 					else if(service.getText().equals("SMS")){
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#8C8E52");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#8C8E52");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #8C8E52");
 //						innerPanel.addStyleName("ServiceNode-SMS");
 					}
 					else{
-						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#31619C");
-						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "backgroundColor", "#31619C");
+//						DOM.setStyleAttribute(innerPanel.getElement(), "border", "1px solid black");
+						DOM.setStyleAttribute(innerPanel.getElement(), "border", "2px solid #31619C");
 //						innerPanel.addStyleName("ServiceNode-WeatherForecastServcie");
 					}
 					
@@ -2499,6 +2560,21 @@ public class DiagramBuilder extends AbstractConnections {
 					MyPanel out = service.getPanel3();
 					MyPanel fault = service.getPanel4();
 					service.sinkEvents(Event.ONCLICK);
+					
+					Image nodeStateImage;
+					int nodeState = client_ServiceTask.getNodestate();
+					if(nodeState==1){
+						nodeStateImage = new Image("img/runnig.PNG");
+						innerPanel.add(nodeStateImage,75,25);
+					}
+					else if(nodeState==2){
+						nodeStateImage = new Image("img/success.PNG");
+						innerPanel.add(nodeStateImage,75,25);
+					}
+					else if(nodeState==3){
+						nodeStateImage = new Image("img/failed.PNG");
+						innerPanel.add(nodeStateImage,75,25);
+					}
 
 					service.setPixel_x(client_ServiceTask.getX());
 					service.setPixel_y(client_ServiceTask.getY());
