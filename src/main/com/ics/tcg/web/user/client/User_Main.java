@@ -50,9 +50,7 @@ public class User_Main implements EntryPoint, ValueChangeHandler<String> {
 	private Panel_Overview overviewPanel;
 	private VerticalPanel regPanel;
 
-	/**
-	 * This is the entry point method.
-	 */
+	/** This is the entry point method.*/
 	@Override
 	public void onModuleLoad() {
 		// initialize

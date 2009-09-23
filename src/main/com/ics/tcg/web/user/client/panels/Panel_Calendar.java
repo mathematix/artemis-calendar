@@ -4,12 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.bradrydzewski.gwt.calendar.client.Appointment;
-import com.bradrydzewski.gwt.calendar.client.AppointmentInterface;
 import com.bradrydzewski.gwt.calendar.client.CalendarSettings;
 import com.bradrydzewski.gwt.calendar.client.DayView;
 import com.bradrydzewski.gwt.calendar.client.CalendarSettings.Click;
-import com.bradrydzewski.gwt.calendar.client.event.DeleteEvent;
-import com.bradrydzewski.gwt.calendar.client.event.DeleteHandler;
 import com.bradrydzewski.gwt.calendar.client.event.TimeBlockClickEvent;
 import com.bradrydzewski.gwt.calendar.client.event.TimeBlockClickHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -47,12 +44,13 @@ import com.ics.tcg.web.user.client.db.Calendar_Client;
 @SuppressWarnings("deprecation")
 public class Panel_Calendar extends AbsolutePanel {
 
+	/** widgets */
 	private Panel_Calendar calendarpanel = this;
 	private Panel_Overview overviewpanel;
-	public DayView dayView = null;
+	protected DayView dayView = null;
 	private DatePicker datePicker = new DatePicker();
-	public FlexTable layoutTable = new FlexTable();
-	public AbsolutePanel leftPanel = new AbsolutePanel();
+	private FlexTable layoutTable = new FlexTable();
+	protected AbsolutePanel leftPanel = new AbsolutePanel();
 	private AbsolutePanel topPanel = new AbsolutePanel();
 	private DecoratorPanel dayViewDecorator = new DecoratorPanel();
 	private DecoratorPanel datePickerDecorator = new DecoratorPanel();
@@ -60,6 +58,7 @@ public class Panel_Calendar extends AbsolutePanel {
 	private PopupPanel calendarPopup;
 	private PopupPanel calendarPopup_bottom;
 	private HTML html_showTime = new HTML();
+	private PopupPanel contactPopup;
 
 	private CalendarSettings settings = new CalendarSettings();
 
@@ -67,7 +66,7 @@ public class Panel_Calendar extends AbsolutePanel {
 	private boolean create_show = false;
 	private boolean ifCreate = false;
 	private AppointmentMod createApp;
-	public AppointmentMod workflowApp;
+	protected AppointmentMod workflowApp;
 	private AppointmentMod selectApp;
 	private String text_What;
 	private String text_Detail;
@@ -83,10 +82,13 @@ public class Panel_Calendar extends AbsolutePanel {
 		settings.setTimeBlockClickNumber(Click.Single);
 		settings.setEnableDragDrop(true);
 		settings.setIntervalsPerHour(4);
+		
 		// create day view
 		dayView = new DayView(settings);
+		
 		// set style as google-cal
 		dayView.setWidth("100%");
+		
 		// set today as default date
 		datePicker.setValue(new Date());
 
@@ -95,22 +97,7 @@ public class Panel_Calendar extends AbsolutePanel {
 			public void onValueChange(ValueChangeEvent<Date> event) {
 				datepicked = (Date) event.getValue().clone();
 				dayView.setDate(event.getValue());
-
 				sethtml_ShowTime();
-			}
-		});
-
-		// delete
-		dayView.addDeleteHandler(new DeleteHandler<AppointmentInterface>() {
-			@Override
-			public void onDelete(DeleteEvent<AppointmentInterface> event) {
-				boolean commit = Window
-						.confirm("Are you sure you want to delete appointment \""
-								+ event.getTarget().getTitle() + "\"");
-				if (commit == false) {
-					event.setCancelled(true);
-					System.out.println("cancelled appointment deletion");
-				}
 			}
 		});
 
@@ -119,7 +106,6 @@ public class Panel_Calendar extends AbsolutePanel {
 			@Override
 			public void onValueChange(ValueChangeEvent<Appointment> event) {
 				create_show = false;
-
 				selectApp = (AppointmentMod) event.getValue();
 				int x = event.getValue().getAbsoluteLeft();
 				int y = event.getValue().getAbsoluteTop();
@@ -165,7 +151,6 @@ public class Panel_Calendar extends AbsolutePanel {
 					ifCreate = false;
 				}
 			}
-
 		});
 
 		/** add a new appointment */
@@ -195,7 +180,6 @@ public class Panel_Calendar extends AbsolutePanel {
 				appt.addStyleName("gwt-appointment-purple");
 
 				// add the appointment to dayview
-
 				dayView.addAppointment(createApp);
 
 				// show the popup dialog
@@ -294,8 +278,8 @@ public class Panel_Calendar extends AbsolutePanel {
 				int h = event.getHeight();
 				if (calendarpanel.isVisible() == true) {
 					dayView.setHeight(h - 130 + "px");
+					layoutTable.setWidth("100%");
 				}
-
 			}
 		});
 		DeferredCommand.addCommand(new Command() {
@@ -305,8 +289,6 @@ public class Panel_Calendar extends AbsolutePanel {
 				dayView.scrollToHour(6);
 			}
 		});
-
-		// DOM.setStyleAttribute(getElement(), "padding", "10px");
 	}
 
 	/** Generate appoinmentents from server */
@@ -364,8 +346,6 @@ public class Panel_Calendar extends AbsolutePanel {
 						}
 					}
 				});
-
-		// dayView.resumeLayout();
 	}
 
 	/** create the calendar popup */
@@ -381,7 +361,7 @@ public class Panel_Calendar extends AbsolutePanel {
 		popupContainer.add(modiview, 0, 0);
 		modiview.setVisible(false);
 
-		final PopupPanel contactPopup = new PopupPanel(true, false);
+		contactPopup = new PopupPanel(true, false);
 		contactPopup.removeStyleName("gwt-PopupPanel");
 		DOM.setStyleAttribute(contactPopup.getElement(), "background",
 				"transparent url(img/googledialog.png) no-repeat");
@@ -389,233 +369,12 @@ public class Panel_Calendar extends AbsolutePanel {
 		contactPopup.setSize("400", "165");
 
 		// set content of createview
-		{
-			// create labels and textbox
-			{
-				Label lblWhen = new Label("When:");// when
-				createview.add(lblWhen, 20, 15);
-				DOM.setStyleAttribute(lblWhen.getElement(), "fontSize", "10pt");
-				Label lblWhat = new Label("What:");// what
-				createview.add(lblWhat, 20, 55);
-				DOM.setStyleAttribute(lblWhat.getElement(), "fontSize", "10pt");
-				Label lblDescription = new Label("Detail:");// detail
-				createview.add(lblDescription, 20, 85);
-				DOM.setStyleAttribute(lblDescription.getElement(), "fontSize",
-						"10pt");
-				HTML html = new HTML();// when
-				createview.add(html, 100, 15);
-				html.setSize("283px", "36px");
-				DOM.setStyleAttribute(html.getElement(), "fontSize", "9pt");
-				TextBox textBox_what = new TextBox();// what
-				textBox_what.removeStyleName("gwt-TextBox");
-				createview.add(textBox_what, 100, 55);
-				textBox_what.setSize("282px", "24px");
-				DOM.setStyleAttribute(textBox_what.getElement(), "fontSize",
-						"9pt");
-				DOM.setStyleAttribute(textBox_what.getElement(), "padding",
-						"1px");
-				textBox_what
-						.addValueChangeHandler(new ValueChangeHandler<String>() {
-							@Override
-							public void onValueChange(
-									ValueChangeEvent<String> event) {
-								text_What = event.getValue();
-							}
-						});
-				textBox_what.setFocus(true);
-				TextBox textBox_de = new TextBox();// detail
-				textBox_de.removeStyleName("gwt-TextBox");
-				createview.add(textBox_de, 100, 85);
-				textBox_de.setSize("282px", "24px");
-				DOM.setStyleAttribute(textBox_de.getElement(), "fontSize",
-						"9pt");
-				DOM
-						.setStyleAttribute(textBox_de.getElement(), "padding",
-								"1px");
-				textBox_de
-						.addValueChangeHandler(new ValueChangeHandler<String>() {
-							@Override
-							public void onValueChange(
-									ValueChangeEvent<String> event) {
-								text_Detail = event.getValue();
-							}
-						});
-			}
-
-			// close button
-			Label closeLabel = new Label();
-			closeLabel.removeStyleName("gwt-Label");
-			closeLabel.setStyleName("dialog-close");
-			createview.add(closeLabel);
-			closeLabel.addClickHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					ifCreate = false;
-					contactPopup.hide();
-					calendarPopup_bottom.hide();
-				}
-			});
-			// add an event button
-			Button addButton = new Button("Create Event");
-			addButton.setSize("110", "25");
-			addButton.removeStyleName("gwt-Button");
-			DOM.setStyleAttribute(addButton.getElement(), "fontSize", "9pt");
-			DOM.setStyleAttribute(addButton.getElement(), "padding", "2px");
-			DOM.setStyleAttribute(addButton.getElement(), "verticalAlign",
-					"middle");
-			createview.add(addButton, 31, 125);
-			addButton.addClickHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					// set data of appointment
-					createApp.setTitle(text_What);
-					createApp.setDescription(text_Detail);
-					createApp.removeStyleName("gwt-appointment-purple");
-					createApp.addStyleName("gwt-appointment-blue");
-
-					// set data of calendar_Client
-					createApp.setAtoC();// set 5 values
-					createApp.calendarClient.setUserid(overviewpanel.userid);
-					createApp.calendarClient.setDone(false);
-					// no calendarid now, save to get it
-					overviewpanel.calendar_Service.saveCalendar(
-							createApp.calendarClient, null,
-							new AsyncCallback<Integer>() {
-								@Override
-								public void onSuccess(Integer result) {
-									ifCreate = true;
-									createApp.calendarClient
-											.setCalendarid(result);
-									contactPopup.hide();
-								}
-
-								@Override
-								public void onFailure(Throwable caught) {
-									ifCreate = false;
-									contactPopup.hide();
-								}
-							});
-				}
-			});
-			// click to detail
-			Hyperlink hyperlink = new Hyperlink("edit event details »",
-					"detail");
-			DOM.setStyleAttribute(hyperlink.getElement(), "fontSize", "9pt");
-			createview.add(hyperlink, 160, 135);
-			hyperlink.addClickHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					// set data of appointment
-					createApp.setTitle(text_What);
-					createApp.setDescription(text_Detail);
-					createApp.removeStyleName("gwt-appointment-purple");
-					createApp.addStyleName("gwt-appointment-blue");
-					// set data of calendar_Client
-					createApp.setAtoC();// set 5 values
-					createApp.calendarClient.setUserid(overviewpanel.userid);
-					createApp.calendarClient.setDone(false);
-					// no calendarid now
-					ifCreate = false;
-					workflowApp = createApp;
-					overviewpanel.workflow_show();
-					overviewpanel.workflowpanel.onShow();
-					calendarPopup.hide();
-					calendarPopup_bottom.hide();
-				}
-			});
-		}
+		createCreateView(createview);
 
 		// create modifying view
-		{
-			// create htmls
-			{
-				HTML html1 = new HTML();// title
-				HTML html2 = new HTML();// detail
-				HTML html3 = new HTML();// time
-				Hyperlink hyperlink4 = new Hyperlink("Delete", "del");// delete
-				AbsolutePanel delete = new AbsolutePanel();
-				{
-					delete.setSize("100", "25");
-					Label label = new Label("[          ]");
-					DOM.setStyleAttribute(label.getElement(), "fontSize",
-							"10pt");
+		createModifyingView(modiview);
 
-					delete.add(label, 0, 0);
-					delete.add(hyperlink4, 5, 0);
-				}
-				HTML html5 = new HTML();// -------
-
-				modiview.add(html1, 20, 25);
-				modiview.add(html2, 20, 45);
-				modiview.add(html3, 20, 65);
-				modiview.add(delete, 20, 105);
-				modiview.add(html5, 20, 120);
-
-				DOM.setStyleAttribute(html1.getElement(), "fontSize", "10pt");
-				DOM.setStyleAttribute(html2.getElement(), "fontSize", "10pt");
-				html3.setSize("283px", "36px");
-				DOM.setStyleAttribute(html3.getElement(), "fontSize", "9pt");
-				DOM.setStyleAttribute(hyperlink4.getElement(), "fontSize",
-						"10pt");
-				html5.setWidth("360");
-				html5.setHTML("<hr color=#A32929 size=0 noshade>");
-
-				// delete
-				hyperlink4.addClickHandler(new ClickHandler() {
-					@Override
-					public void onClick(ClickEvent event) {
-						overviewpanel.calendar_Service.deleteCalendar(
-								selectApp.calendarClient.getCalendarid(),
-								new AsyncCallback<String>() {
-									@Override
-									public void onFailure(Throwable caught) {
-										calendarPopup.hide();
-										calendarPopup_bottom.hide();
-									}
-
-									@Override
-									public void onSuccess(String result) {
-										dayView.removeAppointment(selectApp);
-										selectApp = null;
-										calendarPopup.hide();
-										calendarPopup_bottom.hide();
-									}
-								});
-					}
-				});
-
-			}
-			// close button
-			Label closeLabel = new Label();
-			closeLabel.removeStyleName("gwt-Label");
-			closeLabel.setStyleName("dialog-close");
-			modiview.add(closeLabel);
-			closeLabel.addClickHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					contactPopup.hide();
-					calendarPopup_bottom.hide();
-				}
-			});
-
-			// click to detail
-			Hyperlink hyperlink = new Hyperlink("edit event details »",
-					"detail");
-			DOM.setStyleAttribute(hyperlink.getElement(), "fontSize", "9pt");
-			modiview.add(hyperlink, 20, 135);
-			hyperlink.addClickHandler(new ClickHandler() {
-				@Override
-				public void onClick(ClickEvent event) {
-					workflowApp = selectApp;
-					calendarPopup.hide();
-					calendarPopup_bottom.hide();
-					overviewpanel.workflow_show();
-					overviewpanel.workflowpanel.onShow();
-				}
-			});
-		}
-
-		// init the bottom
+		// init the bottom triangle
 		calendarPopup_bottom = new PopupPanel();
 		Image image = new Image();
 		image.setSize("100", "70");
@@ -628,7 +387,222 @@ public class Panel_Calendar extends AbsolutePanel {
 		return contactPopup;
 	}
 
-	/** show dialogbox */
+	/** create create view */
+	void createCreateView(AbsolutePanel createview) {
+		// create labels and textbox
+		{
+			Label lblWhen = new Label("When:");// when
+			createview.add(lblWhen, 20, 15);
+			DOM.setStyleAttribute(lblWhen.getElement(), "fontSize", "10pt");
+			Label lblWhat = new Label("What:");// what
+			createview.add(lblWhat, 20, 55);
+			DOM.setStyleAttribute(lblWhat.getElement(), "fontSize", "10pt");
+			Label lblDescription = new Label("Detail:");// detail
+			createview.add(lblDescription, 20, 85);
+			DOM.setStyleAttribute(lblDescription.getElement(), "fontSize",
+					"10pt");
+			HTML html = new HTML();// when
+			createview.add(html, 100, 15);
+			html.setSize("283px", "36px");
+			DOM.setStyleAttribute(html.getElement(), "fontSize", "9pt");
+			TextBox textBox_what = new TextBox();// what
+			textBox_what.removeStyleName("gwt-TextBox");
+			createview.add(textBox_what, 100, 55);
+			textBox_what.setSize("282px", "24px");
+			DOM.setStyleAttribute(textBox_what.getElement(), "fontSize", "9pt");
+			DOM.setStyleAttribute(textBox_what.getElement(), "padding", "1px");
+			textBox_what
+					.addValueChangeHandler(new ValueChangeHandler<String>() {
+						@Override
+						public void onValueChange(ValueChangeEvent<String> event) {
+							text_What = event.getValue();
+						}
+					});
+			textBox_what.setFocus(true);
+			TextBox textBox_de = new TextBox();// detail
+			textBox_de.removeStyleName("gwt-TextBox");
+			createview.add(textBox_de, 100, 85);
+			textBox_de.setSize("282px", "24px");
+			DOM.setStyleAttribute(textBox_de.getElement(), "fontSize", "9pt");
+			DOM.setStyleAttribute(textBox_de.getElement(), "padding", "1px");
+			textBox_de.addValueChangeHandler(new ValueChangeHandler<String>() {
+				@Override
+				public void onValueChange(ValueChangeEvent<String> event) {
+					text_Detail = event.getValue();
+				}
+			});
+		}
+
+		// close button
+		Label closeLabel = new Label();
+		closeLabel.removeStyleName("gwt-Label");
+		closeLabel.setStyleName("dialog-close");
+		createview.add(closeLabel);
+		closeLabel.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				ifCreate = false;
+				contactPopup.hide();
+				calendarPopup_bottom.hide();
+			}
+		});
+		// add an event button
+		Button addButton = new Button("Create Event");
+		addButton.setSize("110", "25");
+		addButton.removeStyleName("gwt-Button");
+		DOM.setStyleAttribute(addButton.getElement(), "fontSize", "9pt");
+		DOM.setStyleAttribute(addButton.getElement(), "padding", "2px");
+		DOM
+				.setStyleAttribute(addButton.getElement(), "verticalAlign",
+						"middle");
+		createview.add(addButton, 31, 125);
+		addButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				// set data of appointment
+				createApp.setTitle(text_What);
+				createApp.setDescription(text_Detail);
+				createApp.removeStyleName("gwt-appointment-purple");
+				createApp.addStyleName("gwt-appointment-blue");
+
+				// set data of calendar_Client
+				createApp.setAtoC();// set 5 values
+				createApp.calendarClient.setUserid(overviewpanel.userid);
+				createApp.calendarClient.setDone(false);
+				// no calendarid now, save to get it
+				overviewpanel.calendar_Service.saveCalendar(
+						createApp.calendarClient, null,
+						new AsyncCallback<Integer>() {
+							@Override
+							public void onSuccess(Integer result) {
+								ifCreate = true;
+								createApp.calendarClient.setCalendarid(result);
+								contactPopup.hide();
+							}
+
+							@Override
+							public void onFailure(Throwable caught) {
+								ifCreate = false;
+								contactPopup.hide();
+							}
+						});
+			}
+		});
+		// click to detail
+		Hyperlink hyperlink = new Hyperlink("edit event details »", "detail");
+		DOM.setStyleAttribute(hyperlink.getElement(), "fontSize", "9pt");
+		createview.add(hyperlink, 160, 135);
+		hyperlink.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				// set data of appointment
+				createApp.setTitle(text_What);
+				createApp.setDescription(text_Detail);
+				createApp.removeStyleName("gwt-appointment-purple");
+				createApp.addStyleName("gwt-appointment-blue");
+				// set data of calendar_Client
+				createApp.setAtoC();// set 5 values
+				createApp.calendarClient.setUserid(overviewpanel.userid);
+				createApp.calendarClient.setDone(false);
+				// no calendarid now
+				ifCreate = false;
+				workflowApp = createApp;
+				overviewpanel.workflow_show();
+				overviewpanel.workflowpanel.onShow();
+				calendarPopup.hide();
+				calendarPopup_bottom.hide();
+			}
+		});
+	}
+
+	/** create modifying view */
+	void createModifyingView(AbsolutePanel modiview) {
+		// create htmls
+		{
+			HTML html1 = new HTML();// title
+			HTML html2 = new HTML();// detail
+			HTML html3 = new HTML();// time
+			Hyperlink hyperlink4 = new Hyperlink("Delete", "del");// delete
+			AbsolutePanel delete = new AbsolutePanel();
+			{
+				delete.setSize("100", "25");
+				Label label = new Label("[          ]");
+				DOM.setStyleAttribute(label.getElement(), "fontSize", "10pt");
+
+				delete.add(label, 0, 0);
+				delete.add(hyperlink4, 5, 0);
+			}
+			HTML html5 = new HTML();// -------
+
+			modiview.add(html1, 20, 25);
+			modiview.add(html2, 20, 45);
+			modiview.add(html3, 20, 65);
+			modiview.add(delete, 20, 105);
+			modiview.add(html5, 20, 120);
+
+			DOM.setStyleAttribute(html1.getElement(), "fontSize", "10pt");
+			DOM.setStyleAttribute(html2.getElement(), "fontSize", "10pt");
+			html3.setSize("283px", "36px");
+			DOM.setStyleAttribute(html3.getElement(), "fontSize", "9pt");
+			DOM.setStyleAttribute(hyperlink4.getElement(), "fontSize", "10pt");
+			html5.setWidth("360");
+			html5.setHTML("<hr color=#A32929 size=0 noshade>");
+
+			// delete
+			hyperlink4.addClickHandler(new ClickHandler() {
+				@Override
+				public void onClick(ClickEvent event) {
+					overviewpanel.calendar_Service.deleteCalendar(
+							selectApp.calendarClient.getCalendarid(),
+							new AsyncCallback<String>() {
+								@Override
+								public void onFailure(Throwable caught) {
+									calendarPopup.hide();
+									calendarPopup_bottom.hide();
+								}
+
+								@Override
+								public void onSuccess(String result) {
+									dayView.removeAppointment(selectApp);
+									selectApp = null;
+									calendarPopup.hide();
+									calendarPopup_bottom.hide();
+								}
+							});
+				}
+			});
+
+		}
+		// close button
+		Label closeLabel = new Label();
+		closeLabel.removeStyleName("gwt-Label");
+		closeLabel.setStyleName("dialog-close");
+		modiview.add(closeLabel);
+		closeLabel.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				contactPopup.hide();
+				calendarPopup_bottom.hide();
+			}
+		});
+
+		// click to detail
+		Hyperlink hyperlink = new Hyperlink("edit event details »", "detail");
+		DOM.setStyleAttribute(hyperlink.getElement(), "fontSize", "9pt");
+		modiview.add(hyperlink, 20, 135);
+		hyperlink.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				workflowApp = selectApp;
+				calendarPopup.hide();
+				calendarPopup_bottom.hide();
+				overviewpanel.workflow_show();
+				overviewpanel.workflowpanel.onShow();
+			}
+		});
+	}
+
+	/** show popup */
 	void showDialog(int left, int top, double length) {
 		double x1 = left + length * 0.7 - 105 - 100;
 		double x2 = left + length * 0.7 - 105;
@@ -682,8 +656,8 @@ public class Panel_Calendar extends AbsolutePanel {
 		}
 	}
 
+	/** create today button and other 2 buttons */
 	AbsolutePanel createToday() {
-
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setSize("300", "25");
 		Image image1 = new Image();
@@ -762,7 +736,7 @@ public class Panel_Calendar extends AbsolutePanel {
 		return absolutePanel;
 	}
 
-	// set html_showTime's value
+	/** set html_showTime's value */
 	void sethtml_ShowTime() {
 		if (daysTabBar.getSelectedTab() == 0) {
 			html_showTime

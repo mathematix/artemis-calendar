@@ -39,7 +39,7 @@ public class Panel_Workflow extends AbsolutePanel {
 	TextBox textBox1;
 	AbsolutePanel textBox2;
 	TextArea textBox3;
-	PopupPanel Popup;
+	PopupPanel Popup;//to hold the month day select
 
 	/** data */
 	String text_What;
@@ -67,11 +67,9 @@ public class Panel_Workflow extends AbsolutePanel {
 				"10px solid #C3D9FF");
 
 		// Create a pop up to show the contact info when a contact is clicked
-		// final VerticalPanel contactPopupContainer = new VerticalPanel();
 		Popup = new PopupPanel(true, false);
 		Popup.removeStyleName("gwt-PopupPanel");
 		Popup.setSize("80", "180");
-		// Popup.setWidget();
 
 		// head
 		Label head = new Label("Event&Workflow");
@@ -119,11 +117,6 @@ public class Panel_Workflow extends AbsolutePanel {
 			confirm.add(delete, 228, 5);
 		}
 		this.add(confirm, 0, 30);
-
-		// // hr
-		// final HTMLPanel html = new HTMLPanel("<hr noshade size=0>");
-		// html.setWidth("100%");
-		// this.add(html, 10, 50);
 
 		// calendar settings
 		AbsolutePanel calendarsettings = new AbsolutePanel();

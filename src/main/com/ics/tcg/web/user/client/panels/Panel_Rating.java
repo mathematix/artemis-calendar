@@ -187,15 +187,9 @@ public class Panel_Rating extends AbsolutePanel {
 								.getClientWidth() - 210), Window
 								.getClientHeight()
 								- 155 + "px");
-						// set grid in tab1 content
-						// grid_panel_undone.setHeight(Window.getClientHeight()
-						// - 200 + "px");
 						grid_panel_undone.setWidth(Integer.toString(Window
 								.getClientWidth() - 250 > 740 ? (Window
 								.getClientWidth() - 250) : 740));
-						// ((PagingTable) grid_panel_undone.getWidget(0))
-						// .setHeight(Window.getClientHeight() - 220
-						// + "px");
 						((PagingTable) grid_panel_undone.getWidget(0))
 								.setWidth("100%");
 						if (((PagingTable) grid_panel_undone.getWidget(0))
@@ -221,32 +215,19 @@ public class Panel_Rating extends AbsolutePanel {
 					content_undone.setSize(Integer.toString(Window
 							.getClientWidth() - 200), Integer.toString(tabPanel
 							.getOffsetHeight()));
-					// grid_panel_undone.setHeight(Window.getClientHeight() -
-					// 200
-					// + "px");
-					// ((PagingTable) grid_panel_undone.getWidget(0))
-					// .setHeight(Window.getClientHeight() - 220 + "px");
 					if (((PagingTable) (grid_panel_undone.getWidget(0)))
 							.getPagingBar().getSize() != 0) {
 						((PagingTable) grid_panel_undone.getWidget(0)).update();
 					}
 				}
-
 				if (event.getSelectedItem() == 1) {
-
 					content_done.setSize(Integer.toString(tabPanel
 							.getOffsetWidth()), Integer.toString(tabPanel
 							.getOffsetHeight()));
-					// grid_panel_done.setHeight(Window.getClientHeight() - 200
-					// + "px");
-					// ((PagingTable) grid_panel_done.getWidget(0))
-					// .setHeight(Integer.toString(grid_panel_done
-					// .getOffsetHeight() - 20));
 					if (((PagingTable) (grid_panel_done.getWidget(0)))
 							.getPagingBar().getSize() != 0) {
 						((PagingTable) grid_panel_done.getWidget(0)).update();
 					}
-
 				}
 			}
 		});
@@ -418,9 +399,6 @@ public class Panel_Rating extends AbsolutePanel {
 								public void onCellClicked(
 										SourcesTableEvents sender, Row row,
 										Column column) {
-									// for(int i = 0; i < columns.length; ++i)
-									// columns[i].setState(Column.State.NONE);
-									// column.setState(Column.State.SELECT);
 								}
 
 								public void onRowClicked(
@@ -1030,10 +1008,6 @@ public class Panel_Rating extends AbsolutePanel {
 		setHeight(Window.getClientHeight() - 90 + "px");
 		tabPanel.setSize("100%", "100%");
 		grid_panel_undone.setWidth("720");
-		// grid_panel_undone.setHeight(Window.getClientHeight() - 200 + "px");
-		// ((PagingTable) grid_panel_undone.getWidget(0)).setHeight(Window
-		// .getClientHeight()
-		// - 200 + "px");
 		content_undone.setSize("100%", "100%");
 		tabPanel.selectTab(0);
 
