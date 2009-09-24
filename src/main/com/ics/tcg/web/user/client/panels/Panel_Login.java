@@ -80,9 +80,6 @@ public class Panel_Login extends VerticalPanel {
 				if (keyCode == KeyCodes.KEY_ENTER) {
 					button.click();
 				}
-				// else if (Character.isDigit((char) keyCode) == false) {
-				// textBoxPaBox.cancelKey();
-				// }
 			}
 		});
 

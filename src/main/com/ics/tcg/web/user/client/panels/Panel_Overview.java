@@ -435,7 +435,7 @@ public class Panel_Overview extends DockPanel {
 		{
 			advancedDisclosure_service.removeStyleName("gwt-DisclosurePanel");
 			advancedDisclosure_service.addStyleName("g-DisclosurePanel");
-			List_Service list_Service = new List_Service(this, userid);
+			List_Service list_Service = new List_Service(this);
 			advancedDisclosure_service.add(list_Service);
 		}
 

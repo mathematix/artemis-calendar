@@ -6,9 +6,9 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("reg")
 public interface Reg_Service extends RemoteService {
 
-	/** save a friend */
+	/** save a user */
 	String saveUser(User_Client user);
 
-	/** check if is a friend */
+	/** check if the name is available */
 	Integer check(String username);
 }

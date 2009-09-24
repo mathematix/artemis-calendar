@@ -100,6 +100,7 @@ public class Reg implements EntryPoint {
 				@Override
 				public void onClick(ClickEvent event) {
 
+					//parse birthday
 					if (y.equals("Year") == false && m.equals("Month") == false
 							&& d.equals("Day") == false) {
 						String date = y + "-" + m + "-" + d;
@@ -108,6 +109,7 @@ public class Reg implements EntryPoint {
 						temp.birthday = null;
 					}
 
+					//check and save
 					if (temp.account != null && temp.age != null
 							&& temp.birthday != null && temp.tel != null
 							&& temp.email != null && temp.password != null
@@ -129,22 +131,7 @@ public class Reg implements EntryPoint {
 											Window
 													.alert("You can't use this Account");
 										} else {
-											reg_Service
-													.saveUser(
-															temp,
-															new AsyncCallback<String>() {
-
-																@Override
-																public void onFailure(
-																		Throwable caught) {
-																}
-
-																@Override
-																public void onSuccess(
-																		String result) {
-																	createFinish();
-																}
-															});
+											saveUser();
 										}
 									}
 								});
@@ -157,6 +144,22 @@ public class Reg implements EntryPoint {
 		}
 	}
 
+	/**save user*/
+	void saveUser() {
+		reg_Service.saveUser(temp, new AsyncCallback<String>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+			}
+
+			@Override
+			public void onSuccess(String result) {
+				createFinish();
+			}
+		});
+	}
+
+	/**create head*/
 	AbsolutePanel createHead() {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
 		absolutePanel.setSize("400", "75");
@@ -166,6 +169,7 @@ public class Reg implements EntryPoint {
 		return absolutePanel;
 	}
 
+	/**create account*/
 	FlexTable createAccount() {
 		FlexTable flexTable = new FlexTable();
 		FlexCellFormatter flexCellFormatter = flexTable.getFlexCellFormatter();
@@ -198,6 +202,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create password*/
 	FlexTable createPass() {
 		FlexTable flexTable = new FlexTable();
 		FlexCellFormatter flexCellFormatter = flexTable.getFlexCellFormatter();
@@ -265,6 +270,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create sex radio buttons*/
 	FlexTable createSex() {
 		FlexTable flexTable = new FlexTable();
 		FlexCellFormatter flexCellFormatter = flexTable.getFlexCellFormatter();
@@ -302,6 +308,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create age*/
 	FlexTable createAge() {
 		FlexTable flexTable = new FlexTable();
 		FlexCellFormatter flexCellFormatter = flexTable.getFlexCellFormatter();
@@ -339,6 +346,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create birthday*/
 	FlexTable createBirthday() {
 
 		FlexTable flexTable = new FlexTable();
@@ -429,6 +437,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create email*/
 	FlexTable createEmail() {
 		FlexTable flexTable = new FlexTable();
 		FlexCellFormatter flexCellFormatter = flexTable.getFlexCellFormatter();
@@ -466,6 +475,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create telephone*/
 	FlexTable createTel() {
 		FlexTable flexTable = new FlexTable();
 		FlexCellFormatter flexCellFormatter = flexTable.getFlexCellFormatter();
@@ -495,6 +505,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create notified method*/
 	FlexTable createNoti() {
 		FlexTable flexTable = new FlexTable();
 		FlexCellFormatter flexCellFormatter = flexTable.getFlexCellFormatter();
@@ -528,6 +539,7 @@ public class Reg implements EntryPoint {
 		return flexTable;
 	}
 
+	/**create finish reg*/
 	void createFinish() {
 		RootPanel.get().clear();
 

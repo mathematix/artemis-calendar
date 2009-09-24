@@ -35,13 +35,9 @@ import com.ics.tcg.web.user.client.db.Mail_Client;
 @SuppressWarnings("deprecation")
 public class Panel_Mail extends DockPanel {
 
-	Panel_Mail mailpanel = this;
-	Integer userid = -1;
-
-	/** panels */
-	Panel_Overview overview_panel;
-
 	/** widget */
+	Panel_Mail mailpanel = this;
+	Panel_Overview overview_panel;
 	AbsolutePanel grid_content;
 	AbsolutePanel detail_content;
 	HTML detail_head;
@@ -50,6 +46,7 @@ public class Panel_Mail extends DockPanel {
 	AbsolutePanel detail_body_panel;
 
 	/** data */
+	Integer userid = -1;
 	ArrayList<Mail_Client> mailClients = new ArrayList<Mail_Client>();
 	DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat("MM-dd");
 	ArrayList<Integer> selectIds = new ArrayList<Integer>();
@@ -306,19 +303,6 @@ public class Panel_Mail extends DockPanel {
 							// TableListener
 							table.addTableListener(new TableListenerAdapter() {
 
-								public void onCellClicked(
-										SourcesTableEvents sender, Row row,
-										Column column) {
-								}
-
-								public void onRowClicked(
-										SourcesTableEvents sender, Row row) {
-									// for (int i = 0; i < rows.length; ++i)
-									// rows[i].setState(Row.State.NONE);
-									// row.setState(Row.State.SELECT);
-									// table.refreshRowState();
-								}
-
 								public void onClick(SourcesTableEvents sender,
 										Row row, Column column, Widget widget) {
 									if (widget instanceof CheckBox) {
@@ -361,7 +345,7 @@ public class Panel_Mail extends DockPanel {
 							table.update();
 							table.refreshRowState();
 						} else
-						// if got no mails
+						// if no mails
 						{
 							mailClients = null;
 

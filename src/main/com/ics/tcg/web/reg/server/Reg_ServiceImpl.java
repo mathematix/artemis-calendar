@@ -32,12 +32,14 @@ public class Reg_ServiceImpl extends RemoteServiceServlet implements
 		}
 	}
 
+	/** save a user */
 	@Override
 	public Integer check(String username) {
 		int id = userdao.getIDByAccount(username);
 		return id;
 	}
 
+	/** check if the name is available */
 	@Override
 	public String saveUser(User_Client userC) {
 		User user = new User();
