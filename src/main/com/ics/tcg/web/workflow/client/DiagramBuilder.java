@@ -1671,6 +1671,15 @@ public class DiagramBuilder extends AbstractConnections {
 	public void load_workflow_from_server(Client_Workflow client_Workflow) {
 		load_client_Workflow = null;
 		load_client_Workflow = client_Workflow;
+		
+		if(coverWorkflowControlPanel!=null){
+			coverWorkflowControlPanel.removeFromParent();
+		}
+		if(coverWorkflowEditRegionLayer!=null){
+			coverWorkflowEditRegionLayer.removeFromParent();
+		}
+		
+		
 		display_workflow(load_client_Workflow);
 	}
 
