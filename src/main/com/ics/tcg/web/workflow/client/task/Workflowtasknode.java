@@ -15,8 +15,6 @@ import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.ClickListenerCollection;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.HasWordWrap;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.MouseListener;
@@ -28,7 +26,6 @@ import com.google.gwt.user.client.ui.SourcesChangeEvents;
 import com.google.gwt.user.client.ui.SourcesClickEvents;
 import com.google.gwt.user.client.ui.SourcesMouseEvents;
 import com.google.gwt.user.client.ui.SourcesMouseWheelEvents;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
 import com.ics.tcg.web.workflow.client.DiagramBuilder;
 import com.ics.tcg.web.workflow.client.SubDiagram;
 import com.ics.tcg.web.workflow.client.common.customline.CustomConnection;
@@ -37,6 +34,7 @@ import com.ics.tcg.web.workflow.client.composite.complement.ContextMenuGwt;
 import com.ics.tcg.web.workflow.client.composite.complement.MyPanel;
 import com.ics.tcg.web.workflow.client.service.ParamInfo;
 
+@SuppressWarnings("deprecation")
 public class Workflowtasknode extends Composite implements HasHorizontalAlignment, 
 SourcesClickEvents, SourcesChangeEvents,SourcesMouseEvents, SourcesMouseWheelEvents{
 
