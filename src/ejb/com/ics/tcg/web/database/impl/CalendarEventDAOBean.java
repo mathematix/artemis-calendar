@@ -122,4 +122,19 @@ public class CalendarEventDAOBean implements CalendarEventDAO {
 			return null;
 		}
 	}
+
+	/**
+	 * get a calendar by id
+	 * 
+	 * @param id
+	 */
+	@Override
+	public CalendarEvent getCalendarByID(Integer id) {
+		CalendarEvent calendarEvent = em.find(CalendarEvent.class, id);
+		if (calendarEvent != null) {
+			return calendarEvent;
+		} else {
+			return null;
+		}
+	}
 }
