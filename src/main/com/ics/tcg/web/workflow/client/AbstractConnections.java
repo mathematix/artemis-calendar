@@ -39,7 +39,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.ics.tcg.web.workflow.client.common.customline.CustomConnection;
 import com.ics.tcg.web.workflow.client.common.customline.CustomUIObjectConnector;
 import com.ics.tcg.web.workflow.client.composite.complement.MyPanel;
-import com.ics.tcg.web.workflow.client.task.ServiceTask;
 import com.ics.tcg.web.workflow.client.task.TimerNode;
 import com.ics.tcg.web.workflow.client.task.Workflowtasknode;
 

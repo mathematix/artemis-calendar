@@ -40,4 +40,7 @@ public interface Calendar_Service extends RemoteService {
 	/** Update a record means to add rating */
 	public String updateRecords(Records_Client recordsClient);
 	
+	/** get a calendar by id*/
+	Calendar_Client getCalendar(Integer id);
+	
 }

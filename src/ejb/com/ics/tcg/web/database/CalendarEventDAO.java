@@ -83,4 +83,12 @@ public interface CalendarEventDAO {
 	 * @param userid
 	 */
 	public List<CalendarEvent> getUndoneCalendar(Integer userid);
+	
+
+	/**
+	 * get a calendar by id
+	 * 
+	 * @param id
+	 */
+	public CalendarEvent getCalendarByID(Integer id);
 }

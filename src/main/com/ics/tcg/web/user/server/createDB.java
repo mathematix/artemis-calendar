@@ -2,7 +2,6 @@ package com.ics.tcg.web.user.server;
 
 import java.io.IOException;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class createDB {
