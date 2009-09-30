@@ -160,11 +160,9 @@ public class Panel_Rating extends AbsolutePanel {
 			grid_panel_done = createDoneGrid();
 			content_done.add(grid_panel_done, 10, 30);
 			grid_panel_done.setSize("720", "400");
-			// create score
-			scorePanel = createScorePanel();
+			// //////////////////////////////////////
 			// Create popup
 			popupPanel = new PopupPanel(true, false);
-			popupPanel.setWidget(scorePanel);
 			popupPanel.removeStyleName("gwt-PopupPanel");
 			DOM.setStyleAttribute(popupPanel.getElement(), "border", "0px");
 		}
@@ -573,7 +571,6 @@ public class Panel_Rating extends AbsolutePanel {
 
 								public void onClick(SourcesTableEvents sender,
 										Row row, Column column, Widget widget) {
-									GWT.log("Renderer widget clicked", null);
 									if (widget instanceof Button) {
 										Window.alert(((Button) widget)
 												.getHTML());
@@ -594,7 +591,6 @@ public class Panel_Rating extends AbsolutePanel {
 
 								public void onChange(SourcesTableEvents sender,
 										Row row, Column column, Widget widget) {
-									GWT.log("Renderer widget changed", null);
 									if (widget instanceof ListBox) {
 										ListBox listBox = (ListBox) widget;
 										row.setValue(6, listBox
@@ -626,6 +622,10 @@ public class Panel_Rating extends AbsolutePanel {
 					@Override
 					public void onSuccess(List<Records_Client> result) {
 						if (result != null) {
+							// create score
+							scorePanel = createScorePanel();
+							popupPanel.setWidget(scorePanel);
+
 							final HashMap<Integer, ArrayList<Records_Client>> hm = sortServices(result);
 							final ListBox listBox = (ListBox) (scorePanel
 									.getWidget(1));
@@ -672,11 +672,23 @@ public class Panel_Rating extends AbsolutePanel {
 							listBox.addChangeHandler(new ChangeHandler() {
 								@Override
 								public void onChange(ChangeEvent event) {
+
 									final ArrayList<Records_Client> list = hm
 											.get(Integer
 													.parseInt((listBox
 															.getValue(listBox
 																	.getSelectedIndex()))));
+									// clear
+									{
+										((Label) (flexTable.getWidget(0, 1)))
+												.setText("");
+										((Label) (flexTable.getWidget(1, 1)))
+												.setText("");
+										((Label) (flexTable.getWidget(3, 0)))
+												.setText("");
+										((Label) (flexTable.getWidget(3, 1)))
+												.setText("");
+									}
 									left.clear();
 									Label label_abservice = new Label((listBox
 											.getItemText(listBox
@@ -779,6 +791,7 @@ public class Panel_Rating extends AbsolutePanel {
 
 													}
 												});
+
 									}
 								}
 							});
