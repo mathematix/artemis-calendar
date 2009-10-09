@@ -945,44 +945,44 @@ public class ChoiceTask extends Workflowtasknode {
 
 	// get preTaskNodeList,if current node is the begin node of one loop,then
 	// preTaskNodelist contains the preTaskNodes of loop
-	public void Get_preTask_all() {
-		// 获取所有前向节点集合之前，必须先清空preTaskList,preTaskSet
-		preTaskList.clear();
-		preTaskSet.clear();
-		Get_preTask_all(this);
-
-	}
-
-	// 递归调用此函数，以获取所有的前向节点
-	@SuppressWarnings("unchecked")
-	public void Get_preTask_all(Workflowtasknode workflowtasknode) {
-		// 如果不是开始节点，则直接找到其前驱节点列表
-		if (!isstart) {
-			CustomUIObjectConnector cons = CustomUIObjectConnector
-					.getWrapper(workflowtasknode.getPanel2());
-			Collection collection = cons.getConnections();
-			CustomUIObjectConnector front_end_Connector;
-			for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
-				CustomConnection c = (CustomConnection) iterator.next();
-				front_end_Connector = (CustomUIObjectConnector) c
-						.getConnected().get(0);
-				MyPanel front_end_panelPanel = (MyPanel) front_end_Connector.wrapped;
-				ServiceTask front_end_simpletask = (ServiceTask) front_end_panelPanel
-						.getParent().getParent();
-				if (!preTaskSet.contains(front_end_simpletask)) {
-					preTaskList.add(front_end_simpletask);
-					preTaskSet.add(front_end_simpletask);
-					Get_preTask_all(front_end_simpletask);
-				}
-
-			}
-			System.out.println("get preTasklist successful");
-		}
-		// 如果是开始节点，若此节点属于子工作流，则为包含此子工作流的looptask的前驱节点
-		else if (belongToSubWorkflow) {
-			SubDiagram subDiagram = (SubDiagram) dbe;
-			subDiagram.loopTask.Get_preTask_all();
-			preTaskList = subDiagram.loopTask.preTaskList;
-		}
-	}
+//	public void Get_preTask_all() {
+//		// 获取所有前向节点集合之前，必须先清空preTaskList,preTaskSet
+//		preTaskList.clear();
+//		preTaskSet.clear();
+//		Get_preTask_all(this);
+//
+//	}
+//
+//	// 递归调用此函数，以获取所有的前向节点
+//	@SuppressWarnings("unchecked")
+//	public void Get_preTask_all(Workflowtasknode workflowtasknode) {
+//		// 如果不是开始节点，则直接找到其前驱节点列表
+//		if (!isstart) {
+//			CustomUIObjectConnector cons = CustomUIObjectConnector
+//					.getWrapper(workflowtasknode.getPanel2());
+//			Collection collection = cons.getConnections();
+//			CustomUIObjectConnector front_end_Connector;
+//			for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
+//				CustomConnection c = (CustomConnection) iterator.next();
+//				front_end_Connector = (CustomUIObjectConnector) c
+//						.getConnected().get(0);
+//				MyPanel front_end_panelPanel = (MyPanel) front_end_Connector.wrapped;
+//				Workflowtasknode front_end_simpletask = (Workflowtasknode) front_end_panelPanel
+//						.getParent().getParent();
+//				if (!preTaskSet.contains(front_end_simpletask)) {
+//					preTaskList.add(front_end_simpletask);
+//					preTaskSet.add(front_end_simpletask);
+//					Get_preTask_all(front_end_simpletask);
+//				}
+//
+//			}
+//			System.out.println("get preTasklist successful");
+//		}
+//		// 如果是开始节点，若此节点属于子工作流，则为包含此子工作流的looptask的前驱节点
+//		else if (belongToSubWorkflow) {
+//			SubDiagram subDiagram = (SubDiagram) dbe;
+//			subDiagram.loopTask.Get_preTask_all();
+//			preTaskList = subDiagram.loopTask.preTaskList;
+//		}
+//	}
 }
