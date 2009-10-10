@@ -257,6 +257,13 @@ public abstract class AbstractConnections extends AbstractEditRegion {
 								- panel.getAbsoluteLeft());
 						workflowtasknode.setPixel_y(workflowtasknode.getAbsoluteTop()
 								- panel.getAbsoluteTop());
+						
+						System.out.println(workflowtasknode.getOffsetWidth());
+						if(workflowtasknode.getAbsoluteLeft()+workflowtasknode.getOffsetWidth()>panel.getAbsoluteLeft()+panel.getOffsetWidth()){
+							System.out.println(true);
+							panel.setWidth(Integer.toString(workflowtasknode.getAbsoluteLeft()+workflowtasknode.getOffsetWidth()-panel.getAbsoluteLeft()));
+							System.out.println(panel.getOffsetWidth());
+						}
 
 						if (workflowtasknode.getTimerNode() != null) {
 							TimerNode timerNode = workflowtasknode.getTimerNode();
