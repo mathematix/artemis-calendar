@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The type of the method.
  * 
- * @author Administrator
+ * @author lms
  * 
  */
 public class MethodInfo implements Serializable {

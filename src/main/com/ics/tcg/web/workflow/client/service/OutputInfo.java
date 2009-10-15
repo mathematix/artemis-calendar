@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The type of output of the service.
  * 
- * @author Administrator
+ * @author lms
  * 
  */
 public class OutputInfo implements Serializable {

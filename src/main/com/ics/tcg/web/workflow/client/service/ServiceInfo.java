@@ -6,12 +6,12 @@ import java.util.ArrayList;
 /**
  * The type of the service package.
  * 
- * @author Administrator
+ * @author lms
  * 
  */
 public class ServiceInfo implements Serializable {
 	/**
-	 * 
+	 * @author lms
 	 */
 	private static final long serialVersionUID = 6741990704479131548L;
 

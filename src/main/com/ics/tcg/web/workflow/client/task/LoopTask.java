@@ -53,8 +53,6 @@ import com.ics.tcg.web.workflow.client.service.ServiceInfo;
 public class LoopTask extends ServiceTask {
 
 	private AbsolutePanel instance;
-	// int outport_count=1;
-	// List outport_info;
 	public Client_Workflow sub_workflow;
 	public String variableName;
 	public ServiceInfo serviceInfo;

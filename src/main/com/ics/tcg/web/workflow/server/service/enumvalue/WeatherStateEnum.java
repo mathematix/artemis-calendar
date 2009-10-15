@@ -3,6 +3,10 @@ package com.ics.tcg.web.workflow.server.service.enumvalue;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
+/**
+ * @author lms
+ * This class is used to describe the weatherState.
+ */
 public class WeatherStateEnum implements EnumValue, Serializable {
 	private String[] values;
 
