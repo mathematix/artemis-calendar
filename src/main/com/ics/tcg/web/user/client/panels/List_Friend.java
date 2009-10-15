@@ -181,7 +181,7 @@ public class List_Friend extends VerticalPanel {
 						// Set the info about the contact
 						contactInfo.setHTML(user.getAccount() + "<br><i>"
 								+ user.getEmail() + "</i><br>" + user.getTel());
-						int left = label.getAbsoluteLeft() + 154;
+						int left = label.getAbsoluteLeft() + label.getOffsetWidth()-1;
 						int top = label.getAbsoluteTop();
 						contactPopup.setPopupPosition(left, top);
 						contactPopup.show();

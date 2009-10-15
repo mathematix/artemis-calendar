@@ -82,13 +82,13 @@ public class Panel_Calendar extends AbsolutePanel {
 		settings.setTimeBlockClickNumber(Click.Single);
 		settings.setEnableDragDrop(true);
 		settings.setIntervalsPerHour(4);
-		
+
 		// create day view
 		dayView = new DayView(settings);
-		
+
 		// set style as google-cal
 		dayView.setWidth("100%");
-		
+
 		// set today as default date
 		datePicker.setValue(new Date());
 
@@ -596,8 +596,24 @@ public class Panel_Calendar extends AbsolutePanel {
 				workflowApp = selectApp;
 				calendarPopup.hide();
 				calendarPopup_bottom.hide();
-				overviewpanel.workflow_show();
-				overviewpanel.workflowpanel.onShow();
+				// update the locked field,then show
+				overviewpanel.calendar_Service.getCalendar(
+						workflowApp.calendarClient.getCalendarid(),
+						new AsyncCallback<Calendar_Client>() {
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert("fail");
+							}
+
+							@Override
+							public void onSuccess(Calendar_Client result) {
+								workflowApp.calendarClient.setLocked(result
+										.isLocked());
+								overviewpanel.workflow_show();
+								overviewpanel.workflowpanel.onShow();
+							}
+						});
+
 			}
 		});
 	}
@@ -768,4 +784,5 @@ public class Panel_Calendar extends AbsolutePanel {
 							+ dateFormat.format(date) + "</div>");
 		}
 	}
+
 }

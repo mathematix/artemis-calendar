@@ -45,4 +45,6 @@ public interface Calendar_ServiceAsync {
 	 */
 	void updateRecords(Records_Client recordsClient,
 			AsyncCallback<String> asyncCallback);
+
+	void getCalendar(Integer id, AsyncCallback<Calendar_Client> callback);
 }

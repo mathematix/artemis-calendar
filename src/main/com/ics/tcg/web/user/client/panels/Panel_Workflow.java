@@ -478,7 +478,30 @@ public class Panel_Workflow extends AbsolutePanel {
 
 	/** on show */
 	public void onShow() {
+		//lock the finished
+		if (calendar_panel.workflowApp.calendarClient.isLocked()==true) {
+			textBox1.setEnabled(false);
+			textBox3.setEnabled(false);
+			((DateBox) textBox2.getWidget(0)).setEnabled(false);
+			((TextBox) textBox2.getWidget(1)).setEnabled(false);
+			((TextBox) textBox2.getWidget(3)).setEnabled(false);
+			((DateBox) textBox2.getWidget(4)).setEnabled(false);
+			((Button)(((AbsolutePanel)getWidget(1)).getWidget(1))).setEnabled(false);
+			((Button)(((AbsolutePanel)getWidget(1)).getWidget(2))).setEnabled(false);
+			((Button)(((AbsolutePanel)getWidget(1)).getWidget(3))).setEnabled(false);
 
+		}
+		else {
+			textBox1.setEnabled(true);
+			textBox3.setEnabled(true);
+			((DateBox) textBox2.getWidget(0)).setEnabled(true);
+			((TextBox) textBox2.getWidget(1)).setEnabled(true);
+			((TextBox) textBox2.getWidget(3)).setEnabled(true);
+			((DateBox) textBox2.getWidget(4)).setEnabled(true);
+			((Button)(((AbsolutePanel)getWidget(1)).getWidget(1))).setEnabled(true);
+			((Button)(((AbsolutePanel)getWidget(1)).getWidget(2))).setEnabled(true);
+			((Button)(((AbsolutePanel)getWidget(1)).getWidget(3))).setEnabled(true);
+		}
 		base.diagramBuilderExample.scrollPanel.scrollToLeft();
 		base.diagramBuilderExample.scrollPanel.scrollToTop();
 

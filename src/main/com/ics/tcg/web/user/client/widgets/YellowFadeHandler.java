@@ -11,7 +11,6 @@ import com.google.gwt.user.client.ui.UIObject;
 /**
  * @author NickC
  */
-@SuppressWarnings("unused")
 public class YellowFadeHandler {
 	private final int transparent_color = 17;
 	private static final String[] yftStyles = { "yft-00", "yft-01", "yft-02",

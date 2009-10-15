@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hibernate.hql.ast.tree.Case2Node;
-
 import pl.balon.gwt.diagrams.client.connection.Connection;
 import pl.balon.gwt.diagrams.client.connector.Connector;
 
@@ -2754,7 +2752,7 @@ public class DiagramBuilder extends AbstractConnections {
 		
 		/* cancel the draggable function of edit region*/
 		coverWorkflowEditRegionLayer = new AbsolutePanel();
-		coverWorkflowEditRegionLayer.setSize("400", "300");
+		coverWorkflowEditRegionLayer.setSize("1200", "800");
 		DOM.setStyleAttribute(coverWorkflowEditRegionLayer.getElement(), "backgroundColor", "white");
 		DOM.setStyleAttribute(coverWorkflowEditRegionLayer.getElement(), "filter", "Alpha(opacity=20)");
 		panel.add(coverWorkflowEditRegionLayer, 0, 0);

@@ -266,4 +266,26 @@ public class Calendar_ServiceImpl extends RemoteServiceServlet implements
 		recordsDAO.updateRecord(records);
 		return "success";
 	}
+
+	@Override
+	public Calendar_Client getCalendar(Integer id) {
+		CalendarEvent calendarEvent = calendarEventDAO.getCalendarByID(id);
+		if (calendarEvent!=null) {
+			Calendar_Client temp = new Calendar_Client();
+			temp.setCalendarid(calendarEvent.getCalendarid());
+			temp.setDes(calendarEvent.getDes());
+			temp.setDone(calendarEvent.getDone());
+			temp.setEndTime(calendarEvent.getEndtime());
+			temp.setEventname(calendarEvent.getEventname());
+			temp.setSearchstartTime(calendarEvent.getSearchstarttime());
+			temp.setStartTime(calendarEvent.getStarttime());
+			temp.setUserid(calendarEvent.getUserid());
+			temp.setLocked(calendarEvent.isLocked());
+			
+			return temp;
+		}
+		else {
+			return null;
+		}
+	}
 }
