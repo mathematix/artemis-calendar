@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * The type of the service's input.
  * 
- * @author Administrator
+ * @author lms
  * 
  */
 public class InputInfo implements Serializable {

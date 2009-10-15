@@ -2,6 +2,11 @@ package com.ics.tcg.web.workflow.server.service.enumvalue;
 
 import java.io.Serializable;
 
+/**
+ * This class is used to describe the ticketKind
+ * @author lms
+ *
+ */
 @SuppressWarnings("serial")
 public class TicketKindsEnum implements EnumValue, Serializable {
 	private String[] values;

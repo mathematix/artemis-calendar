@@ -4,19 +4,20 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+//This class is used to describe the display of the qos'items in the user UI.
 public class ContentItem implements Serializable {
 	/**
-	 * 
+	 * This class is created by lms.
 	 */
 	private static final long serialVersionUID = 8552301749378366438L;
 
-	private String itemName;
-	private String itemDisplayMode;
-	private String metric;
-	public boolean isRange;
-	public boolean isMoreSelect;
+	private String itemName;//The name of the item of qos.
+	private String itemDisplayMode;//describe the form of the item displayed.
+	private String metric;//the  metric of the item
+	public boolean isRange;//estimate the item which the user is asked to fill in wheather is range.
+	public boolean isMoreSelect;//wheather the item has many values.
 	// private List<ContentItem> contentItemList;
-	private List<String> valueList;
+	private List<String> valueList;//the values of the item
 
 	public ContentItem() {
 		itemDisplayMode = new String();

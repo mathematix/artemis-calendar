@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 public class ServiceConfigureInfo implements Serializable {
 	/**
-	 * 
+	 * This class is used to describe the serviceConfigure information.
+	 * @author lms
 	 */
 	private static final long serialVersionUID = 8622120095134492798L;
-
+    
 	private String serviceName;
+	/**
+	 *This parameter is used to save the path of the implement class of webService 
+	*/
 	private String serviceClassPath;
 
 	public ServiceConfigureInfo() {

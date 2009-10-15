@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * The type of the service configuration by the user.
  * 
- * @author Administrator
+ * @author lms
  * 
  */
 public class ServiceConfigure implements Serializable {
