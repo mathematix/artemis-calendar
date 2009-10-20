@@ -63,6 +63,22 @@ public interface ThirdPartDAO {
 	public Integer saveUser_Issuer(User_Issuer userIssuer);
 
 	/**
+	 * update user thirdpart
+	 * 
+	 * @param userThirdPart
+	 */
+	public void updateUser_TP(User_ThirdPart userThirdPart);
+
+	/**
+	 * update user issuer
+	 * 
+	 * @param userIssuer
+	 */
+	public void updateUser_Issuer(User_Issuer userIssuer);
+
+	
+	
+	/**
 	 * delete user thirdpart
 	 * 
 	 * @param userid

@@ -6,14 +6,14 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Calendar_Client implements Serializable {
 
-	Integer calendarid;
-	public Integer userid;
-	public String eventname;
+	private Integer calendarid;
+	private Integer userid;
+	private String eventname;
 	private Date startTime = null;
 	private Date endTime = null;
 	private Date searchstartTime = null;
 	private String des = null;
-	public Boolean done;
+	private Boolean done;
 	private boolean locked;
 
 	public boolean isLocked() {

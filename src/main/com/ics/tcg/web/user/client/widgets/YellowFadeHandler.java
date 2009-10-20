@@ -70,6 +70,7 @@ public class YellowFadeHandler {
 			uiObj.addStyleName(yftStyles[color]);
 		}
 
+		@SuppressWarnings("unused")
 		public int getColor() {
 			return color;
 		}

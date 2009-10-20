@@ -78,7 +78,7 @@ public class List_Service extends VerticalPanel {
 								overview_panel.user_Service_Clients.add(result
 										.get(i));
 								final MLabel label = new MLabel(result.get(i));
-								label.addStyleName(result.get(i).abservicename
+								label.addStyleName(result.get(i).getAbservicename()
 										+ "-Label");
 								labels.add(label);
 							}
@@ -99,7 +99,7 @@ public class List_Service extends VerticalPanel {
 		MLabel label = this;
 
 		public MLabel(User_Service_Client userServiceClient) {
-			super(userServiceClient.abservicename);
+			super(userServiceClient.getAbservicename());
 			this.userServiceClient = userServiceClient;
 			sinkEvents(Event.ONMOUSEOUT | Event.ONMOUSEOVER);
 			setWidth("100%");
@@ -113,7 +113,7 @@ public class List_Service extends VerticalPanel {
 						" Alpha(Opacity=50)");
 				selectedLabel = label;
 				// Set the info about the contact
-				contactInfo.setHTML(userServiceClient.abservicename + "<br><i>"
+				contactInfo.setHTML(userServiceClient.getAbservicename() + "<br><i>"
 						+ "fuction:" + "</i><br>");
 				int left = label.getAbsoluteLeft() + 154;
 				int top = label.getAbsoluteTop();
@@ -166,7 +166,7 @@ public class List_Service extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				overview_panel.service_Service.deleteUserAbservice(
 						overview_panel.userid,
-						selectedLabel.userServiceClient.abserviceid,
+						selectedLabel.userServiceClient.getAbserviceid(),
 						new AsyncCallback<String>() {
 							@Override
 							public void onFailure(Throwable caught) {
@@ -245,7 +245,7 @@ public class List_Service extends VerticalPanel {
 							final AbstractService_Client abstractService_Client = result
 									.get(i);
 							final Image image = new Image();
-							image.setUrl("xml/" + abstractService_Client.asname
+							image.setUrl("xml/" + abstractService_Client.getAsname()
 									+ ".jpg");
 							image.setSize("80", "40");
 							flexTable.setCellSpacing(20);
@@ -256,14 +256,14 @@ public class List_Service extends VerticalPanel {
 									imagepre.setUrl(namepre);
 									image.setUrl("img/select_service.png");
 									namepre = "xml/"
-											+ abstractService_Client.asname
+											+ abstractService_Client.getAsname()
 											+ ".jpg";
 									imagepre = image;
-									select_service_id = abstractService_Client.asid;
-									select_service_name = abstractService_Client.asname;
+									select_service_id = abstractService_Client.getAsid();
+									select_service_name = abstractService_Client.getAsname();
 								}
 							});
-							image.setTitle(abstractService_Client.asname);
+							image.setTitle(abstractService_Client.getAsname());
 						}
 					}
 				});
@@ -348,7 +348,7 @@ public class List_Service extends VerticalPanel {
 					public void onSuccess(User_Service_Client result) {
 						overview_panel.user_Service_Clients.add(result);
 						MLabel label = new MLabel(result);
-						label.addStyleName(result.abservicename + "-Label");
+						label.addStyleName(result.getAbservicename() + "-Label");
 						labels.add(label);
 						dialogBox.hide();
 						sortServices();

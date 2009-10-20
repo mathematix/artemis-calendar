@@ -147,4 +147,14 @@ public class ThirdPartDAOBean implements ThirdPartDAO {
 		}
 	}
 
+	@Override
+	public void updateUser_Issuer(User_Issuer userIssuer) {
+		em.merge(userIssuer);
+	}
+
+	@Override
+	public void updateUser_TP(User_ThirdPart userThirdPart) {
+		em.merge(userThirdPart);
+	}
+
 }

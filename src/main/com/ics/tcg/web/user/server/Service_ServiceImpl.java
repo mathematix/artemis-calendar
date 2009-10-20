@@ -22,7 +22,6 @@ import com.ics.tcg.web.user.client.remote.Service_Service;
 public class Service_ServiceImpl extends RemoteServiceServlet implements
 		Service_Service {
 
-	
 	InitialContext ctx;
 	Properties props;
 	ServiceDAO serviceDAO;
@@ -50,9 +49,9 @@ public class Service_ServiceImpl extends RemoteServiceServlet implements
 		if (services != null) {
 			for (int i = 0; i < services.size(); i++) {
 				AbstractService_Client abstractServiceC = new AbstractService_Client();
-				abstractServiceC.asid = services.get(i).getAsid();
-				abstractServiceC.asname = services.get(i).getAsname();
-				abstractServiceC.des = services.get(i).getDes();
+				abstractServiceC.setAsid(services.get(i).getAsid());
+				abstractServiceC.setAsname(services.get(i).getAsname());
+				abstractServiceC.setDes(services.get(i).getDes());
 				servicesC.add(abstractServiceC);
 			}
 			return servicesC;
@@ -70,21 +69,21 @@ public class Service_ServiceImpl extends RemoteServiceServlet implements
 		if (user_services != null) {
 			for (int i = 0; i < user_services.size(); i++) {
 				User_Service_Client user_Service = new User_Service_Client();
-				user_Service.id = user_services.get(i).getId();
-				user_Service.abserviceid = user_services.get(i)
-						.getAbserviceid();
-				user_Service.userid = user_services.get(i).getUserid();
-				user_Service.abservicename = user_services.get(i)
-						.getAbservicename();
+				user_Service.setId(user_services.get(i).getId());
+				user_Service.setAbserviceid(user_services.get(i)
+						.getAbserviceid());
+				user_Service.setUserid(user_services.get(i).getUserid());
+				user_Service.setAbservicename(user_services.get(i)
+						.getAbservicename());
 				if (user_services.get(i).getQos() != null) {
 					try {
-						user_Service.qos = (ServiceQosRequirement) Byte_Object
-								.ByteToObject(user_services.get(i).getQos());
+						user_Service.setQos((ServiceQosRequirement) Byte_Object
+								.ByteToObject(user_services.get(i).getQos()));
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				} else {
-					user_Service.qos = null;
+					user_Service.setQos( null);
 				}
 				user_servicesC.add(user_Service);
 			}
@@ -128,15 +127,15 @@ public class Service_ServiceImpl extends RemoteServiceServlet implements
 	public UIContent getContent(User_Service_Client user_service) {
 		UIContent content;
 		QosRequirementFrameworkXmlParse parse = null;
-		if (user_service.abservicename.contains("Service")) {
+		if (user_service.getAbservicename().contains("Service")) {
 			parse = new QosRequirementFrameworkXmlParse(
 					"xml/QosRequirementFramework_"
-							+ user_service.abservicename.substring(0,
-									user_service.abservicename
+							+ user_service.getAbservicename().substring(0,
+									user_service.getAbservicename()
 											.lastIndexOf("Service")) + ".xml");
 		} else {
 			parse = new QosRequirementFrameworkXmlParse(
-					"xml/QosRequirementFramework_" + user_service.abservicename
+					"xml/QosRequirementFramework_" + user_service.getAbservicename()
 							+ ".xml");
 		}
 		parse.startParse();
@@ -149,12 +148,12 @@ public class Service_ServiceImpl extends RemoteServiceServlet implements
 	public String saveQos(User_Service_Client user_ServiceC) {
 		User_Service user_Service = new User_Service();
 
-		user_Service.setId(user_ServiceC.id);
-		user_Service.setUserid(user_ServiceC.userid);
-		user_Service.setAbserviceid(user_ServiceC.abserviceid);
-		user_Service.setAbservicename(user_ServiceC.abservicename);
+		user_Service.setId(user_ServiceC.getId());
+		user_Service.setUserid(user_ServiceC.getUserid());
+		user_Service.setAbserviceid(user_ServiceC.getAbserviceid());
+		user_Service.setAbservicename(user_ServiceC.getAbservicename());
 		try {
-			user_Service.setQos(Byte_Object.ObjectToByte(user_ServiceC.qos));
+			user_Service.setQos(Byte_Object.ObjectToByte(user_ServiceC.getQos()));
 			serviceDAO.UpdateUserAbservice(user_Service);
 			return "success";
 		} catch (IOException e) {

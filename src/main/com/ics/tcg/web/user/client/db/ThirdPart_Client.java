@@ -5,8 +5,8 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class ThirdPart_Client implements Serializable {
 
-	public Integer tpid;
-	public String tpname;
+	private Integer tpid;
+	private String tpname;
 
 	public Integer getTpid() {
 		return tpid;

@@ -6,13 +6,13 @@ import java.io.Serializable;
 public class AbstractService_Client implements Serializable {
 
 	/** abstract service id */
-	public Integer asid;
+	private Integer asid;
 
 	/** abstract service name */
-	public String asname;
+	private String asname;
 
 	/** abstract service description */
-	public String des;
+	private String des;
 
 	public Integer getAsid() {
 		return asid;

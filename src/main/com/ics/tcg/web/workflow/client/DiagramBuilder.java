@@ -369,7 +369,7 @@ public class DiagramBuilder extends AbstractConnections {
 		final ArrayList<String> serviceNameList = new ArrayList<String>();
 		for (int i = 0; i < overview.user_Service_Clients.size(); i++) {
 			serviceNameList
-					.add(overview.user_Service_Clients.get(i).abservicename);
+					.add(overview.user_Service_Clients.get(i).getAbservicename());
 		}
 		service_info_list = serviceNameList;
 		// 根据服务的个数，动态设置服务显示列表的大小

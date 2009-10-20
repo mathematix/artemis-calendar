@@ -60,7 +60,7 @@ public class QosDialog extends DialogBox {
 		addStyleName("g-DialogBox");
 
 		this.user_service = selected_service;
-		this.userid = selected_service.userid;
+		this.userid = selected_service.getUserid();
 		// find the service xml file and parse it
 		load();
 	}
@@ -70,6 +70,7 @@ public class QosDialog extends DialogBox {
 			@Override
 			public void onFailure(Throwable caught) {
 			}
+
 			@Override
 			public void onSuccess(UIContent result) {
 				content = result;
@@ -78,7 +79,7 @@ public class QosDialog extends DialogBox {
 		});
 	}
 
-	/**create the widgets*/
+	/** create the widgets */
 	public void Init() {
 
 		final AbsolutePanel main_Panel = new AbsolutePanel();
@@ -86,7 +87,7 @@ public class QosDialog extends DialogBox {
 
 		main_Panel.setSize("600px", "400px");
 
-		//scroll panel
+		// scroll panel
 		final ScrollPanel scrollPanel = new ScrollPanel();
 		main_Panel.add(scrollPanel, 10, 10);
 		scrollPanel.setSize("580px", "350px");
@@ -101,7 +102,7 @@ public class QosDialog extends DialogBox {
 		createPart2(block_Panel);
 		createPart3(block_Panel);
 
-		//create confirm
+		// create confirm
 		HorizontalPanel confirm_button = createConfirm();
 		main_Panel.add(confirm_button, 50, 360);
 	}
@@ -120,13 +121,13 @@ public class QosDialog extends DialogBox {
 
 				User_Service_Client user_ServiceC = new User_Service_Client();
 
-				user_ServiceC.id = user_service.id;
-				user_ServiceC.userid = user_service.userid;
-				user_ServiceC.abserviceid = user_service.abserviceid;
-				user_ServiceC.abservicename = user_service.abservicename;
-				user_ServiceC.qos = serviceQosRequirement;
+				user_ServiceC.setId(user_service.getId());
+				user_ServiceC.setUserid(user_service.getUserid());
+				user_ServiceC.setAbserviceid(user_service.getAbserviceid());
+				user_ServiceC.setAbservicename(user_service.getAbservicename());
+				user_ServiceC.setQos(serviceQosRequirement);
 
-				user_service.qos = serviceQosRequirement;
+				user_service.setQos(serviceQosRequirement);
 
 				getService.saveQos(user_ServiceC, new AsyncCallback<String>() {
 					@Override
@@ -184,14 +185,14 @@ public class QosDialog extends DialogBox {
 				final RadioButton radioButton = new RadioButton("group"
 						+ radio_button_group);
 				radioButton.setText(value);
-				if (i == 0 && user_service.qos == null) {
+				if (i == 0 && user_service.getQos() == null) {
 					radioButton.setValue(true);
 					requirementItem_ServiceRank.setItemValue(radioButton
 							.getText());
 				}
 				// load value
-				if (user_service.qos != null
-						&& user_service.qos.getServiceRank().getItem()
+				if (user_service.getQos() != null
+						&& user_service.getQos().getServiceRank().getItem()
 								.getItemValue().equals(value)) {
 
 					radioButton.setValue(true);
@@ -302,8 +303,8 @@ public class QosDialog extends DialogBox {
 										}
 									});
 							// load value
-							if (user_service.qos != null
-									&& user_service.qos
+							if (user_service.getQos() != null
+									&& user_service.getQos()
 											.getNoStandardsRequirement()
 											.getItems().get(i)
 											.getSelectedValues().contains(
@@ -336,13 +337,13 @@ public class QosDialog extends DialogBox {
 								}
 							});
 							// load value
-							if (j == 0 && user_service.qos == null) {
+							if (j == 0 && user_service.getQos() == null) {
 								radioButton.setValue(true);
 								requirementItem.setItemValue(radioButton
 										.getText());
 							}
-							if (user_service.qos != null
-									&& user_service.qos
+							if (user_service.getQos() != null
+									&& user_service.getQos()
 											.getNoStandardsRequirement()
 											.getItems().get(i).getItemValue()
 											.equals(item_value)) {
@@ -407,17 +408,17 @@ public class QosDialog extends DialogBox {
 								});
 
 						// load value
-						if (user_service.qos != null
-								&& user_service.qos.getNoStandardsRequirement()
+						if (user_service.getQos() != null
+								&& user_service.getQos().getNoStandardsRequirement()
 										.getItems().get(i).getLowerBoundValue() != null) {
-							textBox_min.setText(user_service.qos
+							textBox_min.setText(user_service.getQos()
 									.getNoStandardsRequirement().getItems()
 									.get(i).getLowerBoundValue());
 						}
-						if (user_service.qos != null
-								&& user_service.qos.getNoStandardsRequirement()
+						if (user_service.getQos() != null
+								&& user_service.getQos().getNoStandardsRequirement()
 										.getItems().get(i).getUpperBoundValue() != null) {
-							textBox_max.setText(user_service.qos
+							textBox_max.setText(user_service.getQos()
 									.getNoStandardsRequirement().getItems()
 									.get(i).getUpperBoundValue());
 						}
@@ -458,10 +459,10 @@ public class QosDialog extends DialogBox {
 								});
 
 						// load value
-						if (user_service.qos != null
-								&& user_service.qos.getNoStandardsRequirement()
+						if (user_service.getQos() != null
+								&& user_service.getQos().getNoStandardsRequirement()
 										.getItems().get(i).getItemValue() != null) {
-							textBox.setText(user_service.qos
+							textBox.setText(user_service.getQos()
 									.getNoStandardsRequirement().getItems()
 									.get(i).getItemValue());
 						}
@@ -556,8 +557,8 @@ public class QosDialog extends DialogBox {
 									}
 								});
 						// load value
-						if (user_service.qos != null
-								&& user_service.qos.getUserCustomStandards()
+						if (user_service.getQos() != null
+								&& user_service.getQos().getUserCustomStandards()
 										.getItems().get(i).getSelectedValues()
 										.contains(item_value)) {
 							radioButton.setValue(true);
@@ -593,15 +594,15 @@ public class QosDialog extends DialogBox {
 								});
 
 						// load value
-						if (j == 0 && user_service.qos == null) {
+						if (j == 0 && user_service.getQos() == null) {
 							radioButton.setValue(true);
 							requirementItem.setItemValue(radioButton.getText());
 						}
-						if (user_service.qos != null
-								&& user_service.qos.getUserCustomStandards()
+						if (user_service.getQos() != null
+								&& user_service.getQos().getUserCustomStandards()
 										.getItems().get(i).getItemValue()
 										.equals(item_value)) {
-							System.out.println(user_service.qos
+							System.out.println(user_service.getQos()
 									.getServiceRank().getItem().getItemValue());
 							radioButton.setValue(true);
 							requirementItem.setItemValue(radioButton.getText());
@@ -671,17 +672,17 @@ public class QosDialog extends DialogBox {
 					standard_flexTable.setWidget(1, 1, item_panel_max);
 
 					// load value
-					if (user_service.qos != null
-							&& user_service.qos.getUserCustomStandards()
+					if (user_service.getQos() != null
+							&& user_service.getQos().getUserCustomStandards()
 									.getItems().get(i).getLowerBoundValue() != null) {
-						textBox_min.setText(user_service.qos
+						textBox_min.setText(user_service.getQos()
 								.getUserCustomStandards().getItems().get(i)
 								.getLowerBoundValue());
 					}
-					if (user_service.qos != null
-							&& user_service.qos.getUserCustomStandards()
+					if (user_service.getQos() != null
+							&& user_service.getQos().getUserCustomStandards()
 									.getItems().get(i).getUpperBoundValue() != null) {
-						textBox_max.setText(user_service.qos
+						textBox_max.setText(user_service.getQos()
 								.getUserCustomStandards().getItems().get(i)
 								.getUpperBoundValue());
 					}
@@ -717,10 +718,10 @@ public class QosDialog extends DialogBox {
 					standard_flexTable.setWidget(1, 0, item_horizontalPanel);
 
 					// load value
-					if (user_service.qos != null
-							&& user_service.qos.getUserCustomStandards()
+					if (user_service.getQos() != null
+							&& user_service.getQos().getUserCustomStandards()
 									.getItems().get(i).getItemValue() != null) {
-						textBox.setText(user_service.qos
+						textBox.setText(user_service.getQos()
 								.getUserCustomStandards().getItems().get(i)
 								.getItemValue());
 					}
@@ -739,7 +740,7 @@ public class QosDialog extends DialogBox {
 
 	}
 
-	/**save qos*/
+	/** save qos */
 	public void save() {
 		// part 1
 		serviceRank.setItem(requirementItem_ServiceRank);
