@@ -25,7 +25,7 @@ public class ThirdPartDAOBean implements ThirdPartDAO {
 	public void deleteUser_Issuer(Integer userid, Integer issuerid) {
 		Query query = em.createNativeQuery(
 				"select * from user_issuer where userid = '" + userid
-						+ "' and issuerid='" + issuerid + "'", Issuer.class);
+						+ "' and issuerid='" + issuerid + "'", User_Issuer.class);
 		if (query != null && query.getResultList() != null
 				&& query.getResultList().size() != 0)
 			em.remove(query.getResultList().get(0));
@@ -35,7 +35,7 @@ public class ThirdPartDAOBean implements ThirdPartDAO {
 	public void deleteUser_TP(Integer userid, Integer tpid) {
 		Query query = em.createNativeQuery(
 				"select * from user_thirdpart where userid = '" + userid
-						+ "' and thirdpartid='" + tpid + "'", ThirdPart.class);
+						+ "' and thirdpartid='" + tpid + "'", User_ThirdPart.class);
 		if (query != null && query.getResultList() != null
 				&& query.getResultList().size() != 0)
 			em.remove(query.getResultList().get(0));
