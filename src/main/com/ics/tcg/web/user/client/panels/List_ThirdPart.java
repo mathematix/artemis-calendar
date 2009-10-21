@@ -41,6 +41,7 @@ public class List_ThirdPart extends VerticalPanel {
 	VerticalPanel tp_content;
 	HTML contactInfo;
 	PopupPanel add_popupPanel;
+	TabPanel tabPanel;
 
 	/** data */
 	Integer select_service_id = -1;
@@ -67,7 +68,7 @@ public class List_ThirdPart extends VerticalPanel {
 		final ScrollPanel scrollPanel2 = createTab2();
 
 		// tab
-		final TabPanel tabPanel = createTabPanel();
+		tabPanel = createTabPanel();
 		tabPanel.add(scrollPanel1, "Certificate authority");
 		tabPanel.add(scrollPanel2, "Sup...");
 		tabPanel.selectTab(0);
@@ -108,7 +109,9 @@ public class List_ThirdPart extends VerticalPanel {
 							|| event.getClientX() > this.getAbsoluteLeft() + 100
 							|| event.getClientY() < this.getAbsoluteTop()
 							|| event.getClientY() > this.getAbsoluteTop() + 200) {
-						add_popupPanel.hide();
+						if (add_popupPanel!=null) {
+							add_popupPanel.hide();
+						}
 					}
 				}
 				super.onBrowserEvent(event);
@@ -145,6 +148,7 @@ public class List_ThirdPart extends VerticalPanel {
 				final ListBox tp_listbox = new ListBox(true);
 				add_popupPanel.setSize("100", "200");
 				tp_listbox.setWidth("100%");
+				tp_listbox.setHeight("100%");
 				tp_listbox.addClickHandler(new ClickHandler() {
 					@Override
 					public void onClick(ClickEvent event) {
@@ -191,8 +195,8 @@ public class List_ThirdPart extends VerticalPanel {
 								.toString(result.get(i).getTpid()));
 					}
 				}
-				popupPanel.setPopupPosition(tp_content.getAbsoluteLeft() + 160,
-						tp_content.getAbsoluteTop() - 50);
+				popupPanel.setPopupPosition(tabPanel.getAbsoluteLeft() + 160,
+						tabPanel.getAbsoluteTop()-30);
 				popupPanel.show();
 			}
 		});

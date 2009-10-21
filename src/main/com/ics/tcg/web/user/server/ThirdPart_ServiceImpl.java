@@ -98,36 +98,42 @@ public class ThirdPart_ServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public List<User_Issuer_Client> getUser_Issuers(Integer userid) {
 		List<User_Issuer> userIssuers = thirdPartDAO.getUser_Issuers(userid);
-		List<User_Issuer_Client> userIssuerClients = new ArrayList<User_Issuer_Client>();
-		for (int i = 0; i < userIssuers.size(); i++) {
-			User_Issuer_Client u = new User_Issuer_Client();
-			u.setId(userIssuers.get(i).getId());
-			u.setIssuerid(userIssuers.get(i).getIssuerid());
-			u.setUserid(userIssuers.get(i).getUserid());
-			u
-					.setIssuename(getIssuerByID(
-							userIssuers.get(i).getIssuerid())
-							.getIssuername());
-			userIssuerClients.add(u);
+		if (userIssuers != null && userIssuers.size() != 0) {
+			List<User_Issuer_Client> userIssuerClients = new ArrayList<User_Issuer_Client>();
+			for (int i = 0; i < userIssuers.size(); i++) {
+				User_Issuer_Client u = new User_Issuer_Client();
+				u.setId(userIssuers.get(i).getId());
+				u.setIssuerid(userIssuers.get(i).getIssuerid());
+				u.setUserid(userIssuers.get(i).getUserid());
+				u.setIssuename(getIssuerByID(userIssuers.get(i).getIssuerid())
+						.getIssuername());
+				userIssuerClients.add(u);
+			}
+			return userIssuerClients;
+		} else {
+			return null;
 		}
-		return userIssuerClients;
 	}
 
 	@Override
 	public List<User_ThirdPart_Client> getUser_TPs(Integer userid) {
 		List<User_ThirdPart> userThirdParts = thirdPartDAO.getUser_TPs(userid);
-		List<User_ThirdPart_Client> userThirdPartClients = new ArrayList<User_ThirdPart_Client>();
-		for (int i = 0; i < userThirdParts.size(); i++) {
-			User_ThirdPart_Client utc = new User_ThirdPart_Client();
-			utc.setId(userThirdParts.get(i).getId());
-			utc.setThirdpartid(userThirdParts.get(i).getThirdpartid());
-			utc.setTrust(userThirdParts.get(i).getTrust());
-			utc.setUserid(userThirdParts.get(i).getUserid());
-			utc.setThirdpartname(getThirdPartByID(
-					userThirdParts.get(i).getThirdpartid()).getTpname());
-			userThirdPartClients.add(utc);
+		if (userThirdParts != null && userThirdParts.size() != 0) {
+			List<User_ThirdPart_Client> userThirdPartClients = new ArrayList<User_ThirdPart_Client>();
+			for (int i = 0; i < userThirdParts.size(); i++) {
+				User_ThirdPart_Client utc = new User_ThirdPart_Client();
+				utc.setId(userThirdParts.get(i).getId());
+				utc.setThirdpartid(userThirdParts.get(i).getThirdpartid());
+				utc.setTrust(userThirdParts.get(i).getTrust());
+				utc.setUserid(userThirdParts.get(i).getUserid());
+				utc.setThirdpartname(getThirdPartByID(
+						userThirdParts.get(i).getThirdpartid()).getTpname());
+				userThirdPartClients.add(utc);
+			}
+			return userThirdPartClients;
+		} else {
+			return null;
 		}
-		return userThirdPartClients;
 	}
 
 	@Override
@@ -168,7 +174,7 @@ public class ThirdPart_ServiceImpl extends RemoteServiceServlet implements
 		user_thirdpart.setThirdpartid(userThirdPart.getThirdpartid());
 		user_thirdpart.setTrust(userThirdPart.getTrust());
 		user_thirdpart.setUserid(userThirdPart.getUserid());
-		thirdPartDAO.updateUser_TP(user_thirdpart);		
+		thirdPartDAO.updateUser_TP(user_thirdpart);
 	}
 
 }
