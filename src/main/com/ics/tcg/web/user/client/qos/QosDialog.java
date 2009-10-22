@@ -137,7 +137,6 @@ public class QosDialog extends DialogBox {
 
 					@Override
 					public void onSuccess(String result) {
-						Window.alert("success");
 						hide();
 					}
 				});
@@ -179,6 +178,39 @@ public class QosDialog extends DialogBox {
 			final ContentItem contentItem_service_rank = content
 					.getContentBlocksList().get(0).getContentItemsList().get(0);
 
+			//certification group
+			String[] cg = {"ISO","CQS","CE"};
+			for (int j = 0; j < 3; j++) {
+				final RadioButton radioButton = new RadioButton("cgroup");
+				radioButton.setText(cg[j]);
+				if (j == 0 && user_service.getQos() == null) {
+					radioButton.setValue(true);
+					requirementItem_ServiceRank.setItemName(radioButton
+							.getText());
+				}
+				// load value
+				if (user_service.getQos() != null
+						&& user_service.getQos().getServiceRank().getItem()
+								.getItemName().equals(cg[j])) {
+					radioButton.setValue(true);
+					requirementItem_ServiceRank.setItemValue(radioButton
+							.getText());
+				}
+				service_rank_item_table.setWidget(1, j + 1, radioButton);
+				radioButton
+						.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
+							@Override
+							public void onValueChange(
+									ValueChangeEvent<Boolean> event) {
+								// set the value of the item
+								if (radioButton.getValue() == true) {
+									requirementItem_ServiceRank
+											.setItemName(radioButton.getText());
+								}
+							}
+						});
+			}
+			
 			for (int i = 0; i < contentItem_service_rank.getValueList().size(); i++) {
 				String value = contentItem_service_rank.getValueList().get(i);
 				// add radiobutton
@@ -199,7 +231,7 @@ public class QosDialog extends DialogBox {
 					requirementItem_ServiceRank.setItemValue(radioButton
 							.getText());
 				}
-				service_rank_item_table.setWidget(1, i + 1, radioButton);
+				service_rank_item_table.setWidget(2, i + 1, radioButton);
 				radioButton
 						.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
 							@Override
@@ -217,8 +249,8 @@ public class QosDialog extends DialogBox {
 			service_rank_panel.setContent(service_rank_item_table);
 
 			// save the data
-			requirementItem_ServiceRank.setItemName(contentItem_service_rank
-					.getItemName());
+			//requirementItem_ServiceRank.setItemName(contentItem_service_rank
+			//		.getItemName());
 			requirementItem_ServiceRank.setMetric(contentItem_service_rank
 					.getMetric());
 			requirementItem_ServiceRank.setMoreSelect(contentItem_service_rank
