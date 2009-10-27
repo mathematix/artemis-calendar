@@ -248,21 +248,17 @@ public abstract class AbstractConnections extends AbstractEditRegion {
 					public void onPreviewDrop(Widget reference,
 							Widget draggable, DragController dragController)
 							throws VetoDropException {
-						super.onPreviewDrop(reference, draggable,
-								dragController);
+						super.onPreviewDrop(reference, draggable,dragController);
 						Workflowtasknode workflowtasknode = (Workflowtasknode) draggable;
 
 						// 更新节点中保存的坐标信息
-						workflowtasknode.setPixel_x(workflowtasknode.getAbsoluteLeft()
-								- panel.getAbsoluteLeft());
-						workflowtasknode.setPixel_y(workflowtasknode.getAbsoluteTop()
-								- panel.getAbsoluteTop());
+						workflowtasknode.setPixel_x(workflowtasknode.getAbsoluteLeft()- panel.getAbsoluteLeft());
+						workflowtasknode.setPixel_y(workflowtasknode.getAbsoluteTop()- panel.getAbsoluteTop());
 						
-						System.out.println(workflowtasknode.getOffsetWidth());
-						if(workflowtasknode.getAbsoluteLeft()+workflowtasknode.getOffsetWidth()>panel.getAbsoluteLeft()+panel.getOffsetWidth()){
-							System.out.println(true);
-							panel.setWidth(Integer.toString(workflowtasknode.getAbsoluteLeft()+workflowtasknode.getOffsetWidth()-panel.getAbsoluteLeft()));
-							System.out.println(panel.getOffsetWidth());
+						if(workflowtasknode.getAbsoluteLeft()+workflowtasknode.getOffsetWidth()>panel.getAbsoluteLeft()+panel.getOffsetWidth())
+						{
+							panel.setWidth(Integer.toString(workflowtasknode.getAbsoluteLeft()+
+									workflowtasknode.getOffsetWidth()-panel.getAbsoluteLeft()));
 						}
 
 						if (workflowtasknode.getTimerNode() != null) {
@@ -270,12 +266,8 @@ public abstract class AbstractConnections extends AbstractEditRegion {
 							AbsolutePanel backPanel = (AbsolutePanel) timerNode
 									.getParent();
 							timerNode.removeFromParent();
-							backPanel.add(timerNode, workflowtasknode
-									.getAbsoluteLeft()
-									- backPanel.getAbsoluteLeft() - 32,
-									workflowtasknode.getAbsoluteTop()
-											- backPanel.getAbsoluteTop() - 24);
-							// RootPanel.get().add(timerNode,simpleTask.getPanel1().getAbsoluteLeft()-47,simpleTask.getPanel1().getAbsoluteTop()-24);
+							backPanel.add(timerNode, workflowtasknode.getAbsoluteLeft()
+									- backPanel.getAbsoluteLeft() - 32,workflowtasknode.getAbsoluteTop()- backPanel.getAbsoluteTop() - 24);
 						}
 						for (Iterator iterator = workflowtasknode.getconnectorList()
 								.iterator(); iterator.hasNext();) {

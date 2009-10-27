@@ -394,3 +394,7 @@ body {
 .test{
 	border: 1px solid red;
 }
+
+.gwt-TabPanelBottom{
+	border: 2px solid #C3D9FF
+}
