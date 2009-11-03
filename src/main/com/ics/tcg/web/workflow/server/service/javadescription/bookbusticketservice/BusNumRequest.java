@@ -10,10 +10,10 @@ public class BusNumRequest extends DataType implements Serializable
 {
 	private static final long serialVersionUID = 1683811685307882003L;
     
-	private String busTicketAgentName;//��Ʊ���������
-	private String startAddress;//������
-	private String destination;//Ŀ�ĵ�
-	private Date   busDate;//��������
+	private String busTicketAgentName;
+	private String startAddress;
+	private String destination;
+	private Date   busDate;
 	
 	public BusNumRequest()
 	{

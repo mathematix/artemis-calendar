@@ -9,9 +9,9 @@ public class BusTicketPriceRequest extends DataType implements Serializable
 {
 	private static final long serialVersionUID = 944423375036868009L;
     
-	private String busTicketAgentName;//��Ʊ���������
-	private String ticketKind;//��Ʊ������
-	private String busNum;//��ĳ���
+	private String busTicketAgentName;
+	private String ticketKind;
+	private String busNum;
 	
 	public BusTicketPriceRequest()
 	{
