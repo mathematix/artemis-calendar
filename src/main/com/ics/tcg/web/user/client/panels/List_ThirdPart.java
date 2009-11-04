@@ -44,8 +44,6 @@ public class List_ThirdPart extends VerticalPanel {
 	TabPanel tabPanel;
 
 	/** data */
-	Integer select_tp_id = -1;
-	String select_tp_name = "";
 	User_Issuer_Client uic = new User_Issuer_Client();
 	ArrayList<MLabel> labels = new ArrayList<MLabel>();
 	ThirdPart_ServiceAsync thirdPartService = GWT
