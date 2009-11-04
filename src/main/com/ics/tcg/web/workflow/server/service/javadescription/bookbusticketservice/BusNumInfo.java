@@ -7,9 +7,9 @@ public class BusNumInfo implements Serializable
 {
 	private static final long serialVersionUID = -3290941516657165314L;
     
-	private String busNum;//����
-	private Date   startOffTime;//����ʱ��
-	private Date   arrivalTime;//����ʱ��
+	private String busNum;
+	private Date   startOffTime;
+	private Date   arrivalTime;
 	
 	public BusNumInfo()
 	{
