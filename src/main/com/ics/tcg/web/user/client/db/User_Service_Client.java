@@ -6,11 +6,11 @@ import com.ics.tcg.web.user.client.qos.ServiceQosRequirement;
 
 @SuppressWarnings("serial")
 public class User_Service_Client implements Serializable {
-	public Integer id;
-	public Integer userid;
-	public Integer abserviceid;
-	public String abservicename;
-	public ServiceQosRequirement qos;
+	private Integer id;
+	private Integer userid;
+	private Integer abserviceid;
+	private String abservicename;
+	private ServiceQosRequirement qos;
 
 	public Integer getId() {
 		return id;

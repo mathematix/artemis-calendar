@@ -4,14 +4,15 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+//This class is used to create the content of qos.
 public class ContentBlock implements Serializable {
 	/**
-	 * 
+	 * This class is created by lms.
 	 */
 	private static final long serialVersionUID = -3724547665382537178L;
 
-	private String contentBlockName;
-	private List<ContentItem> contentItemsList;
+	private String contentBlockName;//The name of content of qos
+	private List<ContentItem> contentItemsList;//The items of content 
 
 	public ContentBlock() {
 		contentBlockName = new String();

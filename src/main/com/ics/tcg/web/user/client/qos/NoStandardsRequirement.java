@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * The non standard requirement, such as discount
  * 
- * @author Administrator
+ * @author lms
  */
 public class NoStandardsRequirement implements Serializable {
 	/**

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * The requirement item, defined to generalize the requirement info.
  * 
- * @author Administrator
+ * @author lms
  * 
  */
 public class RequirementItem implements Serializable {

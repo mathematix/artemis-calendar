@@ -4,9 +4,9 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class Friends_Client implements IsSerializable {
 
-	protected Integer id;
-	public Integer userid;
-	public Integer friendid;
+	private Integer id;
+	private Integer userid;
+	private Integer friendid;
 	private String friendname;
 	/** trust value */
 	protected double value;

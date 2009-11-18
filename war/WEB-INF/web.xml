@@ -57,6 +57,16 @@
     <url-pattern>/user/service</url-pattern>
     </servlet-mapping>
     
+    <!-- remote ThirdPart -->
+    <servlet>
+    <servlet-name>thirdpart</servlet-name>
+    <servlet-class>com.ics.tcg.web.user.server.ThirdPart_ServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>thirdpart</servlet-name>
+    <url-pattern>/user/thirdpart</url-pattern>
+    </servlet-mapping>
+    
     <!-- remote User -->
     <servlet>
     <servlet-name>user</servlet-name>

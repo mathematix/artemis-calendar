@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Yhe type of the parameter.
  * 
- * @author Administrator
+ * @author lms
  * 
  */
 public class ParamInfo implements Serializable {

@@ -17,6 +17,9 @@ import org.xml.sax.SAXException;
 
 @SuppressWarnings("serial")
 public class ServiceConfigureXmlParse implements Serializable {
+	/**
+	 * @author lms
+	 */
 	private ArrayList<ServiceConfigureInfo> serviceConfigureInfosList;
 	private String xmlFilePath;
 
@@ -25,6 +28,12 @@ public class ServiceConfigureXmlParse implements Serializable {
 		xmlFilePath = "xml/ServiceConfigure.xml";
 	}
 
+	/**
+	 * parse the xml to create serviceConfigure information
+	 * @throws ParserConfigurationException
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	public void parse() throws ParserConfigurationException, SAXException,
 			IOException {
 		File xmlFile = new File(xmlFilePath);
@@ -36,6 +45,10 @@ public class ServiceConfigureXmlParse implements Serializable {
 		createServiceInfo(rootElement);
 	}
 
+	/**
+	 * @author lms
+	 * @param rootElement
+	 */
 	public void createServiceInfo(Element rootElement) {
 		ServiceConfigureInfo serviceInfo;
 		NodeList nodeList = rootElement.getChildNodes();
@@ -69,6 +82,11 @@ public class ServiceConfigureXmlParse implements Serializable {
 		}
 	}
 
+	/**
+	 * 
+	 * @param serviceName
+	 * @return
+	 */
 	public String findServiceClassPath(String serviceName) {
 		String serviceClassPath = null;
 
