@@ -39,7 +39,7 @@ public class Panel_Workflow extends AbsolutePanel {
 	TextBox textBox1;
 	AbsolutePanel textBox2;
 	TextArea textBox3;
-	PopupPanel Popup;//to hold the month day select
+	PopupPanel Popup;// to hold the month day select
 
 	/** data */
 	String text_What;
@@ -124,6 +124,7 @@ public class Panel_Workflow extends AbsolutePanel {
 		calendarsettings.setHeight("140");
 		AbsolutePanel detailpanel = setDetail();
 		calendarsettings.add(detailpanel, 10, 10);
+		AbsolutePanel riskPanel = setRisk();
 		this.add(calendarsettings, 0, 60);
 
 		// add workflow
@@ -476,31 +477,45 @@ public class Panel_Workflow extends AbsolutePanel {
 
 	}
 
+	AbsolutePanel setRisk() {
+		AbsolutePanel absolutePanel = new AbsolutePanel();
+		absolutePanel.setSize("30%", "100%");
+		DOM.setStyleAttribute(absolutePanel.getElement(), "backgroundColor",
+				"#D2E6D2");
+
+		return absolutePanel;
+	}
+
 	/** on show */
 	public void onShow() {
-		//lock the finished
-		if (calendar_panel.workflowApp.calendarClient.isLocked()==true) {
+		// lock the finished
+		if (calendar_panel.workflowApp.calendarClient.isLocked() == true) {
 			textBox1.setEnabled(false);
 			textBox3.setEnabled(false);
 			((DateBox) textBox2.getWidget(0)).setEnabled(false);
 			((TextBox) textBox2.getWidget(1)).setEnabled(false);
 			((TextBox) textBox2.getWidget(3)).setEnabled(false);
 			((DateBox) textBox2.getWidget(4)).setEnabled(false);
-			((Button)(((AbsolutePanel)getWidget(1)).getWidget(1))).setEnabled(false);
-			((Button)(((AbsolutePanel)getWidget(1)).getWidget(2))).setEnabled(false);
-			((Button)(((AbsolutePanel)getWidget(1)).getWidget(3))).setEnabled(false);
+			((Button) (((AbsolutePanel) getWidget(1)).getWidget(1)))
+					.setEnabled(false);
+			((Button) (((AbsolutePanel) getWidget(1)).getWidget(2)))
+					.setEnabled(false);
+			((Button) (((AbsolutePanel) getWidget(1)).getWidget(3)))
+					.setEnabled(false);
 
-		}
-		else {
+		} else {
 			textBox1.setEnabled(true);
 			textBox3.setEnabled(true);
 			((DateBox) textBox2.getWidget(0)).setEnabled(true);
 			((TextBox) textBox2.getWidget(1)).setEnabled(true);
 			((TextBox) textBox2.getWidget(3)).setEnabled(true);
 			((DateBox) textBox2.getWidget(4)).setEnabled(true);
-			((Button)(((AbsolutePanel)getWidget(1)).getWidget(1))).setEnabled(true);
-			((Button)(((AbsolutePanel)getWidget(1)).getWidget(2))).setEnabled(true);
-			((Button)(((AbsolutePanel)getWidget(1)).getWidget(3))).setEnabled(true);
+			((Button) (((AbsolutePanel) getWidget(1)).getWidget(1)))
+					.setEnabled(true);
+			((Button) (((AbsolutePanel) getWidget(1)).getWidget(2)))
+					.setEnabled(true);
+			((Button) (((AbsolutePanel) getWidget(1)).getWidget(3)))
+					.setEnabled(true);
 		}
 		base.diagramBuilderExample.scrollPanel.scrollToLeft();
 		base.diagramBuilderExample.scrollPanel.scrollToTop();
