@@ -40,7 +40,6 @@ import com.ics.tcg.web.workflow.client.composite.complement.ContextMenuGwt;
 import com.ics.tcg.web.workflow.client.composite.complement.MyPanel;
 import com.ics.tcg.web.workflow.client.data.Client_Loop;
 import com.ics.tcg.web.workflow.client.data.Client_Node;
-import com.ics.tcg.web.workflow.client.data.Client_NonFixedNumFor;
 import com.ics.tcg.web.workflow.client.data.Client_ServiceTask;
 import com.ics.tcg.web.workflow.client.data.Client_Workflow;
 import com.ics.tcg.web.workflow.client.service.DataLib;
@@ -279,12 +278,14 @@ public class LoopTask extends ServiceTask {
 				Client_Loop client_Loop = (Client_Loop) sub_workflow
 						.getHasLastNode();
 				methodInfo = client_Loop.getServiceConfigure().getMethodInfo();
-			} else if (sub_workflow.getHasLastNode().getName().equals("TLoop")) {
-				Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) sub_workflow
-						.getHasLastNode();
-				methodInfo = client_NonFixedNumFor.getServiceConfigure()
-						.getMethodInfo();
-			} else if (sub_workflow.getHasLastNode().getName().equals("Choice")) {
+			} 
+//			else if (sub_workflow.getHasLastNode().getName().equals("TLoop")) {
+//				Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) sub_workflow
+//						.getHasLastNode();
+//				methodInfo = client_NonFixedNumFor.getServiceConfigure()
+//						.getMethodInfo();
+//			} 
+			else if (sub_workflow.getHasLastNode().getName().equals("Choice")) {
 
 			} else {
 				Client_ServiceTask client_ServiceTask = (Client_ServiceTask) sub_workflow
@@ -760,22 +761,24 @@ public class LoopTask extends ServiceTask {
 							.getParamInfoArray());
 				}
 			}
-		} else if (client_Node.getName().equals("TLoop")) {
-			Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) client_Node;
-			if (client_NonFixedNumFor.getServiceConfigure().getMethodInfo() != null) {
-				TreeItem serviceName = staticTree.addItem(client_NonFixedNumFor
-						.getName());
-				MethodInfo methodInfo = client_NonFixedNumFor
-						.getServiceConfigure().getMethodInfo();
-				if (methodInfo != null) {
-					TreeItem output = serviceName.addItem(methodInfo
-							.getMethodName()
-							+ ".OutputInfo");
-					addParamInfoInTree(output, methodInfo.getOutputInfo()
-							.getParamInfoArray());
-				}
-			}
-		} else {
+		} 
+//		else if (client_Node.getName().equals("TLoop")) {
+//			Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) client_Node;
+//			if (client_NonFixedNumFor.getServiceConfigure().getMethodInfo() != null) {
+//				TreeItem serviceName = staticTree.addItem(client_NonFixedNumFor
+//						.getName());
+//				MethodInfo methodInfo = client_NonFixedNumFor
+//						.getServiceConfigure().getMethodInfo();
+//				if (methodInfo != null) {
+//					TreeItem output = serviceName.addItem(methodInfo
+//							.getMethodName()
+//							+ ".OutputInfo");
+//					addParamInfoInTree(output, methodInfo.getOutputInfo()
+//							.getParamInfoArray());
+//				}
+//			}
+//		} 
+		else {
 			Client_ServiceTask client_ServiceTask = (Client_ServiceTask) client_Node;
 			TreeItem serviceName = staticTree.addItem(client_ServiceTask
 					.getName());

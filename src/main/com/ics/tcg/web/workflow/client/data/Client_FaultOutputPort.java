@@ -7,9 +7,7 @@
 
 package com.ics.tcg.web.workflow.client.data;
 
-import java.io.Serializable;
-
-public class Client_FaultOutputPort extends Client_Port implements Serializable {
+public class Client_FaultOutputPort extends Client_Port{
 
 	/**
 	 * 
