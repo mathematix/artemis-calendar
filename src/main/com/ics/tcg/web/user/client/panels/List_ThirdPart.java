@@ -107,7 +107,7 @@ public class List_ThirdPart extends VerticalPanel {
 							|| event.getClientX() > this.getAbsoluteLeft() + 100
 							|| event.getClientY() < this.getAbsoluteTop()
 							|| event.getClientY() > this.getAbsoluteTop() + 200) {
-						if (add_popupPanel!=null) {
+						if (add_popupPanel != null) {
 							add_popupPanel.hide();
 						}
 					}
@@ -194,7 +194,7 @@ public class List_ThirdPart extends VerticalPanel {
 					}
 				}
 				popupPanel.setPopupPosition(tabPanel.getAbsoluteLeft() + 160,
-						tabPanel.getAbsoluteTop()-30);
+						tabPanel.getAbsoluteTop() - 30);
 				popupPanel.show();
 			}
 		});
@@ -496,7 +496,7 @@ public class List_ThirdPart extends VerticalPanel {
 
 				selectedLabel = (MLabel) label;
 				// Set the info about the contact
-				contactInfo.setHTML("aaaa<br><i>" + "ddddddddddd</i><br>");
+				contactInfo.setHTML(setInfo(label.userthirdPartClient.getThirdpartname()));
 				int left = label.getAbsoluteLeft() + label.getOffsetWidth() - 1;
 				int top = label.getAbsoluteTop();
 				contactPopup.setPopupPosition(left, top);
@@ -544,6 +544,23 @@ public class List_ThirdPart extends VerticalPanel {
 		} else {
 			DOM.setStyleAttribute(labels.get(i).getElement(), "background",
 					"#EFEFEF");
+		}
+	}
+
+	/** set information */
+	String setInfo(String name) {
+		if (name.equals("thirdpart1")) {
+			return "State Bureau of Quality and Technical Supervision";
+		} else if (name.equals("thirdpart2")) {
+			return "Provincial Bureau of Quality and Technical Supervision";
+		} else if (name.equals("thirdpart3")) {
+			return "Beijing Municipal Administration of Quality and Technology Supervisio";
+		} else if (name.equals("thirdpart4")) {
+			return "Nanjing Municipal Administration of Quality and Technology Supervisio";
+		} else if (name.equals("thirdpart5")) {
+			return "Shanghai Municipal Administration of Quality and Technology Supervisio";
+		} else {
+			return "";
 		}
 	}
 }

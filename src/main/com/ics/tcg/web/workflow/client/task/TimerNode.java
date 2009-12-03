@@ -72,7 +72,7 @@ public class TimerNode extends Composite {
 
 		// 自定义datebox的输出格式，在这里采用了简洁的输出格式"M/d/yy H:mm"
 		final DateBox dateBox = new DateBox();
-		DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat("M/d/yy H:mm"); // DateTimeFormat只能通过函数getFormat来生成满足特定pattern的对象，因为其构造函数为protected
+		DateTimeFormat dateTimeFormat = DateTimeFormat.getFormat("yyyy-MM-dd HH:mm:ss"); // DateTimeFormat只能通过函数getFormat来生成满足特定pattern的对象，因为其构造函数为protected
 		DateBox.DefaultFormat defaultFormat = new DateBox.DefaultFormat(
 				dateTimeFormat);
 		dateBox.setFormat(defaultFormat);

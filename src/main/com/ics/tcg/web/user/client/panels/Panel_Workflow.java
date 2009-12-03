@@ -125,6 +125,7 @@ public class Panel_Workflow extends AbsolutePanel {
 		AbsolutePanel detailpanel = setDetail();
 		calendarsettings.add(detailpanel, 10, 10);
 		AbsolutePanel riskPanel = setRisk();
+		calendarsettings.add(riskPanel, detailpanel.getOffsetWidth() + 30, 10);
 		this.add(calendarsettings, 0, 60);
 
 		// add workflow
@@ -477,12 +478,16 @@ public class Panel_Workflow extends AbsolutePanel {
 
 	}
 
+	/** set risk panel */
 	AbsolutePanel setRisk() {
 		AbsolutePanel absolutePanel = new AbsolutePanel();
-		absolutePanel.setSize("30%", "100%");
+		absolutePanel.setSize("140", "140");
 		DOM.setStyleAttribute(absolutePanel.getElement(), "backgroundColor",
-				"#D2E6D2");
+				"#3971DE");
+		HTML html = new HTML("");
+		DOM.setStyleAttribute(html.getElement(), "margin", "5px");
 
+		absolutePanel.add(html, 0, 0);
 		return absolutePanel;
 	}
 
@@ -503,6 +508,12 @@ public class Panel_Workflow extends AbsolutePanel {
 			((Button) (((AbsolutePanel) getWidget(1)).getWidget(3)))
 					.setEnabled(false);
 
+			((AbsolutePanel) this.getWidget(2)).getWidget(1).setVisible(true);
+			((AbsolutePanel) this.getWidget(2)).setWidgetPosition(
+					((AbsolutePanel) this.getWidget(2)).getWidget(1),
+					((AbsolutePanel) this.getWidget(2)).getWidget(0)
+							.getOffsetWidth() + 30, 10);
+
 		} else {
 			textBox1.setEnabled(true);
 			textBox3.setEnabled(true);
@@ -516,6 +527,8 @@ public class Panel_Workflow extends AbsolutePanel {
 					.setEnabled(true);
 			((Button) (((AbsolutePanel) getWidget(1)).getWidget(3)))
 					.setEnabled(true);
+
+			((AbsolutePanel) this.getWidget(2)).getWidget(1).setVisible(false);
 		}
 		base.diagramBuilderExample.scrollPanel.scrollToLeft();
 		base.diagramBuilderExample.scrollPanel.scrollToTop();
@@ -551,6 +564,11 @@ public class Panel_Workflow extends AbsolutePanel {
 						public void onSuccess(Client_Workflow client_Workflow) {
 							base.diagramBuilderExample
 									.load_workflow_from_server(client_Workflow);
+							((HTML) ((AbsolutePanel) (((AbsolutePanel) panel_Workflow
+									.getWidget(2)).getWidget(1))).getWidget(0))
+									.setHTML("<span style='color:white;'>Risk is :<br></span><h1 style='color:red;'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp"
+											+ client_Workflow.getRisk()
+											+ "</h1>");
 						}
 					});
 		} else {
@@ -593,8 +611,12 @@ public class Panel_Workflow extends AbsolutePanel {
 									.toString(workflowPanel_inner
 											.getOffsetHeight() - 70));
 				}
+				((AbsolutePanel) panel_Workflow.getWidget(2))
+						.setWidgetPosition(((AbsolutePanel) panel_Workflow
+								.getWidget(2)).getWidget(1),
+								((AbsolutePanel) panel_Workflow.getWidget(2))
+										.getWidget(0).getOffsetWidth() + 30, 10);
 			}
 		});
 	}
-
 }

@@ -23,6 +23,8 @@ public class Client_Workflow implements Serializable {
 	protected ArrayList<Client_Node> lastNodes = new ArrayList<Client_Node>();
 	protected boolean isDone;
 	protected boolean lock;
+	//1,2,3 means low middle high
+	protected int risk;
 
 	public boolean isLock() {
 		return lock;
@@ -70,4 +72,13 @@ public class Client_Workflow implements Serializable {
 	public void setHasLastNode(Client_Node hasLastNode) {
 		this.hasLastNode = hasLastNode;
 	}
+
+	public int getRisk() {
+		return risk;
+	}
+
+	public void setRisk(int risk) {
+		this.risk = risk;
+	}
+	
 }

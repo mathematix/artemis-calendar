@@ -179,7 +179,7 @@ public class QosDialog extends DialogBox {
 					.getContentBlocksList().get(0).getContentItemsList().get(0);
 
 			//certification group
-			String[] cg = {"ISO","CQS","CE"};
+			String[] cg = {"ISO","CQC","CE"};
 			for (int j = 0; j < 3; j++) {
 				final RadioButton radioButton = new RadioButton("cgroup");
 				radioButton.setText(cg[j]);
