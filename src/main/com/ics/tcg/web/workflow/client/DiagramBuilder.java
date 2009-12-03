@@ -208,7 +208,7 @@ public class DiagramBuilder extends AbstractConnections {
 		helpPanel.addStyleName("helpPanel");
 
 		scrollPanel = new ScrollPanel();
-		scrollPanel.setSize("400", "300");
+		scrollPanel.setSize("600", "500");
 		// vp.add(helpPanel);
 		// vp.add(toolbox);
 		scrollPanel.add(panel);

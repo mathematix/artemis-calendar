@@ -587,7 +587,7 @@ public class Panel_Workflow extends AbsolutePanel {
 		base.diagramBuilderExample.getArea().setSize(
 				Integer.toString(workflowPanel_inner.getOffsetWidth() - 30),
 				Integer.toString(workflowPanel_inner.getOffsetHeight() - 70));
-		base.diagramBuilderExample.getPanel().setSize("1200", "800");
+		base.diagramBuilderExample.getPanel().setSize("1200", "500");
 		base.diagramBuilderExample.scrollPanel.setSize(Integer
 				.toString(workflowPanel_inner.getOffsetWidth() - 210), Integer
 				.toString(workflowPanel_inner.getOffsetHeight() - 70));

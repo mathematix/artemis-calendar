@@ -25,12 +25,10 @@ import com.ics.tcg.web.workflow.client.data.Client_Choice;
 import com.ics.tcg.web.workflow.client.data.Client_ConditionalOutputPort;
 import com.ics.tcg.web.workflow.client.data.Client_Configuration;
 import com.ics.tcg.web.workflow.client.data.Client_FaultOutputPort;
-import com.ics.tcg.web.workflow.client.data.Client_FixedNumFor;
 import com.ics.tcg.web.workflow.client.data.Client_IfCondition;
 import com.ics.tcg.web.workflow.client.data.Client_InputPort;
 import com.ics.tcg.web.workflow.client.data.Client_Loop;
 import com.ics.tcg.web.workflow.client.data.Client_Node;
-import com.ics.tcg.web.workflow.client.data.Client_NonFixedNumFor;
 import com.ics.tcg.web.workflow.client.data.Client_OutputPort;
 import com.ics.tcg.web.workflow.client.data.Client_Service;
 import com.ics.tcg.web.workflow.client.data.Client_ServiceTask;
@@ -422,134 +420,137 @@ public class SubDiagram extends DiagramBuilder {
 					sub_workflow.getHasNodes().add(choice);
 					Client_Node workFlowNode = choice;
 					workflowMap.put(workflowtasknode, workFlowNode);
-				} else if (workflowtasknode.getText().equals(FIXEDFORNODE)) {
-					FixedFor fixedForTask = (FixedFor) workflowtasknode;
-					Client_FixedNumFor fixedNumFor = new Client_FixedNumFor();
-
-					// 设置基本属性
-					fixedNumFor.setId(fixedForTask.getID());
-					fixedNumFor.setX(fixedForTask.getPixel_x());
-					fixedNumFor.setY(fixedForTask.getPixel_y());
-					fixedNumFor.setName(fixedForTask.getText());
-
-					Client_InputPort inputPort = new Client_InputPort();
-					inputPort.setId(Integer.toString(fixedForTask.getPanel2()
-							.hashCode()));
-					inputPort.setBelongTo(fixedNumFor);
-					Client_OutputPort outputPort = new Client_OutputPort();
-					outputPort.setId(Integer.toString(fixedForTask.getPanel3()
-							.hashCode()));
-					outputPort.setBelongTo(fixedNumFor);
-					Client_FaultOutputPort faultOutputPort = new Client_FaultOutputPort();
-					faultOutputPort.setId(Integer.toString(fixedForTask
-							.getPanel4().hashCode()));
-					faultOutputPort.setBelongTo(fixedNumFor);
-					fixedNumFor.setInputPort(inputPort);
-					fixedNumFor.setOutputPort(outputPort);
-					fixedNumFor.setFaultOutputPort(faultOutputPort);
-
-					fixedNumFor.setComment(null); // 暂时没有
-					fixedNumFor.setWorkflow(fixedForTask.sub_workflow);
-					fixedNumFor.setServiceConfigure(fixedForTask
-							.getServiceConfigure());
-					fixedNumFor.setChangeServiceProvider(fixedForTask
-							.isChangeServiceProvider());
-					fixedNumFor.setIsstart(fixedForTask.isIsstart());
-					fixedNumFor.setIsfinished(fixedForTask.isIsfinished());
-
-					// 在工作流类中，设置起始节点
-					if (fixedNumFor.isIsstart()) {
-						sub_workflow.setHasFirstNode(fixedNumFor);
-						starter_count++;
-						if (starter_count > 1) {
-							System.out.println("弹出一个对话框，起始节点多于一个，强行结束保存过程");
-							check = Window
-									.confirm("Just one begin-node, force to end and return to null, sure?");
-							return null;
-						}
-					}
-					if (fixedNumFor.isIsfinished()) {
-						sub_workflow.setHasLastNode(fixedNumFor);
-						ender_count++;
-						if (ender_count > 1) {
-							System.out.println("弹出一个对话框，终止节点多于一个，强行结束保存过程");
-							check = Window
-									.confirm("Just one begin-node, force to end and return to null, sure?");
-							return null;
-						}
-					}
-
-					if (!fixedForTask.hasFinishedConfigure)
-						allNodesHasBeenSave = false;
-
-					sub_workflow.getHasNodes().add(fixedNumFor);
-					Client_Node workFlowNode = fixedNumFor;
-					workflowMap.put(workflowtasknode, workFlowNode);
-				} else if (workflowtasknode.getText().equals(NONFIXEDNUMFOR)) {
-					NonFixedFor nonFixedForTask = (NonFixedFor) workflowtasknode;
-					Client_NonFixedNumFor nonFixedNumFor = new Client_NonFixedNumFor();
-
-					// 设置基本属性
-					nonFixedNumFor.setId(nonFixedForTask.getID());
-					nonFixedNumFor.setX(nonFixedForTask.getPixel_x());
-					nonFixedNumFor.setY(nonFixedForTask.getPixel_y());
-					nonFixedNumFor.setName(nonFixedForTask.getText());
-
-					Client_InputPort inputPort = new Client_InputPort();
-					inputPort.setId(Integer.toString(nonFixedForTask
-							.getPanel2().hashCode()));
-					inputPort.setBelongTo(nonFixedNumFor);
-					Client_OutputPort outputPort = new Client_OutputPort();
-					outputPort.setId(Integer.toString(nonFixedForTask
-							.getPanel3().hashCode()));
-					outputPort.setBelongTo(nonFixedNumFor);
-					Client_FaultOutputPort faultOutputPort = new Client_FaultOutputPort();
-					faultOutputPort.setId(Integer.toString(nonFixedForTask
-							.getPanel4().hashCode()));
-					faultOutputPort.setBelongTo(nonFixedNumFor);
-					nonFixedNumFor.setInputPort(inputPort);
-					nonFixedNumFor.setOutputPort(outputPort);
-					nonFixedNumFor.setFaultOutputPort(faultOutputPort);
-
-					nonFixedNumFor.setComment(null); // 暂时没有
-					nonFixedNumFor.setWorkflow(nonFixedForTask.sub_workflow);
-					nonFixedNumFor.setServiceConfigure(nonFixedForTask
-							.getServiceConfigure());
-					nonFixedNumFor.setChangeServiceProvider(nonFixedForTask
-							.isChangeServiceProvider());
-					nonFixedNumFor.setIsstart(nonFixedForTask.isIsstart());
-					nonFixedNumFor
-							.setIsfinished(nonFixedForTask.isIsfinished());
-
-					// 在工作流类中，设置起始节点
-					if (nonFixedNumFor.isIsstart()) {
-						sub_workflow.setHasFirstNode(nonFixedNumFor);
-						starter_count++;
-						if (starter_count > 1) {
-							System.out.println("弹出一个对话框，起始节点多于一个，强行结束保存过程");
-							check = Window
-									.confirm("Just one begin-node, force to end and return to null, sure?");
-							return null;
-						}
-					}
-					if (nonFixedNumFor.isIsfinished()) {
-						sub_workflow.setHasLastNode(nonFixedNumFor);
-						ender_count++;
-						if (ender_count > 1) {
-							System.out.println("弹出一个对话框，终止节点多于一个，强行结束保存过程");
-							check = Window
-									.confirm("Just one begin-node, force to end and return to null, sure?");
-							return null;
-						}
-					}
-
-					if (!nonFixedForTask.hasFinishedConfigure)
-						allNodesHasBeenSave = false;
-
-					sub_workflow.getHasNodes().add(nonFixedNumFor);
-					Client_Node workFlowNode = nonFixedNumFor;
-					workflowMap.put(workflowtasknode, workFlowNode);
-				} else {
+				} 
+//				else if (workflowtasknode.getText().equals(FIXEDFORNODE)) {
+//					FixedFor fixedForTask = (FixedFor) workflowtasknode;
+//					Client_FixedNumFor fixedNumFor = new Client_FixedNumFor();
+//
+//					// 设置基本属性
+//					fixedNumFor.setId(fixedForTask.getID());
+//					fixedNumFor.setX(fixedForTask.getPixel_x());
+//					fixedNumFor.setY(fixedForTask.getPixel_y());
+//					fixedNumFor.setName(fixedForTask.getText());
+//
+//					Client_InputPort inputPort = new Client_InputPort();
+//					inputPort.setId(Integer.toString(fixedForTask.getPanel2()
+//							.hashCode()));
+//					inputPort.setBelongTo(fixedNumFor);
+//					Client_OutputPort outputPort = new Client_OutputPort();
+//					outputPort.setId(Integer.toString(fixedForTask.getPanel3()
+//							.hashCode()));
+//					outputPort.setBelongTo(fixedNumFor);
+//					Client_FaultOutputPort faultOutputPort = new Client_FaultOutputPort();
+//					faultOutputPort.setId(Integer.toString(fixedForTask
+//							.getPanel4().hashCode()));
+//					faultOutputPort.setBelongTo(fixedNumFor);
+//					fixedNumFor.setInputPort(inputPort);
+//					fixedNumFor.setOutputPort(outputPort);
+//					fixedNumFor.setFaultOutputPort(faultOutputPort);
+//
+//					fixedNumFor.setComment(null); // 暂时没有
+//					fixedNumFor.setWorkflow(fixedForTask.sub_workflow);
+//					fixedNumFor.setServiceConfigure(fixedForTask
+//							.getServiceConfigure());
+//					fixedNumFor.setChangeServiceProvider(fixedForTask
+//							.isChangeServiceProvider());
+//					fixedNumFor.setIsstart(fixedForTask.isIsstart());
+//					fixedNumFor.setIsfinished(fixedForTask.isIsfinished());
+//
+//					// 在工作流类中，设置起始节点
+//					if (fixedNumFor.isIsstart()) {
+//						sub_workflow.setHasFirstNode(fixedNumFor);
+//						starter_count++;
+//						if (starter_count > 1) {
+//							System.out.println("弹出一个对话框，起始节点多于一个，强行结束保存过程");
+//							check = Window
+//									.confirm("Just one begin-node, force to end and return to null, sure?");
+//							return null;
+//						}
+//					}
+//					if (fixedNumFor.isIsfinished()) {
+//						sub_workflow.setHasLastNode(fixedNumFor);
+//						ender_count++;
+//						if (ender_count > 1) {
+//							System.out.println("弹出一个对话框，终止节点多于一个，强行结束保存过程");
+//							check = Window
+//									.confirm("Just one begin-node, force to end and return to null, sure?");
+//							return null;
+//						}
+//					}
+//
+//					if (!fixedForTask.hasFinishedConfigure)
+//						allNodesHasBeenSave = false;
+//
+//					sub_workflow.getHasNodes().add(fixedNumFor);
+//					Client_Node workFlowNode = fixedNumFor;
+//					workflowMap.put(workflowtasknode, workFlowNode);
+//				}
+//				else if (workflowtasknode.getText().equals(NONFIXEDNUMFOR)) {
+//					NonFixedFor nonFixedForTask = (NonFixedFor) workflowtasknode;
+//					Client_NonFixedNumFor nonFixedNumFor = new Client_NonFixedNumFor();
+//
+//					// 设置基本属性
+//					nonFixedNumFor.setId(nonFixedForTask.getID());
+//					nonFixedNumFor.setX(nonFixedForTask.getPixel_x());
+//					nonFixedNumFor.setY(nonFixedForTask.getPixel_y());
+//					nonFixedNumFor.setName(nonFixedForTask.getText());
+//
+//					Client_InputPort inputPort = new Client_InputPort();
+//					inputPort.setId(Integer.toString(nonFixedForTask
+//							.getPanel2().hashCode()));
+//					inputPort.setBelongTo(nonFixedNumFor);
+//					Client_OutputPort outputPort = new Client_OutputPort();
+//					outputPort.setId(Integer.toString(nonFixedForTask
+//							.getPanel3().hashCode()));
+//					outputPort.setBelongTo(nonFixedNumFor);
+//					Client_FaultOutputPort faultOutputPort = new Client_FaultOutputPort();
+//					faultOutputPort.setId(Integer.toString(nonFixedForTask
+//							.getPanel4().hashCode()));
+//					faultOutputPort.setBelongTo(nonFixedNumFor);
+//					nonFixedNumFor.setInputPort(inputPort);
+//					nonFixedNumFor.setOutputPort(outputPort);
+//					nonFixedNumFor.setFaultOutputPort(faultOutputPort);
+//
+//					nonFixedNumFor.setComment(null); // 暂时没有
+//					nonFixedNumFor.setWorkflow(nonFixedForTask.sub_workflow);
+//					nonFixedNumFor.setServiceConfigure(nonFixedForTask
+//							.getServiceConfigure());
+//					nonFixedNumFor.setChangeServiceProvider(nonFixedForTask
+//							.isChangeServiceProvider());
+//					nonFixedNumFor.setIsstart(nonFixedForTask.isIsstart());
+//					nonFixedNumFor
+//							.setIsfinished(nonFixedForTask.isIsfinished());
+//
+//					// 在工作流类中，设置起始节点
+//					if (nonFixedNumFor.isIsstart()) {
+//						sub_workflow.setHasFirstNode(nonFixedNumFor);
+//						starter_count++;
+//						if (starter_count > 1) {
+//							System.out.println("弹出一个对话框，起始节点多于一个，强行结束保存过程");
+//							check = Window
+//									.confirm("Just one begin-node, force to end and return to null, sure?");
+//							return null;
+//						}
+//					}
+//					if (nonFixedNumFor.isIsfinished()) {
+//						sub_workflow.setHasLastNode(nonFixedNumFor);
+//						ender_count++;
+//						if (ender_count > 1) {
+//							System.out.println("弹出一个对话框，终止节点多于一个，强行结束保存过程");
+//							check = Window
+//									.confirm("Just one begin-node, force to end and return to null, sure?");
+//							return null;
+//						}
+//					}
+//
+//					if (!nonFixedForTask.hasFinishedConfigure)
+//						allNodesHasBeenSave = false;
+//
+//					sub_workflow.getHasNodes().add(nonFixedNumFor);
+//					Client_Node workFlowNode = nonFixedNumFor;
+//					workflowMap.put(workflowtasknode, workFlowNode);
+//				}
+				else {
 					ServiceTask simpleTask = (ServiceTask) workflowtasknode;
 					Client_ServiceTask service = new Client_ServiceTask();
 
@@ -646,7 +647,8 @@ public class SubDiagram extends DiagramBuilder {
 					LoopTask loopTask = (LoopTask) workflowtasknode;
 					Client_Loop loop = (Client_Loop) workflowMap.get(loopTask);
 
-					ArrayList<ServiceTask> backTaskList = new ArrayList<ServiceTask>();
+					// 给loop的outputport中的nextnodes添加节点
+					ArrayList<Workflowtasknode> backTaskList = new ArrayList<Workflowtasknode>();
 					MyPanel outport = loopTask.getPanel3();
 					CustomUIObjectConnector cons = CustomUIObjectConnector
 							.getWrapper(outport);
@@ -660,7 +662,7 @@ public class SubDiagram extends DiagramBuilder {
 						back_end_Connector = (CustomUIObjectConnector) c
 								.getConnected().get(1);
 						MyPanel back_end_panelPanel = (MyPanel) back_end_Connector.wrapped;
-						ServiceTask back_end_simpletask = (ServiceTask) back_end_panelPanel
+						Workflowtasknode back_end_simpletask = (Workflowtasknode) back_end_panelPanel
 								.getParent().getParent();
 
 						Workflowtasknode workflowtasknode2 = back_end_simpletask;
@@ -669,7 +671,7 @@ public class SubDiagram extends DiagramBuilder {
 						backTaskList.add(back_end_simpletask);
 					}
 
-					ArrayList<ServiceTask> preTaskList = new ArrayList<ServiceTask>();
+					ArrayList<Workflowtasknode> preTaskList = new ArrayList<Workflowtasknode>();
 					MyPanel inport = loopTask.getPanel2();
 					CustomUIObjectConnector cons2 = CustomUIObjectConnector
 							.getWrapper(inport);
@@ -686,7 +688,7 @@ public class SubDiagram extends DiagramBuilder {
 						pre_end_Connector = (CustomUIObjectConnector) c
 								.getConnected().get(0);
 						MyPanel pre_end_panelPanel = (MyPanel) pre_end_Connector.wrapped;
-						ServiceTask pre_end_simpletask = (ServiceTask) pre_end_panelPanel
+						Workflowtasknode pre_end_simpletask = (Workflowtasknode) pre_end_panelPanel
 								.getParent().getParent();
 
 						Workflowtasknode workflowtasknode2 = pre_end_simpletask;
@@ -694,6 +696,7 @@ public class SubDiagram extends DiagramBuilder {
 						loop.getInputPort().getBeforeNodes().add(loop2);
 						preTaskList.add(pre_end_simpletask);
 					}
+
 				} else if (workflowtasknode.getText().equals(CHOICENODE)) { // 节点是选择几点
 					ChoiceTask choiceTask = (ChoiceTask) workflowtasknode;
 					Client_Choice choice = (Client_Choice) workflowMap
@@ -702,8 +705,9 @@ public class SubDiagram extends DiagramBuilder {
 					for (Iterator iterator2 = choiceTask.outport_list
 							.iterator(); iterator2.hasNext();) {
 
-						ArrayList<ServiceTask> backTaskList = new ArrayList<ServiceTask>();
+						ArrayList<Workflowtasknode> backTaskList = new ArrayList<Workflowtasknode>();
 						MyPanel outport = (MyPanel) iterator2.next();
+						@SuppressWarnings("unused")
 						String outportid = Integer.toString(outport.hashCode());
 						// Client_ConditionalOutputPort conditionalOutputPort =
 						// null;
@@ -733,7 +737,7 @@ public class SubDiagram extends DiagramBuilder {
 							back_end_Connector = (CustomUIObjectConnector) c
 									.getConnected().get(1);
 							MyPanel back_end_panelPanel = (MyPanel) back_end_Connector.wrapped;
-							ServiceTask back_end_simpletask = (ServiceTask) back_end_panelPanel
+							Workflowtasknode back_end_simpletask = (Workflowtasknode) back_end_panelPanel
 									.getParent().getParent();
 
 							Workflowtasknode workflowtasknode2 = back_end_simpletask;
@@ -746,7 +750,7 @@ public class SubDiagram extends DiagramBuilder {
 						}
 					}
 
-					ArrayList<ServiceTask> preTaskList = new ArrayList<ServiceTask>();
+					ArrayList<Workflowtasknode> preTaskList = new ArrayList<Workflowtasknode>();
 					MyPanel inport = choiceTask.getPanel2();
 					CustomUIObjectConnector cons2 = CustomUIObjectConnector
 							.getWrapper(inport);
@@ -763,126 +767,130 @@ public class SubDiagram extends DiagramBuilder {
 						pre_end_Connector = (CustomUIObjectConnector) c
 								.getConnected().get(0);
 						MyPanel pre_end_panelPanel = (MyPanel) pre_end_Connector.wrapped;
-						ServiceTask pre_end_simpletask = (ServiceTask) pre_end_panelPanel
+						Workflowtasknode pre_end_simpletask = (Workflowtasknode) pre_end_panelPanel
 								.getParent().getParent();
 
 						Workflowtasknode workflowtasknode2 = pre_end_simpletask;
-						Client_Node loop2 = workflowMap.get(workflowtasknode2);
-						choice.getInputPort().getBeforeNodes().add(loop2);
-						preTaskList.add(pre_end_simpletask);
-					}
-				} else if (workflowtasknode.getText().equals(FIXEDFORNODE)) {
-					FixedFor fixedForTask = (FixedFor) workflowtasknode;
-					Client_FixedNumFor fixedNumFor = (Client_FixedNumFor) workflowMap
-							.get(fixedForTask);
-
-					ArrayList<ServiceTask> backTaskList = new ArrayList<ServiceTask>();
-					MyPanel outport = fixedForTask.getPanel3();
-					CustomUIObjectConnector cons = CustomUIObjectConnector
-							.getWrapper(outport);
-					Collection collection = cons.getConnections();
-					CustomUIObjectConnector back_end_Connector;
-					for (Iterator iterator2 = collection.iterator(); iterator2
-							.hasNext();) {
-						CustomConnection c = (CustomConnection) iterator2
-								.next();
-						back_end_Connector = (CustomUIObjectConnector) c
-								.getConnected().get(1);
-						MyPanel back_end_panelPanel = (MyPanel) back_end_Connector.wrapped;
-						ServiceTask back_end_simpletask = (ServiceTask) back_end_panelPanel
-								.getParent().getParent();
-
-						Workflowtasknode workflowtasknode2 = back_end_simpletask;
-						Client_Node fixedNumFor2 = workflowMap
+						Client_Node choice2 = workflowMap
 								.get(workflowtasknode2);
-						fixedNumFor.getOutputPort().getHasNextNodes().add(
-								fixedNumFor2);
-
-						backTaskList.add(back_end_simpletask);
-					}
-
-					ArrayList<ServiceTask> preTaskList = new ArrayList<ServiceTask>();
-					MyPanel inport = fixedForTask.getPanel2();
-					CustomUIObjectConnector cons2 = CustomUIObjectConnector
-							.getWrapper(inport);
-					Collection collection2 = cons2.getConnections();
-
-					fixedNumFor.setPreNodeNum(collection2.size());
-
-					CustomUIObjectConnector pre_end_Connector;
-					for (Iterator iterator2 = collection2.iterator(); iterator2
-							.hasNext();) {
-						// 找出outputport的下一个节点
-						CustomConnection c = (CustomConnection) iterator2
-								.next();
-						pre_end_Connector = (CustomUIObjectConnector) c
-								.getConnected().get(0);
-						MyPanel pre_end_panelPanel = (MyPanel) pre_end_Connector.wrapped;
-						ServiceTask pre_end_simpletask = (ServiceTask) pre_end_panelPanel
-								.getParent().getParent();
-
-						Workflowtasknode workflowtasknode2 = pre_end_simpletask;
-						Client_Node loop2 = workflowMap.get(workflowtasknode2);
-						fixedNumFor.getInputPort().getBeforeNodes().add(loop2);
+						choice.getInputPort().getBeforeNodes().add(choice2);
 						preTaskList.add(pre_end_simpletask);
 					}
-				} else if (workflowtasknode.getText().equals(NONFIXEDNUMFOR)) {
-					NonFixedFor nonFixedForTask = (NonFixedFor) workflowtasknode;
-					Client_NonFixedNumFor nonFixedNumFor = (Client_NonFixedNumFor) workflowMap
-							.get(nonFixedForTask);
-
-					ArrayList<ServiceTask> backTaskList = new ArrayList<ServiceTask>();
-					MyPanel outport = nonFixedForTask.getPanel3();
-					CustomUIObjectConnector cons = CustomUIObjectConnector
-							.getWrapper(outport);
-					Collection collection = cons.getConnections();
-					CustomUIObjectConnector back_end_Connector;
-					for (Iterator iterator2 = collection.iterator(); iterator2
-							.hasNext();) {
-						CustomConnection c = (CustomConnection) iterator2
-								.next();
-						back_end_Connector = (CustomUIObjectConnector) c
-								.getConnected().get(1);
-						MyPanel back_end_panelPanel = (MyPanel) back_end_Connector.wrapped;
-						ServiceTask back_end_simpletask = (ServiceTask) back_end_panelPanel
-								.getParent().getParent();
-
-						Workflowtasknode workflowtasknode2 = back_end_simpletask;
-						Client_Node nonFixedNumFor2 = workflowMap
-								.get(workflowtasknode2);
-						nonFixedNumFor.getOutputPort().getHasNextNodes().add(
-								nonFixedNumFor2);
-
-						backTaskList.add(back_end_simpletask);
-					}
-
-					ArrayList<ServiceTask> preTaskList = new ArrayList<ServiceTask>();
-					MyPanel inport = nonFixedForTask.getPanel2();
-					CustomUIObjectConnector cons2 = CustomUIObjectConnector
-							.getWrapper(inport);
-					Collection collection2 = cons2.getConnections();
-
-					nonFixedNumFor.setPreNodeNum(collection2.size());
-
-					CustomUIObjectConnector pre_end_Connector;
-					for (Iterator iterator2 = collection2.iterator(); iterator2
-							.hasNext();) {
-						// 找出outputport的下一个节点
-						CustomConnection c = (CustomConnection) iterator2
-								.next();
-						pre_end_Connector = (CustomUIObjectConnector) c
-								.getConnected().get(0);
-						MyPanel pre_end_panelPanel = (MyPanel) pre_end_Connector.wrapped;
-						ServiceTask pre_end_simpletask = (ServiceTask) pre_end_panelPanel
-								.getParent().getParent();
-
-						Workflowtasknode workflowtasknode2 = pre_end_simpletask;
-						Client_Node loop2 = workflowMap.get(workflowtasknode2);
-						nonFixedNumFor.getInputPort().getBeforeNodes().add(
-								loop2);
-						preTaskList.add(pre_end_simpletask);
-					}
-				} else { // 节点是服务节点
+				} 
+//				else if (workflowtasknode.getText().equals(FIXEDFORNODE)) {
+//					FixedFor fixedForTask = (FixedFor) workflowtasknode;
+//					Client_FixedNumFor fixedNumFor = (Client_FixedNumFor) workflowMap
+//							.get(fixedForTask);
+//
+//					ArrayList<ServiceTask> backTaskList = new ArrayList<ServiceTask>();
+//					MyPanel outport = fixedForTask.getPanel3();
+//					CustomUIObjectConnector cons = CustomUIObjectConnector
+//							.getWrapper(outport);
+//					Collection collection = cons.getConnections();
+//					CustomUIObjectConnector back_end_Connector;
+//					for (Iterator iterator2 = collection.iterator(); iterator2
+//							.hasNext();) {
+//						CustomConnection c = (CustomConnection) iterator2
+//								.next();
+//						back_end_Connector = (CustomUIObjectConnector) c
+//								.getConnected().get(1);
+//						MyPanel back_end_panelPanel = (MyPanel) back_end_Connector.wrapped;
+//						ServiceTask back_end_simpletask = (ServiceTask) back_end_panelPanel
+//								.getParent().getParent();
+//
+//						Workflowtasknode workflowtasknode2 = back_end_simpletask;
+//						Client_Node fixedNumFor2 = workflowMap
+//								.get(workflowtasknode2);
+//						fixedNumFor.getOutputPort().getHasNextNodes().add(
+//								fixedNumFor2);
+//
+//						backTaskList.add(back_end_simpletask);
+//					}
+//
+//					ArrayList<ServiceTask> preTaskList = new ArrayList<ServiceTask>();
+//					MyPanel inport = fixedForTask.getPanel2();
+//					CustomUIObjectConnector cons2 = CustomUIObjectConnector
+//							.getWrapper(inport);
+//					Collection collection2 = cons2.getConnections();
+//
+//					fixedNumFor.setPreNodeNum(collection2.size());
+//
+//					CustomUIObjectConnector pre_end_Connector;
+//					for (Iterator iterator2 = collection2.iterator(); iterator2
+//							.hasNext();) {
+//						// 找出outputport的下一个节点
+//						CustomConnection c = (CustomConnection) iterator2
+//								.next();
+//						pre_end_Connector = (CustomUIObjectConnector) c
+//								.getConnected().get(0);
+//						MyPanel pre_end_panelPanel = (MyPanel) pre_end_Connector.wrapped;
+//						ServiceTask pre_end_simpletask = (ServiceTask) pre_end_panelPanel
+//								.getParent().getParent();
+//
+//						Workflowtasknode workflowtasknode2 = pre_end_simpletask;
+//						Client_Node loop2 = workflowMap.get(workflowtasknode2);
+//						fixedNumFor.getInputPort().getBeforeNodes().add(loop2);
+//						preTaskList.add(pre_end_simpletask);
+//					}
+//				} 
+//				else if (workflowtasknode.getText().equals(NONFIXEDNUMFOR)) {
+//					NonFixedFor nonFixedForTask = (NonFixedFor) workflowtasknode;
+//					Client_NonFixedNumFor nonFixedNumFor = (Client_NonFixedNumFor) workflowMap
+//							.get(nonFixedForTask);
+//
+//					ArrayList<ServiceTask> backTaskList = new ArrayList<ServiceTask>();
+//					MyPanel outport = nonFixedForTask.getPanel3();
+//					CustomUIObjectConnector cons = CustomUIObjectConnector
+//							.getWrapper(outport);
+//					Collection collection = cons.getConnections();
+//					CustomUIObjectConnector back_end_Connector;
+//					for (Iterator iterator2 = collection.iterator(); iterator2
+//							.hasNext();) {
+//						CustomConnection c = (CustomConnection) iterator2
+//								.next();
+//						back_end_Connector = (CustomUIObjectConnector) c
+//								.getConnected().get(1);
+//						MyPanel back_end_panelPanel = (MyPanel) back_end_Connector.wrapped;
+//						ServiceTask back_end_simpletask = (ServiceTask) back_end_panelPanel
+//								.getParent().getParent();
+//
+//						Workflowtasknode workflowtasknode2 = back_end_simpletask;
+//						Client_Node nonFixedNumFor2 = workflowMap
+//								.get(workflowtasknode2);
+//						nonFixedNumFor.getOutputPort().getHasNextNodes().add(
+//								nonFixedNumFor2);
+//
+//						backTaskList.add(back_end_simpletask);
+//					}
+//
+//					ArrayList<ServiceTask> preTaskList = new ArrayList<ServiceTask>();
+//					MyPanel inport = nonFixedForTask.getPanel2();
+//					CustomUIObjectConnector cons2 = CustomUIObjectConnector
+//							.getWrapper(inport);
+//					Collection collection2 = cons2.getConnections();
+//
+//					nonFixedNumFor.setPreNodeNum(collection2.size());
+//
+//					CustomUIObjectConnector pre_end_Connector;
+//					for (Iterator iterator2 = collection2.iterator(); iterator2
+//							.hasNext();) {
+//						// 找出outputport的下一个节点
+//						CustomConnection c = (CustomConnection) iterator2
+//								.next();
+//						pre_end_Connector = (CustomUIObjectConnector) c
+//								.getConnected().get(0);
+//						MyPanel pre_end_panelPanel = (MyPanel) pre_end_Connector.wrapped;
+//						ServiceTask pre_end_simpletask = (ServiceTask) pre_end_panelPanel
+//								.getParent().getParent();
+//
+//						Workflowtasknode workflowtasknode2 = pre_end_simpletask;
+//						Client_Node loop2 = workflowMap.get(workflowtasknode2);
+//						nonFixedNumFor.getInputPort().getBeforeNodes().add(
+//								loop2);
+//						preTaskList.add(pre_end_simpletask);
+//					}
+//				} 
+				else { // 节点是服务节点
 					ServiceTask simpleTask = (ServiceTask) workflowtasknode;
 					Client_ServiceTask service = (Client_ServiceTask) workflowMap
 							.get(simpleTask);
@@ -1002,28 +1010,30 @@ public class SubDiagram extends DiagramBuilder {
 
 		Client_Node lastNode = sub_workflow.getHasLastNode();
 		if (lastNode.getName().equals(FIXEDFORNODE)) {
-			Client_FixedNumFor client_FixedNumFor = (Client_FixedNumFor) lastNode;
-			Client_OutputPort client_OutputPort = client_FixedNumFor
-					.getOutputPort();
-			if (client_OutputPort.getHasNextNodes() != null
-					&& client_OutputPort.getHasNextNodes().size() > 0) {
-				System.out.println("弹出一个对话框，终止节点节点后还有节点，强行结束保存过程");
-				check = Window
-						.confirm("Node after end-node, force to end and return to null, sure?");
-				return null;
-			}
-		} else if (lastNode.getName().equals(NONFIXEDNUMFOR)) {
-			Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) lastNode;
-			Client_OutputPort client_OutputPort = client_NonFixedNumFor
-					.getOutputPort();
-			if (client_OutputPort.getHasNextNodes() != null
-					&& client_OutputPort.getHasNextNodes().size() > 0) {
-				System.out.println("弹出一个对话框，终止节点节点后还有节点，强行结束保存过程");
-				check = Window
-						.confirm("Node after end-node, force to end and return to null, sure?");
-				return null;
-			}
-		} else if (lastNode.getName().equals(LOOPNODE)) {
+//			Client_FixedNumFor client_FixedNumFor = (Client_FixedNumFor) lastNode;
+//			Client_OutputPort client_OutputPort = client_FixedNumFor
+//					.getOutputPort();
+//			if (client_OutputPort.getHasNextNodes() != null
+//					&& client_OutputPort.getHasNextNodes().size() > 0) {
+//				System.out.println("弹出一个对话框，终止节点节点后还有节点，强行结束保存过程");
+//				check = Window
+//						.confirm("Node after end-node, force to end and return to null, sure?");
+//				return null;
+//			}
+		} 
+//		else if (lastNode.getName().equals(NONFIXEDNUMFOR)) {
+//			Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) lastNode;
+//			Client_OutputPort client_OutputPort = client_NonFixedNumFor
+//					.getOutputPort();
+//			if (client_OutputPort.getHasNextNodes() != null
+//					&& client_OutputPort.getHasNextNodes().size() > 0) {
+//				System.out.println("弹出一个对话框，终止节点节点后还有节点，强行结束保存过程");
+//				check = Window
+//						.confirm("Node after end-node, force to end and return to null, sure?");
+//				return null;
+//			}
+//		} 
+		else if (lastNode.getName().equals(LOOPNODE)) {
 			Client_Loop client_Loop = (Client_Loop) lastNode;
 			Client_OutputPort client_OutputPort = client_Loop.getOutputPort();
 			if (client_OutputPort.getHasNextNodes() != null
@@ -1226,112 +1236,115 @@ public class SubDiagram extends DiagramBuilder {
 
 					Workflowtasknode workFlowNode = choice;
 					workflowMap.put(client_Node, workFlowNode);
-				} else if (client_Node.getName().equals(FIXEDFORNODE)) {
-					Client_FixedNumFor client_FixedNumFor = (Client_FixedNumFor) client_Node;
-					FixedFor fixedFor = new FixedFor(client_Node.getName(),
-							this, overview);
-
-					fixedFor.setID(client_FixedNumFor.getId());
-
-					int num = hashMap.get(FIXEDFORNODETITLE);
-					set_node_title(fixedFor, FIXEDFORNODETITLE + (num + 1));
-					hashMap.put(FIXEDFORNODETITLE, num + 1);
-
-					fixedFor.sub_workflow = client_FixedNumFor.getWorkflow();
-					fixedFor.setServiceConfigure(client_FixedNumFor
-							.getServiceConfigure());
-
-					MyPanel in = fixedFor.getPanel2();
-					MyPanel out = fixedFor.getPanel3();
-					MyPanel fault = fixedFor.getPanel4();
-					fixedFor.sinkEvents(Event.ONCLICK);
-
-					fixedFor.setPixel_x(client_FixedNumFor.getX());
-					fixedFor.setPixel_y(client_FixedNumFor.getY());
-
-					panel.add(fixedFor, client_FixedNumFor.getX(),
-							client_FixedNumFor.getY());
-					dragController1.makeDraggable(fixedFor);
-
-					service_name_to_id.put(fixedFor.getTitle(),
-							client_FixedNumFor.getId()); // 每新建一个节点，就把名字和id号关联起来
-
-					// 设置是否为终止点
-					if (client_FixedNumFor.isIsfinished()) {
-						SetFinishCommand setFinishCommand = (SetFinishCommand) fixedFor.setfinish
-								.getCommand();
-						setFinishCommand.setFinisher();
-					}
-					// 设置是否为起始点
-					if (client_FixedNumFor.isIsstart()) {
-						SetStartCommand setStartCommand = (SetStartCommand) fixedFor.setstart
-								.getCommand();
-						setStartCommand.setStarter();
-					}
-
-					fixedFor.setHasFinishedConfigure(true);
-
-					CustomUIObjectConnector.wrap(in);
-					CustomUIObjectConnector.wrap(out);
-					CustomUIObjectConnector.wrap(fault);
-
-					// 设置基本属性
-					Workflowtasknode workFlowNode = fixedFor;
-					workflowMap.put(client_Node, workFlowNode); // 为接下来寻找nextnode服务
-				} else if (client_Node.getName().equals(NONFIXEDNUMFOR)) {
-					Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) client_Node;
-					NonFixedFor nonFixedFor = new NonFixedFor(client_Node
-							.getName(), this, overview);
-
-					nonFixedFor.setID(client_NonFixedNumFor.getId());
-
-					int num = hashMap.get(NONFIXEDNUMFORTITLE);
-					set_node_title(nonFixedFor, NONFIXEDNUMFORTITLE + (num + 1));
-					hashMap.put(NONFIXEDNUMFORTITLE, num + 1);
-
-					nonFixedFor.sub_workflow = client_NonFixedNumFor
-							.getWorkflow();
-					nonFixedFor.setServiceConfigure(client_NonFixedNumFor
-							.getServiceConfigure());
-
-					MyPanel in = nonFixedFor.getPanel2();
-					MyPanel out = nonFixedFor.getPanel3();
-					MyPanel fault = nonFixedFor.getPanel4();
-					nonFixedFor.sinkEvents(Event.ONCLICK);
-
-					nonFixedFor.setPixel_x(client_NonFixedNumFor.getX());
-					nonFixedFor.setPixel_y(client_NonFixedNumFor.getY());
-
-					panel.add(nonFixedFor, client_NonFixedNumFor.getX(),
-							client_NonFixedNumFor.getY());
-					dragController1.makeDraggable(nonFixedFor);
-
-					service_name_to_id.put(nonFixedFor.getTitle(),
-							client_NonFixedNumFor.getId()); // 每新建一个节点，就把名字和id号关联起来
-
-					// 设置是否为终止点
-					if (client_NonFixedNumFor.isIsfinished()) {
-						SetFinishCommand setFinishCommand = (SetFinishCommand) nonFixedFor.setfinish
-								.getCommand();
-						setFinishCommand.setFinisher();
-					}
-					// 设置是否为起始点
-					if (client_NonFixedNumFor.isIsstart()) {
-						SetStartCommand setStartCommand = (SetStartCommand) nonFixedFor.setstart
-								.getCommand();
-						setStartCommand.setStarter();
-					}
-
-					nonFixedFor.setHasFinishedConfigure(true);
-
-					CustomUIObjectConnector.wrap(in);
-					CustomUIObjectConnector.wrap(out);
-					CustomUIObjectConnector.wrap(fault);
-
-					// 设置基本属性
-					Workflowtasknode workFlowNode = nonFixedFor;
-					workflowMap.put(client_Node, workFlowNode); // 为接下来寻找nextnode服务
-				} else {
+				} 
+//				else if (client_Node.getName().equals(FIXEDFORNODE)) {
+//					Client_FixedNumFor client_FixedNumFor = (Client_FixedNumFor) client_Node;
+//					FixedFor fixedFor = new FixedFor(client_Node.getName(),
+//							this, overview);
+//
+//					fixedFor.setID(client_FixedNumFor.getId());
+//
+//					int num = hashMap.get(FIXEDFORNODETITLE);
+//					set_node_title(fixedFor, FIXEDFORNODETITLE + (num + 1));
+//					hashMap.put(FIXEDFORNODETITLE, num + 1);
+//
+//					fixedFor.sub_workflow = client_FixedNumFor.getWorkflow();
+//					fixedFor.setServiceConfigure(client_FixedNumFor
+//							.getServiceConfigure());
+//
+//					MyPanel in = fixedFor.getPanel2();
+//					MyPanel out = fixedFor.getPanel3();
+//					MyPanel fault = fixedFor.getPanel4();
+//					fixedFor.sinkEvents(Event.ONCLICK);
+//
+//					fixedFor.setPixel_x(client_FixedNumFor.getX());
+//					fixedFor.setPixel_y(client_FixedNumFor.getY());
+//
+//					panel.add(fixedFor, client_FixedNumFor.getX(),
+//							client_FixedNumFor.getY());
+//					dragController1.makeDraggable(fixedFor);
+//
+//					service_name_to_id.put(fixedFor.getTitle(),
+//							client_FixedNumFor.getId()); // 每新建一个节点，就把名字和id号关联起来
+//
+//					// 设置是否为终止点
+//					if (client_FixedNumFor.isIsfinished()) {
+//						SetFinishCommand setFinishCommand = (SetFinishCommand) fixedFor.setfinish
+//								.getCommand();
+//						setFinishCommand.setFinisher();
+//					}
+//					// 设置是否为起始点
+//					if (client_FixedNumFor.isIsstart()) {
+//						SetStartCommand setStartCommand = (SetStartCommand) fixedFor.setstart
+//								.getCommand();
+//						setStartCommand.setStarter();
+//					}
+//
+//					fixedFor.setHasFinishedConfigure(true);
+//
+//					CustomUIObjectConnector.wrap(in);
+//					CustomUIObjectConnector.wrap(out);
+//					CustomUIObjectConnector.wrap(fault);
+//
+//					// 设置基本属性
+//					Workflowtasknode workFlowNode = fixedFor;
+//					workflowMap.put(client_Node, workFlowNode); // 为接下来寻找nextnode服务
+//				} 
+//				else if (client_Node.getName().equals(NONFIXEDNUMFOR)) {
+//					Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) client_Node;
+//					NonFixedFor nonFixedFor = new NonFixedFor(client_Node
+//							.getName(), this, overview);
+//
+//					nonFixedFor.setID(client_NonFixedNumFor.getId());
+//
+//					int num = hashMap.get(NONFIXEDNUMFORTITLE);
+//					set_node_title(nonFixedFor, NONFIXEDNUMFORTITLE + (num + 1));
+//					hashMap.put(NONFIXEDNUMFORTITLE, num + 1);
+//
+//					nonFixedFor.sub_workflow = client_NonFixedNumFor
+//							.getWorkflow();
+//					nonFixedFor.setServiceConfigure(client_NonFixedNumFor
+//							.getServiceConfigure());
+//
+//					MyPanel in = nonFixedFor.getPanel2();
+//					MyPanel out = nonFixedFor.getPanel3();
+//					MyPanel fault = nonFixedFor.getPanel4();
+//					nonFixedFor.sinkEvents(Event.ONCLICK);
+//
+//					nonFixedFor.setPixel_x(client_NonFixedNumFor.getX());
+//					nonFixedFor.setPixel_y(client_NonFixedNumFor.getY());
+//
+//					panel.add(nonFixedFor, client_NonFixedNumFor.getX(),
+//							client_NonFixedNumFor.getY());
+//					dragController1.makeDraggable(nonFixedFor);
+//
+//					service_name_to_id.put(nonFixedFor.getTitle(),
+//							client_NonFixedNumFor.getId()); // 每新建一个节点，就把名字和id号关联起来
+//
+//					// 设置是否为终止点
+//					if (client_NonFixedNumFor.isIsfinished()) {
+//						SetFinishCommand setFinishCommand = (SetFinishCommand) nonFixedFor.setfinish
+//								.getCommand();
+//						setFinishCommand.setFinisher();
+//					}
+//					// 设置是否为起始点
+//					if (client_NonFixedNumFor.isIsstart()) {
+//						SetStartCommand setStartCommand = (SetStartCommand) nonFixedFor.setstart
+//								.getCommand();
+//						setStartCommand.setStarter();
+//					}
+//
+//					nonFixedFor.setHasFinishedConfigure(true);
+//
+//					CustomUIObjectConnector.wrap(in);
+//					CustomUIObjectConnector.wrap(out);
+//					CustomUIObjectConnector.wrap(fault);
+//
+//					// 设置基本属性
+//					Workflowtasknode workFlowNode = nonFixedFor;
+//					workflowMap.put(client_Node, workFlowNode); // 为接下来寻找nextnode服务
+//				} 
+				else {
 					Client_ServiceTask client_ServiceTask = (Client_ServiceTask) client_Node;
 					ServiceTask service = new ServiceTask(client_Node.getName(),
 							this);
@@ -1504,47 +1517,50 @@ public class SubDiagram extends DiagramBuilder {
 							connect(ui1, ui2, panel); // 在connect中添加线条背景面板,panel指明线是画在编辑区的面板上
 						}
 					}
-				} else if (client_Node.getName().equals(FIXEDFORNODE)) {
-					Client_FixedNumFor client_FixedNumFor = (Client_FixedNumFor) client_Node;
-					FixedFor fixedFor = (FixedFor) workflowMap
-							.get(client_FixedNumFor);
-
-					Client_OutputPort client_OutputPort = client_FixedNumFor
-							.getOutputPort();
-					for (Iterator iterator2 = client_OutputPort
-							.getHasNextNodes().iterator(); iterator2.hasNext();) {
-						// 找出outputport的下一个节点
-						Client_Node nextnode = (Client_Node) iterator2.next();
-						Workflowtasknode fixedFor2 = workflowMap.get(nextnode);
-
-						CustomUIObjectConnector ui1 = CustomUIObjectConnector
-								.getWrapper(fixedFor.getPanel3());
-						CustomUIObjectConnector ui2 = CustomUIObjectConnector
-								.getWrapper(fixedFor2.getPanel2());
-						connect(ui1, ui2, panel); // 在connect中添加线条背景面板,panel指明线是画在编辑区的面板上
-					}
-
-				} else if (client_Node.getName().equals(NONFIXEDNUMFOR)) {
-					Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) client_Node;
-					NonFixedFor nonFixedFor = (NonFixedFor) workflowMap
-							.get(client_NonFixedNumFor);
-
-					Client_OutputPort client_OutputPort = client_NonFixedNumFor
-							.getOutputPort();
-					for (Iterator iterator2 = client_OutputPort
-							.getHasNextNodes().iterator(); iterator2.hasNext();) {
-						// 找出outputport的下一个节点
-						Client_Node nextnode = (Client_Node) iterator2.next();
-						Workflowtasknode nonFixedFor2 = workflowMap
-								.get(nextnode);
-
-						CustomUIObjectConnector ui1 = CustomUIObjectConnector
-								.getWrapper(nonFixedFor.getPanel3());
-						CustomUIObjectConnector ui2 = CustomUIObjectConnector
-								.getWrapper(nonFixedFor2.getPanel2());
-						connect(ui1, ui2, panel); // 在connect中添加线条背景面板,panel指明线是画在编辑区的面板上
-					}
-				} else { // 节点是服务节点
+				} 
+//				else if (client_Node.getName().equals(FIXEDFORNODE)) {
+//					Client_FixedNumFor client_FixedNumFor = (Client_FixedNumFor) client_Node;
+//					FixedFor fixedFor = (FixedFor) workflowMap
+//							.get(client_FixedNumFor);
+//
+//					Client_OutputPort client_OutputPort = client_FixedNumFor
+//							.getOutputPort();
+//					for (Iterator iterator2 = client_OutputPort
+//							.getHasNextNodes().iterator(); iterator2.hasNext();) {
+//						// 找出outputport的下一个节点
+//						Client_Node nextnode = (Client_Node) iterator2.next();
+//						Workflowtasknode fixedFor2 = workflowMap.get(nextnode);
+//
+//						CustomUIObjectConnector ui1 = CustomUIObjectConnector
+//								.getWrapper(fixedFor.getPanel3());
+//						CustomUIObjectConnector ui2 = CustomUIObjectConnector
+//								.getWrapper(fixedFor2.getPanel2());
+//						connect(ui1, ui2, panel); // 在connect中添加线条背景面板,panel指明线是画在编辑区的面板上
+//					}
+//
+//				} 
+//				else if (client_Node.getName().equals(NONFIXEDNUMFOR)) {
+//					Client_NonFixedNumFor client_NonFixedNumFor = (Client_NonFixedNumFor) client_Node;
+//					NonFixedFor nonFixedFor = (NonFixedFor) workflowMap
+//							.get(client_NonFixedNumFor);
+//
+//					Client_OutputPort client_OutputPort = client_NonFixedNumFor
+//							.getOutputPort();
+//					for (Iterator iterator2 = client_OutputPort
+//							.getHasNextNodes().iterator(); iterator2.hasNext();) {
+//						// 找出outputport的下一个节点
+//						Client_Node nextnode = (Client_Node) iterator2.next();
+//						Workflowtasknode nonFixedFor2 = workflowMap
+//								.get(nextnode);
+//
+//						CustomUIObjectConnector ui1 = CustomUIObjectConnector
+//								.getWrapper(nonFixedFor.getPanel3());
+//						CustomUIObjectConnector ui2 = CustomUIObjectConnector
+//								.getWrapper(nonFixedFor2.getPanel2());
+//						connect(ui1, ui2, panel); // 在connect中添加线条背景面板,panel指明线是画在编辑区的面板上
+//					}
+//				} 
+				else { // 节点是服务节点
 					Client_ServiceTask client_ServiceTask = (Client_ServiceTask) client_Node;
 					ServiceTask service = (ServiceTask) workflowMap
 							.get(client_ServiceTask);

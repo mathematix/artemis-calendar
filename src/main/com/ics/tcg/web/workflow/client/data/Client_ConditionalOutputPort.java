@@ -7,10 +7,7 @@
 
 package com.ics.tcg.web.workflow.client.data;
 
-import java.io.Serializable;
-
-public class Client_ConditionalOutputPort extends Client_OutputPort implements
-		Serializable {
+public class Client_ConditionalOutputPort extends Client_OutputPort {
 
 	/**
 	 * 

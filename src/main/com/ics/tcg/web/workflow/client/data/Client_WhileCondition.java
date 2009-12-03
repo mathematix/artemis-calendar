@@ -7,9 +7,7 @@
 
 package com.ics.tcg.web.workflow.client.data;
 
-import java.io.Serializable;
-
-public class Client_WhileCondition implements Serializable {
+public class Client_WhileCondition{
 
 	private static final long serialVersionUID = -5515497810464890398L;
 	protected String id;

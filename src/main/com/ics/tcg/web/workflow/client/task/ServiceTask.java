@@ -79,9 +79,9 @@ public class ServiceTask extends Workflowtasknode {
 	public String start_time;
 
 	private ServiceInfo serviceInfo;
-	// private boolean hasFinishedConfigure;
-	// //判断是否完成了服务配置，如果完成了，则双击节点重新配置的时候，显示上一次配置好的方法界面
 	private ServiceConfigure serviceConfigure;
+	
+	
 	public boolean deleteState, hasTimer;
 	public MenuItem delTimer, deleteNode, addTimer;
 	// public ContextMenuGwt cmg;
